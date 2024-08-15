@@ -1,4 +1,10 @@
 module.exports = {
   root: true,
-  extends: '@react-native',
+  env: {
+    node: true,
+  },
+  extends: 'react-native',
+  rules: {
+    'babel/*': 'off',
+  },
 };
