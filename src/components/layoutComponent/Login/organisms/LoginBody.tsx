@@ -13,8 +13,8 @@ type LoginFormProps = {
 
 const LoginBody = ({navigation}: LoginFormProps) => {
   return (
-    <View className="w-full h-full flex flex-col justify-between items-center">
-      <View className='w-full h-5/6 flex flex-col justify-start items-center'>
+    <View className="w-full h-full flex flex-col justify-between items-center bg-white">
+      <View className='w-full h-5/6 flex flex-col justify-start items-center px-10'>
         <LoginForm navigation={navigation} />
       </View>
 
