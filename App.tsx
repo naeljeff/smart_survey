@@ -12,9 +12,11 @@ LogBox.ignoreLogs([
 
 // Components
 import LoginPage from './src/screens/LoginPage';
+import HomePage from './src/screens/HomePage';
 
 export type RootStackParamList = {
   login: undefined;
+  homePage: {username: string};
 };
 
 const queryClient = new QueryClient();
@@ -30,9 +32,19 @@ const App = () => {
             screenOptions={{
               headerShown: false,
             }}>
+            {/* Login Page */}
             <Stack.Screen
               name="login"
               component={LoginPage}
+              options={{
+                gestureEnabled: false,
+              }}
+            />
+
+            {/* Home Page */}
+            <Stack.Screen
+              name="homePage"
+              component={HomePage}
               options={{
                 gestureEnabled: false,
               }}
