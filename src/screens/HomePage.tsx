@@ -29,7 +29,7 @@ const HomePage = () => {
 
         {/* Body */}
         <Surface elevation={4} className="rounded-t-2xl">
-          <View className="flex-1 flex flex-col justify-center items-center">
+          <View className="w-full h-full flex flex-col justify-center items-center">
             <HomeBody />
           </View>
         </Surface>

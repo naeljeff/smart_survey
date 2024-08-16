@@ -7,6 +7,7 @@ import BottomTabsNavigator from './BottomTabNavigator';
 export type RootStackParamList = {
   login: undefined;
   main: undefined;
+  homeCarousel: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -32,6 +33,7 @@ const StackNavigator = () => {
           gestureEnabled: false,
         }}
       />
+      {/* <Stack.Screen name="homeCarousel" component={HomePageCarousel} /> */}
     </Stack.Navigator>
   );
 };
