@@ -13,8 +13,8 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
       {isLoading ? (
         <Button
           mode="contained-tonal"
-          className="w-full py-0.5"
-          buttonColor="#f7ebd7"
+          className="w-full py-1"
+          buttonColor="#fed700"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
           textColor="black"
           rippleColor="white"
@@ -27,8 +27,8 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
       ) : (
         <Button
           mode="contained-tonal"
-          className="w-full py-0.5"
-          buttonColor="#f7ebd7"
+          className="w-full py-1"
+          buttonColor="#fed700"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
           textColor="black"
           rippleColor="white"

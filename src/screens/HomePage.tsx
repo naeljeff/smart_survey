@@ -1,17 +1,26 @@
-import {Text, View} from 'react-native';
-import React from 'react';
+import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
+import React, {useState} from 'react';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 // Components
-import {RootStackParamList} from '../../App';
+import { RootStackParamList } from '../routes/StackNavigator';
 
-type HomePageProps = NativeStackScreenProps<RootStackParamList, 'homePage'>;
+const HomePage = () => {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
-const HomePage = ({route}: HomePageProps) => {
-  const {username} = route.params;
-  return (
-    <View>
-      <Text>{username}</Text>
+  return isLoading ? (
+    <View className="h-full w-full flex flex-col justify-center items-center bg-gray-500/50">
+      <ActivityIndicator size="large" color="#00bffe" />
+      <Text className="text-white text-lg mt-3">Loading...</Text>
+    </View>
+  ) : (
+    <View className="h-full w-full flex flex-col bg-blue-50">
+      <ScrollView showsVerticalScrollIndicator={false}>
+        {/* Header */}
+        {/* Body */}
+
+        {/* Navigation */}
+      </ScrollView>
     </View>
   );
 };

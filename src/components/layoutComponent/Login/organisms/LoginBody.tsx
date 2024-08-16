@@ -3,7 +3,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 
 // Components
-import {RootStackParamList} from '../../../../../App';
+import { RootStackParamList } from '../../../../routes/StackNavigator';
 import LoginDeviceInfo from '../molecules/LoginDeviceInfo';
 import LoginForm from '../molecules/LoginForm';
 
