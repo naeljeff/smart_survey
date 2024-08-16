@@ -16,7 +16,7 @@ const AnimatedCircle = ({circleX}: CircleProps) => {
 
   return (
     <Animated.View
-      className={`absolute bg-[#00bffe] justify-center items-center rounded-full`}
+      className={`absolute bg-[#87ceeb] justify-center items-center rounded-full`}
       style={[
         circleContainerStyle,
         {

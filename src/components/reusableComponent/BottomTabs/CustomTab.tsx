@@ -56,7 +56,7 @@ const CustomTab = ({state, descriptors, navigation}: BottomTabBarProps) => {
 
   return (
     <View style={styles.tabBarContainer}>
-      <Svg width={SCREEN_WIDTH} height={tHeight} style={styles.shadowMd}>
+      <Svg width={SCREEN_WIDTH + 10} height={tHeight} style={styles.shadowMd}>
         <AnimatedPath fill={'black'} animatedProps={animatedProps} />
       </Svg>
       <AnimatedCircle circleX={circleXCoordinate} />
