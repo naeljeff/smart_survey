@@ -6,7 +6,7 @@ import Toast from 'react-native-simple-toast';
 import {CommonActions} from '@react-navigation/native';
 
 // Components
-import {RootStackParamList} from '../../../../../App';
+import { RootStackParamList } from '../../../../routes/StackNavigator';
 import LoginButton from '../../../reusableComponent/Button/LoginButton';
 
 interface userInputForm {
@@ -44,9 +44,9 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     }
 
     setIsLoading(true);
-    console.log(
-      `Username: ${userForm.username} | Password: ${userForm.password}`,
-    );
+    // console.log(
+    //   `Username: ${userForm.username} | Password: ${userForm.password}`,
+    // );
 
     // Simulasi dulu sekarang, nanti pindahin ke useEffect
     setTimeout(() => {
@@ -55,7 +55,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
       navigation.dispatch(
         CommonActions.reset({
           index: 0,
-          routes: [{ name: 'homePage', params: { username: userForm.username } }],
+          routes: [{ name: 'main' }],
         })
       );
     }, 1000);
