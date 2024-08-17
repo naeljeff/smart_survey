@@ -1,17 +1,25 @@
 import React, {useState} from 'react';
 import {View, ActivityIndicator, Text} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
+import {useNavigation} from '@react-navigation/native';
+
+// Component
 import {SCREEN_WIDTH} from '../../../../../constants/screenSize';
 import CarouselItem from '../../atoms/CarouselItem';
 import {UseGetCarouselData} from '../../../../../services/api/carousel/getHomeCarousel';
 import {CarouselProps} from '../../../../../constants/carouselProps';
+import {RootStackParamList} from '../../../../../routes/StackNavigator';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-const HomepageBodyCarousel = () => {
+type HomeCarouselScreenNavigation = NativeStackNavigationProp<
+  RootStackParamList,
+  'homeCarousel'
+>;
+
+const HomepageBodyCarousel = ({tag}: {tag: string}) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
   const {data, isLoading, isError} = UseGetCarouselData();
-
-  const sliderWidth = SCREEN_WIDTH;
-  const itemWidth = SCREEN_WIDTH - 20;
+  const navigation = useNavigation<HomeCarouselScreenNavigation>();
 
   const renderCarousel = ({
     item,
@@ -24,31 +32,45 @@ const HomepageBodyCarousel = () => {
       <CarouselItem
         item={item}
         index={index}
-        onPress={() => console.log(`Pressed: ${index}`)}
+        tag={tag}
+        onPress={() => {
+          navigation.navigate('homeCarousel', {rowid: item.rowid});
+        }}
       />
     );
   };
 
   if (isLoading) {
-    return <ActivityIndicator size="large" color="#0000ff" />;
+    return (
+      <View className='h-screen w-screen flex flex-col justify-center items-center bg-gray-400/50'>
+        <ActivityIndicator size="large" color="#00bffe" />
+      </View>
+    );
   }
 
   if (isError) {
-    return <Text>Error loading data</Text>;
+    return (
+      <Text className="h-screen w-screen text-center text-lg text-red-500">
+        Error loading data
+      </Text>
+    );
   }
 
+  const carouselData = data?.[tag] || [];
+  const paginationDotsLength = data?.[tag].length || 0;
+
   return (
-    <View style={{flex: 1}}>
+    <View className="h-[250px] flex flex-col">
       <Carousel
-        data={data?.data || []}
-        sliderWidth={sliderWidth}
-        itemWidth={itemWidth}
+        data={carouselData}
+        sliderWidth={SCREEN_WIDTH}
+        itemWidth={SCREEN_WIDTH - 10}
         renderItem={renderCarousel}
         onSnapToItem={index => setActiveSlide(index)}
         vertical={false}
       />
       <Pagination
-        dotsLength={data?.data?.length || 0} 
+        dotsLength={paginationDotsLength}
         activeDotIndex={activeSlide}
         containerStyle={{
           backgroundColor: 'rgba(255, 255, 255, 1)',

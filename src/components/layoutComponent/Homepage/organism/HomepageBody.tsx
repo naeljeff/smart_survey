@@ -5,7 +5,7 @@ import HomepageBodyCarousel from '../molecules/body/HomepageBodyCarousel';
 
 const HomepageBody = () => {
   return (
-    <View className="w-full h-full flex flex-col space-y-4 bg-white rounded-t-2xl pb-56">
+    <View className="w-full h-full flex flex-col space-y-4 bg-white rounded-t-2xl pb-80">
       {/* Banner */}
       <View className="w-full flex-shrink-0 h-1/6">
         <Image
@@ -23,23 +23,23 @@ const HomepageBody = () => {
       </View>
 
       {/* Carousels */}
-      <View className="flex-1 pt-7 space-y-5">
+      <View className="h-[820px] pt-7 space-y-5">
         {/* Updates For You */}
-        <View className="w-full flex-1 mb-4">
-          <Text className='text-lg text-black text-start px-12 font-semibold'>Updates For You</Text>
-          <HomepageBodyCarousel />
+        <View className="w-full flex-1 mb-7">
+          <Text className='text-lg text-black text-start px-12 font-semibold -mb-1'>Updates For You</Text>
+          <HomepageBodyCarousel tag={'data'}/>
         </View>
 
         {/* Competitions */}
-        <View className="w-full flex-1 mb-4">
-          <Text className='text-lg text-black text-start px-12 font-semibold'>Competitions</Text>
-          <HomepageBodyCarousel />
+        <View className="w-full flex-1 mb-7">
+          <Text className='text-lg text-black text-start px-12 font-semibold -mb-1'>Competitions</Text>
+          <HomepageBodyCarousel tag={'promo'}/>
         </View>
 
         {/* Winners */}
-        <View className="w-full flex-1">
-          <Text className='text-lg text-black text-start px-12 font-semibold'>Winners</Text>
-          <HomepageBodyCarousel />
+        <View className="w-full flex-1 mb-7">
+          <Text className='text-lg text-black text-start px-12 font-semibold -mb-1'>Winners</Text>
+          <HomepageBodyCarousel tag={'winner'}/>
         </View>
       </View>
     </View>

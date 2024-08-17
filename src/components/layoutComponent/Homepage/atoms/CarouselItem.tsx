@@ -1,43 +1,35 @@
 import React from 'react';
-import {Text, TouchableOpacity, StyleSheet, Image} from 'react-native';
+import {TouchableOpacity, Image, Text} from 'react-native';
 
 import {CarouselProps} from '../../../../constants/carouselProps';
+import {View} from 'react-native';
 
 type CarouselItemProps = {
   item: CarouselProps;
   index: number;
+  tag: string;
   onPress: () => void;
 };
 
-const CarouselItem = ({item, index, onPress}: CarouselItemProps) => {
+const CarouselItem = ({item, tag, onPress}: CarouselItemProps) => {
+  const imageUri = tag === 'data' ? item.url : item.url_image;
   return (
-    <TouchableOpacity style={styles.container} onPress={onPress}>
-      <Image source={{uri: item.url}} style={styles.image} resizeMode="cover" />
-      <Text style={styles.title} numberOfLines={2}>
-        {item.judul}
-      </Text>
+    <TouchableOpacity
+      className="h-[230px] rounded-xl p-3 mx-3"
+      onPress={onPress}>
+      {imageUri ? (
+        <Image
+          source={{uri: imageUri}}
+          className="w-full h-full rounded-xl p-3"
+          resizeMode="cover"
+        />
+      ) : (
+        <View className="w-full h-full rounded-xl p-3 bg-gray-200 justify-center items-center">
+          <Text className="text-gray-500">Image not available</Text>
+        </View>
+      )}
     </TouchableOpacity>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    height: 200,
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 10,
-    marginHorizontal: 10,
-  },
-  image: {
-    width: '100%',
-    height: '100%',
-    borderRadius: 20,
-  },
-  title: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginTop: 5,
-  },
-});
 
 export default CarouselItem;

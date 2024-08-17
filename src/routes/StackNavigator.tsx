@@ -3,11 +3,12 @@ import React from 'react';
 
 import LoginPage from '../screens/LoginPage';
 import BottomTabsNavigator from './BottomTabNavigator';
+import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
 
 export type RootStackParamList = {
   login: undefined;
   main: undefined;
-  homeCarousel: undefined;
+  homeCarousel: { rowid: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -33,7 +34,7 @@ const StackNavigator = () => {
           gestureEnabled: false,
         }}
       />
-      {/* <Stack.Screen name="homeCarousel" component={HomePageCarousel} /> */}
+      <Stack.Screen name="homeCarousel" component={HomeCarouselDetailPage} />
     </Stack.Navigator>
   );
 };
