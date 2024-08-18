@@ -34,7 +34,7 @@ const HomepageBodyCarousel = ({tag}: {tag: string}) => {
         index={index}
         tag={tag}
         onPress={() => {
-          navigation.navigate('homeCarousel', {rowid: item.rowid});
+          navigation.navigate('homeCarousel', {rowid: item.rowid, tag: tag});
         }}
       />
     );
@@ -42,7 +42,7 @@ const HomepageBodyCarousel = ({tag}: {tag: string}) => {
 
   if (isLoading) {
     return (
-      <View className='h-screen w-screen flex flex-col justify-center items-center bg-gray-400/50'>
+      <View className="h-screen w-screen flex flex-col justify-center items-center bg-gray-400/50">
         <ActivityIndicator size="large" color="#00bffe" />
       </View>
     );
@@ -57,7 +57,7 @@ const HomepageBodyCarousel = ({tag}: {tag: string}) => {
   }
 
   const carouselData = data?.[tag] || [];
-  const paginationDotsLength = data?.[tag].length || 0;
+  const paginationDotsLength = carouselData.length || 0;
 
   return (
     <View className="h-[250px] flex flex-col">

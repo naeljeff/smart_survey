@@ -8,7 +8,7 @@ import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
 export type RootStackParamList = {
   login: undefined;
   main: undefined;
-  homeCarousel: { rowid: string };
+  homeCarousel: { rowid: string, tag: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
