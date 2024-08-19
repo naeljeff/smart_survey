@@ -15,12 +15,12 @@ const NavigationHeader = ({
   onRefresh,
 }: NavigationHeaderProp) => {
   return (
-    <View className="w-full h-[45px] px-1 flex flex-row justify-between items-center bg-white border-b border-gray-500/30 ">
+    <View className="w-full h-[45px] px-4 flex flex-row justify-between items-center bg-white border-b border-gray-500/30 ">
       {/* Back Button */}
       <View>
         <TouchableOpacity className=" flex flex-row gap-x-1" onPress={onPress}>
           <Ionicons name="chevron-back" size={20} color="black" />
-          <Text className="text-black">Go Back</Text>
+          <Text className="text-black">Back</Text>
         </TouchableOpacity>
       </View>
 

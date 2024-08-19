@@ -10,10 +10,10 @@ const HomepageBodyMenu = () => {
       <HomepageNavigationButton title={'Survey Penutupan'} icon={'event-note'} onPress={() => {}}/>
 
       {/* Surveyor */}
-      <HomepageNavigationButton title={'Survey Penutupan'} icon={'home'} onPress={() => {}}/>
+      <HomepageNavigationButton title={'Supervisor'} icon={'home'} onPress={() => {}}/>
 
       {/* Supervisor */}
-      <HomepageNavigationButton title={'Survey Penutupan'} icon={'home'} onPress={() => {}}/>
+      <HomepageNavigationButton title={'Surveyor'} icon={'home'} onPress={() => {}}/>
     </View>
   )
 }

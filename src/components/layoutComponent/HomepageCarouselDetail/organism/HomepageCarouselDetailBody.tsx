@@ -34,10 +34,16 @@ const HomepageCarouselDetailBody = ({
         )}
 
         {/* Judul */}
-        <Text className="text-lg text-black font-semibold">{item.judul}</Text>
+        <Text className="text-lg text-black font-semibold mb-3">{item.judul}</Text>
 
         {/* Isi Pesan */}
-        <Text className='text-md text-justify text-black px-3'>{item.isi_pesan}</Text>
+        <Text className='text-md text-justify text-black px-7'>{item.isi_pesan}</Text>
+
+        {/* Berlaku */}
+        <View className='w-full flex justify-start px-5 py-3'>
+          <Text className='text-black'>Berlaku dari:</Text>
+          <Text className='text-black'>{item.eff_date} <Text className='font-semibold text-black'>sampai</Text> {item.exp_date}</Text>
+        </View>
       </View>
     </Surface>
   );
