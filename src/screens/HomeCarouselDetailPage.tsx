@@ -1,27 +1,38 @@
-import {ActivityIndicator, Text, TouchableOpacity, View} from 'react-native';
+import {
+  ActivityIndicator,
+  ScrollView,
+  Text,
+  RefreshControl,
+  View,
+} from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import {RootStackParamList} from '../routes/StackNavigator';
 import {UseGetCarouselData} from '../services/api/carousel/getHomeCarousel';
 import {CarouselProps} from '../constants/carouselProps';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
+import HomepageCarouselDetailBody from '../components/layoutComponent/HomepageCarouselDetail/organism/HomepageCarouselDetailBody';
 
 type HomeCarouselDetailProp = RouteProp<RootStackParamList, 'homeCarousel'>;
-type HomeCarouselNavigationProp = NativeStackNavigationProp<
-  RootStackParamList,
-  'main'
->;
 
 const HomeCarouselDetailPage = () => {
   const route = useRoute<HomeCarouselDetailProp>();
-  const {data, isLoading, isError} = UseGetCarouselData();
+  const {data, isLoading, isError, refetch} = UseGetCarouselData();
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const {rowid} = route.params;
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const {rowid, tag} = route.params;
 
-  const item: CarouselProps | undefined = data?.data?.find(
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await refetch();
+    setRefreshing(false);
+  };
+
+  const item: CarouselProps | undefined = data?.[tag].find(
     (params: CarouselProps) => params.rowid === rowid,
   );
 
@@ -50,13 +61,28 @@ const HomeCarouselDetailPage = () => {
   }
 
   return (
-    <View>
-      <TouchableOpacity onPress={() => navigation.goBack()}>
-        <Text>Go back</Text>
-      </TouchableOpacity>
-      <Text>HomeCarouselDetailPage</Text>
-      <Text>{item.judul}</Text>
-      <Text>{item.isi_pesan}</Text>
+    <View className="flex-1 bg-white">
+      {/* Header */}
+      <NavigationHeader
+        title={'Home'}
+        onPress={() => navigation.goBack()}
+        onRefresh={refetch}
+      />
+
+      {/* Body */}
+      <ScrollView
+        contentContainerStyle={{flexGrow: 1}}
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={['#00bfff']}
+          />
+        }>
+        <View className="flex-1 p-3">
+          <HomepageCarouselDetailBody item={item} tag={tag}/>
+        </View>
+      </ScrollView>
     </View>
   );
 };

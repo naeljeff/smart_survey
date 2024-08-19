@@ -1,4 +1,4 @@
-import {Text, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity, Image} from 'react-native';
 import {Surface} from 'react-native-paper';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import React from 'react';
@@ -19,10 +19,26 @@ const HomepageNavigationButton = ({
       <TouchableOpacity
         className="flex-1 rounded-2xl bg-white"
         onPress={onPress}>
-        <View className="w-full h-full flex justify-center items-center">
-          <MaterialIcons name={icon} size={70} color="black" />
+        <View className="w-full h-full flex justify-center items-center p-2">
+          {title === 'Survey Penutupan' ? (
+            <MaterialIcons name={icon} size={64} color="black" />
+          ) : title === 'Supervisor' ? (
+            <Image
+              source={require('../../../../assets/supervisorIcon.png')}
+              className="w-full h-full"
+              resizeMode="contain"
+            />
+          ) : (
+            <Image
+              source={require('../../../../assets/surveyorIcon.png')}
+              className="w-full h-full"
+              resizeMode="contain"
+            />
+          )}
         </View>
-        <Text className="mt-3 text-black text-center tracking-tight">{title}</Text>
+        <Text className="mt-3 text-black text-center tracking-tight">
+          {title}
+        </Text>
       </TouchableOpacity>
     </Surface>
   );

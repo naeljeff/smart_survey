@@ -1,14 +1,16 @@
 import {useQuery} from '@tanstack/react-query';
+import DeviceInfo from 'react-native-device-info';
 import axios from 'axios';
 
 const getHomeCarouselData = async () => {
+  const systemName = DeviceInfo.getSystemName().toUpperCase();
   try {
     const response = await axios.post(
       'https://www.araksa.com/prog-x/api/underwriting_approval/api_get_slideshow.php',
       {
-        key_id: 'kagjwlak123@djkaldwj123@$%2',
+        key_id: process.env.HOME_CAROUSEL_KEY_ID,
         source: 'Transmet',
-        source_phone: 'ANDROID',
+        source_phone: systemName,
       },
       {
         headers: {
@@ -24,11 +26,11 @@ const getHomeCarouselData = async () => {
 };
 
 export const UseGetCarouselData = () => {
-  const {isLoading, data, isError} = useQuery({
+  const {isLoading, data, isError, refetch} = useQuery({
     queryKey: ['homeCarousel'],
     queryFn: getHomeCarouselData,
     refetchOnReconnect: 'always',
   });
 
-  return {isLoading, data, isError};
+  return {isLoading, data, isError, refetch};
 };

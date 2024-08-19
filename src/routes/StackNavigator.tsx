@@ -4,11 +4,17 @@ import React from 'react';
 import LoginPage from '../screens/LoginPage';
 import BottomTabsNavigator from './BottomTabNavigator';
 import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
+import MenuAwalSurveyPenutupan from '../screens/MenuAwalSurveyPenutupan';
+import MenuAwalSupervisor from '../screens/MenuAwalSupervisor';
+import MenuAwalSurveyor from '../screens/MenuAwalSurveyor';
 
 export type RootStackParamList = {
   login: undefined;
   main: undefined;
-  homeCarousel: { rowid: string };
+  homeCarousel: { rowid: string, tag: string };
+  surveyPenutupan: undefined;
+  supervisor: undefined;
+  surveyor: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -35,6 +41,9 @@ const StackNavigator = () => {
         }}
       />
       <Stack.Screen name="homeCarousel" component={HomeCarouselDetailPage} />
+      <Stack.Screen name="surveyPenutupan" component={MenuAwalSurveyPenutupan} />
+      <Stack.Screen name="supervisor" component={MenuAwalSupervisor} />
+      <Stack.Screen name="surveyor" component={MenuAwalSurveyor} />
     </Stack.Navigator>
   );
 };
