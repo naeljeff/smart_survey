@@ -1,10 +1,8 @@
 import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
 import React, {useState} from 'react';
 import {Surface} from 'react-native-paper';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 // Components
-import {RootStackParamList} from '../routes/StackNavigator';
 import HomeHeader from '../components/layoutComponent/Homepage/organism/HomepageHeader';
 import HomeBody from '../components/layoutComponent/Homepage/organism/HomepageBody';
 

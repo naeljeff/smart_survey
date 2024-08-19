@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {View, ActivityIndicator, Text} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 // Component
 import {SCREEN_WIDTH} from '../../../../../constants/screenSize';
@@ -9,7 +10,6 @@ import CarouselItem from '../../atoms/CarouselItem';
 import {UseGetCarouselData} from '../../../../../services/api/carousel/getHomeCarousel';
 import {CarouselProps} from '../../../../../constants/carouselProps';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 type HomeCarouselScreenNavigation = NativeStackNavigationProp<
   RootStackParamList,

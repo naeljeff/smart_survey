@@ -19,12 +19,18 @@ const HomepageNavigationButton = ({
       <TouchableOpacity
         className="flex-1 rounded-2xl bg-white"
         onPress={onPress}>
-        <View className="w-full h-full flex justify-center items-center">
+        <View className="w-full h-full flex justify-center items-center p-2">
           {title === 'Survey Penutupan' ? (
-            <MaterialIcons name={icon} size={70} color="black" />
+            <MaterialIcons name={icon} size={64} color="black" />
+          ) : title === 'Supervisor' ? (
+            <Image
+              source={require('../../../../assets/supervisorIcon.png')}
+              className="w-full h-full"
+              resizeMode="contain"
+            />
           ) : (
             <Image
-              source={require('../../../../assets/baground1.png')}
+              source={require('../../../../assets/surveyorIcon.png')}
               className="w-full h-full"
               resizeMode="contain"
             />
