@@ -26,7 +26,7 @@ const HomepageBody = () => {
       <View className="h-[820px] pt-7 space-y-5">
         {/* Updates For You */}
         <View className="w-full flex-1 mb-7">
-          <Text className='text-lg text-black text-start px-12 font-semibold -mb-1'>Updates For You</Text>
+        <Text className='text-lg text-black text-start px-12 font-semibold -mb-1'>Updates For You</Text>
           <HomepageBodyCarousel tag={'data'}/>
         </View>
 

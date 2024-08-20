@@ -27,13 +27,13 @@ const HomeHeader = () => {
         <Text className="font-semibold text-white text-xl capitalize">
           {`Good ${timeOfDay}`}
         </Text>
-        <Text className="underline text-white text-lg capitalize">
+        <Text className="flex-wrap underline text-white text-lg capitalize">
           {fullName}
         </Text>
       </View>
 
       {/* Icon */}
-      <View className="h-full w-1/3 flex flex-row justify-between items-center pr-4">
+      <View className="h-full w-1/3 flex flex-row justify-between items-center pr-4 ml-3">
         <HeaderNotification />
         <HeaderLogout />
       </View>

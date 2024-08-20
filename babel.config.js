@@ -6,7 +6,8 @@ module.exports = function (api) {
       'nativewind/babel',
       'react-native-paper/babel',
       'module:react-native-dotenv',
-      'react-native-reanimated/plugin'
+      'react-native-reanimated/plugin',
+      'jest-hoist'
     ],
   };
 };
