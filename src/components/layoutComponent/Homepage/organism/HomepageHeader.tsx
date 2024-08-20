@@ -4,9 +4,15 @@ import React from 'react';
 import {getTimeOfDay} from '../../../../utilities/functions';
 import HeaderNotification from '../molecules/header/HomepageHeaderNotification';
 import HeaderLogout from '../molecules/header/HomepageHeaderLogout';
+import {useUserStore} from '../../../../store/storeUser';
 
 const HomeHeader = () => {
   const timeOfDay = getTimeOfDay();
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
+
+  const fullName = messageResponse?.full_name || '';
   return (
     <View
       className={`w-full h-full ${
@@ -21,7 +27,9 @@ const HomeHeader = () => {
         <Text className="font-semibold text-white text-xl capitalize">
           {`Good ${timeOfDay}`}
         </Text>
-        <Text className="underline text-white text-lg">Regie Samuel</Text>
+        <Text className="underline text-white text-lg capitalize">
+          {fullName}
+        </Text>
       </View>
 
       {/* Icon */}

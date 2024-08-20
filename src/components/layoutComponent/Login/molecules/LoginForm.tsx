@@ -12,6 +12,7 @@ import {
   UseGetUserValidationWithEmail,
   UseGetUserValidationWithUsername,
 } from '../../../../services/api/user/getUserLogin';
+import {useUserStore} from '../../../../store/storeUser';
 
 interface userInputForm {
   username: string;
@@ -35,6 +36,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     UseGetUserValidationWithUsername(userForm.username, userForm.password);
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isEmail, setIsEmail] = useState<boolean>(false);
+  const setUserData = useUserStore(state => state.setUserData);
 
   const handleUsernameInput = (username: string) => {
     setUserForm({...userForm, username});
@@ -84,6 +86,15 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
   const handleSuccessfulLogin = (data: any) => {
     Toast.show('Login successful!', Toast.LONG);
+
+    // Add to store
+    if (data.message_response) {
+      setUserData({
+        token: data.token || '',
+        messageResponse: data.message_response,
+      });
+    }
+
     navigation.dispatch(
       CommonActions.reset({
         index: 0,
