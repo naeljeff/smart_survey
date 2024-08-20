@@ -5,9 +5,11 @@ import {Surface} from 'react-native-paper';
 // Components
 import HomeHeader from '../components/layoutComponent/Homepage/organism/HomepageHeader';
 import HomeBody from '../components/layoutComponent/Homepage/organism/HomepageBody';
+import {getTimeOfDay} from '../utilities/functions';
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const timeOfDay = getTimeOfDay();
 
   return isLoading ? (
     <View className="h-full w-full flex flex-col justify-center items-center bg-gray-500/50">
@@ -17,7 +19,13 @@ const HomePage = () => {
   ) : (
     <ScrollView
       showsVerticalScrollIndicator={false}
-      className="h-full w-full flex flex-col bg-[#87ceeb]">
+      className={`h-full w-full flex flex-col ${
+        timeOfDay === 'morning'
+          ? 'bg-[#87ceeb]'
+          : timeOfDay === 'afternoon'
+          ? 'bg-[#e9eb87]'
+          : 'bg-[#b687eb]'
+      }`}>
       {/* Header */}
       <View className="flex-1">
         {/* Header */}
