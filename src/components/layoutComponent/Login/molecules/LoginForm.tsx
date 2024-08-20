@@ -1,13 +1,17 @@
 import {View, Text} from 'react-native';
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Surface, TextInput} from 'react-native-paper';
 import Toast from 'react-native-simple-toast';
 import {CommonActions} from '@react-navigation/native';
 
 // Components
-import { RootStackParamList } from '../../../../routes/StackNavigator';
+import {RootStackParamList} from '../../../../routes/StackNavigator';
 import LoginButton from '../../../reusableComponent/Button/LoginButton';
+import {
+  UseGetUserValidationWithEmail,
+  UseGetUserValidationWithUsername,
+} from '../../../../services/api/user/getUserLogin';
 
 interface userInputForm {
   username: string;
@@ -24,12 +28,20 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     password: '',
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const {refetch: refetchEmail, isLoading: isLoadingEmail} =
+    UseGetUserValidationWithEmail(userForm.username, userForm.password);
+
+  const {refetch: refetchUsername, isLoading: isLoadingUsername} =
+    UseGetUserValidationWithUsername(userForm.username, userForm.password);
   const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isEmail, setIsEmail] = useState<boolean>(false);
 
   const handleUsernameInput = (username: string) => {
     setUserForm({...userForm, username});
     setErrorMessage('');
+    if (username.includes('@')) {
+      setIsEmail(true);
+    }
   };
 
   const handlePasswordInput = (password: string) => {
@@ -37,29 +49,53 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     setErrorMessage('');
   };
 
-  const handleFormSubmit = () => {
+  const handleFormSubmit = async () => {
     if (!userForm.username || !userForm.password) {
       setErrorMessage('Please fill all the fields!');
       return;
     }
 
-    setIsLoading(true);
-    // console.log(
-    //   `Username: ${userForm.username} | Password: ${userForm.password}`,
-    // );
+    try {
+      let response;
+      let data;
 
-    // Simulasi dulu sekarang, nanti pindahin ke useEffect
-    setTimeout(() => {
-      setIsLoading(false);
-      Toast.show('Login Berhasil!', Toast.LONG);
-      navigation.dispatch(
-        CommonActions.reset({
-          index: 0,
-          routes: [{ name: 'main' }],
-        })
-      );
-    }, 1000);
+      if (isEmail) {
+        response = await refetchEmail();
+        data = response.data;
+        if (data.status === '01') {
+          handleSuccessfulLogin(data);
+        } else {
+          handleFailedLogin(data);
+        }
+      } else {
+        response = await refetchUsername();
+        data = response.data;
+        if (data.status === '01') {
+          handleSuccessfulLogin(data);
+        } else {
+          handleFailedLogin(data);
+        }
+      }
+    } catch (error) {
+      console.log(error);
+      setErrorMessage('Error during login process');
+    }
   };
+
+  const handleSuccessfulLogin = (data: any) => {
+    Toast.show('Login successful!', Toast.LONG);
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [{name: 'main'}],
+      }),
+    );
+  };
+
+  const handleFailedLogin = (data: any) => {
+    setErrorMessage(data.message_response || 'Login failed, please try again');
+  };
+
   return (
     <View className="w-full h-full">
       <View className="w-full h-full flex flex-col justify-center items-center space-y-7 py-10">
@@ -112,14 +148,14 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
         <Surface elevation={3} className="w-full rounded-full">
           <LoginButton
-            isLoading={isLoading}
+            isLoading={isEmail ? isLoadingEmail : isLoadingUsername}
             handleFormSubmit={handleFormSubmit}
           />
         </Surface>
 
         {/* Error text */}
         {errorMessage ? (
-          <Text style={{color: 'red', fontSize: 15, paddingTop: 5}}>
+          <Text className="text-red-600 text-sm pt-1 capitalize">
             {errorMessage}
           </Text>
         ) : null}
