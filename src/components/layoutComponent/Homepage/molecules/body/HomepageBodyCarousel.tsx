@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {View, ActivityIndicator, Text} from 'react-native';
 import Carousel, {Pagination} from 'react-native-snap-carousel';
 import {useNavigation} from '@react-navigation/native';
@@ -16,10 +16,25 @@ type HomeCarouselScreenNavigation = NativeStackNavigationProp<
   'homeCarousel'
 >;
 
-const HomepageBodyCarousel = ({tag}: {tag: string}) => {
+const HomepageBodyCarousel = ({
+  tag,
+  onRefetch,
+}: {
+  tag: string;
+  onRefetch: (refetch: () => void) => void;
+}) => {
   const [activeSlide, setActiveSlide] = useState<number>(0);
-  const {data, isLoading, isError} = UseGetCarouselData();
+  const {
+    data,
+    isLoading,
+    isError,
+    refetch: refetchCarouselData,
+  } = UseGetCarouselData();
   const navigation = useNavigation<HomeCarouselScreenNavigation>();
+
+  useEffect(() => {
+    onRefetch(refetchCarouselData);
+  }, [refetchCarouselData]);
 
   const renderCarousel = ({
     item,

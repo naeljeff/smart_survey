@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import {RouteProp, useRoute} from '@react-navigation/native';
-import React, {useCallback, useState} from 'react';
+import React, {useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 
 import {RootStackParamList} from '../routes/StackNavigator';
