@@ -22,12 +22,12 @@ const LoginPage = ({navigation}: LoginPageProps) => {
       <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
         <View className="h-screen w-screen flex flex-col">
           {/* Header */}
-          <View className="w-full h-2/5">
+          <View className="w-full h-[45%]">
             <LoginHeader />
           </View>
 
           {/* Body */}
-          <View className="w-full h-3/5 flex flex-col justify-center items-center">
+          <View className="w-full h-[55%] flex flex-col justify-center items-center">
             <LoginBody navigation={navigation} />
           </View>
         </View>

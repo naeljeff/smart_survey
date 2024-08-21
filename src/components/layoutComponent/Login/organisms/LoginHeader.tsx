@@ -6,7 +6,7 @@ const LoginHeader = () => {
     <View className="w-full h-full bg-white" testID='login-header'>
       <Image
         source={require('../../../../assets/loginBanner.png')}
-        resizeMode="cover"
+        className='w-full h-full'
         testID="login-banner-image"
       />
     </View>
