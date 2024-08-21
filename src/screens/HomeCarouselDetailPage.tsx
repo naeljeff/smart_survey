@@ -61,7 +61,7 @@ const HomeCarouselDetailPage = () => {
   }
 
   return (
-    <View className="flex-1 bg-white">
+    <View className="flex-1 flex flex-col justify-between bg-[#fed700]/50">
       {/* Header */}
       <NavigationHeader
         title={'Home'}
@@ -70,19 +70,24 @@ const HomeCarouselDetailPage = () => {
       />
 
       {/* Body */}
-      <ScrollView
-        contentContainerStyle={{flexGrow: 1}}
-        refreshControl={
-          <RefreshControl
-            refreshing={refreshing}
-            onRefresh={onRefresh}
-            colors={['#00bfff']}
-          />
-        }>
-        <View className="flex-1 p-3">
-          <HomepageCarouselDetailBody item={item} tag={tag}/>
-        </View>
-      </ScrollView>
+      <View className="flex-1 flex flex-col items-end justify-end">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{
+            flexGrow: 1,
+            justifyContent: 'flex-end',
+            paddingTop: 100,
+          }}
+          refreshControl={
+            <RefreshControl
+              refreshing={refreshing}
+              onRefresh={onRefresh}
+              colors={['#00bfff']}
+            />
+          }>
+          <HomepageCarouselDetailBody item={item} tag={tag} />
+        </ScrollView>
+      </View>
     </View>
   );
 };
