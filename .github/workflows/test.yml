@@ -1,4 +1,4 @@
-name: Run Smart Survey Test
+name: Build and Test with Docker
 
 on:
   push:
@@ -40,7 +40,9 @@ jobs:
         run: docker-compose up --build -d
 
       - name: Install npm dependencies
-        run: npm install
+        run: |
+          sudo chown -R $USER:$USER ./
+          npm install
 
       - name: Run tests
         run: npm test
