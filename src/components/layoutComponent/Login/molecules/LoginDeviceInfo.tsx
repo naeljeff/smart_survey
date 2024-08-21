@@ -10,7 +10,7 @@ const LoginDeviceInfo = () => {
     setDeviceId(uniqueId);
   });
   return (
-    <View className='flex-1 items-center space-y-4'>
+    <View className='flex-1 items-center space-y-4' testID='login-device-info'>
       <Text className="text-xs text-[#012252] tracking-tighter -mb-3">
         {`Device ID: ${deviceId}`}
       </Text>
