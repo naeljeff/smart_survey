@@ -1,4 +1,4 @@
-name: Build and Test with Docker
+name: CI React Native Smart Survey
 
 on:
   push:
