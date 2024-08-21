@@ -24,7 +24,7 @@ const HomepageHeaderLogout = () => {
   return (
     <>
       {/* Logout */}
-      <TouchableOpacity onPress={() => console.log('press logout')}>
+      <TouchableOpacity onPress={handleLogout}>
         <MaterialIcons name="logout" size={32} color="white" />
       </TouchableOpacity>
     </>

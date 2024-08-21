@@ -23,7 +23,7 @@ const HomePage = () => {
         timeOfDay === 'morning'
           ? 'bg-[#87ceeb]'
           : timeOfDay === 'afternoon'
-          ? 'bg-[#e9eb87]'
+          ? 'bg-[#edd189]'
           : 'bg-[#b687eb]'
       }`}>
       {/* Header */}
