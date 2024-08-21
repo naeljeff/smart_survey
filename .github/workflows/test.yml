@@ -3,13 +3,11 @@ name: CI React Native Smart Survey
 on:
   push:
     branches:
-      - main
-  pull_request:
-    branches:
-      - main
+      - '**' # Will run on all branches
 
 jobs:
-  build:
+  test:
+    name: Test
     runs-on: ubuntu-latest
 
     steps:

@@ -7,6 +7,7 @@ import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
 import MenuAwalSurveyPenutupan from '../screens/MenuAwalSurveyPenutupan';
 import MenuAwalSupervisor from '../screens/MenuAwalSupervisor';
 import MenuAwalSurveyor from '../screens/MenuAwalSurveyor';
+import NotificationPage from '../screens/NotificationPage';
 
 export type RootStackParamList = {
   login: undefined;
@@ -15,6 +16,7 @@ export type RootStackParamList = {
   surveyPenutupan: undefined;
   supervisor: undefined;
   surveyor: undefined;
+  notification: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -44,6 +46,7 @@ const StackNavigator = () => {
       <Stack.Screen name="surveyPenutupan" component={MenuAwalSurveyPenutupan} />
       <Stack.Screen name="supervisor" component={MenuAwalSupervisor} />
       <Stack.Screen name="surveyor" component={MenuAwalSurveyor} />
+      <Stack.Screen name="notification" component={NotificationPage} />
     </Stack.Navigator>
   );
 };

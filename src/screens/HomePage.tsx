@@ -1,4 +1,10 @@
-import {View, ScrollView, ActivityIndicator, Text} from 'react-native';
+import {
+  View,
+  ScrollView,
+  ActivityIndicator,
+  Text,
+  RefreshControl,
+} from 'react-native';
 import React, {useState} from 'react';
 import {Surface} from 'react-native-paper';
 
@@ -9,7 +15,18 @@ import {getTimeOfDay} from '../utilities/functions';
 
 const HomePage = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [refetchCarouselData, setRefetchCarouselData] = useState<() => void>(
+    () => {},
+  );
   const timeOfDay = getTimeOfDay();
+
+  const onRefresh = async () => {
+    setIsLoading(true);
+    if (refetchCarouselData) {
+      await refetchCarouselData();
+    }
+    setIsLoading(false);
+  };
 
   return isLoading ? (
     <View className="h-full w-full flex flex-col justify-center items-center bg-gray-500/50">
@@ -19,11 +36,18 @@ const HomePage = () => {
   ) : (
     <ScrollView
       showsVerticalScrollIndicator={false}
+      refreshControl={
+        <RefreshControl
+          refreshing={isLoading}
+          onRefresh={onRefresh}
+          colors={['#00bfff']}
+        />
+      }
       className={`h-full w-full flex flex-col ${
         timeOfDay === 'morning'
           ? 'bg-[#87ceeb]'
           : timeOfDay === 'afternoon'
-          ? 'bg-[#e9eb87]'
+          ? 'bg-[#edd189]'
           : 'bg-[#b687eb]'
       }`}>
       {/* Header */}
@@ -36,7 +60,7 @@ const HomePage = () => {
         {/* Body */}
         <Surface elevation={4} className="rounded-t-2xl">
           <View className="w-full h-full flex flex-col justify-center items-center">
-            <HomeBody />
+            <HomeBody refetchCarouselData={onRefresh} />
           </View>
         </Surface>
       </View>
