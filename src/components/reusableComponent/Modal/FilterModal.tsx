@@ -9,38 +9,27 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useEffect, useRef, useState} from 'react';
+import ModalListItem from './ModalListItem';
 
 type FilterModalProps = {
+  data: any[];
   title: string;
   searchFilter: string;
   setSearchFilter: (value: string) => void;
   onClose: () => void;
+  onSelectedFilter: (value: string) => void;
 };
 
 const FilterModal = ({
+  data,
   onClose,
   title,
   setSearchFilter,
+  onSelectedFilter,
   searchFilter,
 }: FilterModalProps) => {
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
   const animation = useRef(new Animated.Value(0)).current;
-
-  const tempData = [
-    {id: 1, nama: 'john doe'},
-    {id: 2, nama: 'john doe2'},
-    {id: 3, nama: 'john doe3'},
-    {id: 4, nama: 'john doe4'},
-    {id: 5, nama: 'john doe5'},
-    {id: 6, nama: 'john doe6'},
-    {id: 7, nama: 'john doe7'},
-    {id: 8, nama: 'john doe8'},
-    {id: 9, nama: 'john doe9'},
-    {id: 10, nama: 'john doe10'},
-    {id: 11, nama: 'john doe11'},
-    {id: 12, nama: 'john doe12'},
-    {id: 13, nama: 'john doe13'},
-  ];
 
   useEffect(() => {
     Animated.timing(animation, {
@@ -58,6 +47,11 @@ const FilterModal = ({
     }).start(() => {
       onClose();
     });
+  };
+
+  const handleSelectFilter = (value: string) => {
+    onSelectedFilter(value);
+    handleClose();
   };
 
   return (
@@ -108,15 +102,11 @@ const FilterModal = ({
             ) : (
               <View className="w-full h-full bg-pink-300">
                 <FlatList
-                  data={tempData}
-                  renderItem={({item}) => {
-                    return (
-                      <View className="p-2 border-b border-gray-200">
-                        <Text className="text-black">{item.nama}</Text>
-                      </View>
-                    );
-                  }}
-                  keyExtractor={item => item.id.toString()}
+                  data={data}
+                  renderItem={({item}) => (
+                    <ModalListItem item={item} onPress={handleSelectFilter} />
+                  )}
+                  keyExtractor={item => item.key}
                 />
               </View>
             )}

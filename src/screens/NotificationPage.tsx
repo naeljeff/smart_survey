@@ -7,16 +7,19 @@ import {RootStackParamList} from '../routes/StackNavigator';
 import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import NotificationBody from '../components/layoutComponent/Notification/organism/NotificationBody';
 import FilterModal from '../components/reusableComponent/Modal/FilterModal';
+import {notificationFilterList} from '../services/data/notificationFilterList';
 
 const NotificationPage = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const [filterModal, setFilterModal] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>('');
+  const [selectedFilter, setSelectedFilter] = useState<string>('');
 
   const setModalVisibility = () => {
     setFilterModal(!filterModal);
   };
+
   return (
     <View className="flex-1 bg-white">
       {/* Header */}
@@ -41,16 +44,21 @@ const NotificationPage = () => {
           //   />
           // }
         >
-          <NotificationBody onOpenModal={setModalVisibility} />
+          <NotificationBody
+            onOpenModal={setModalVisibility}
+            selectedFilter={selectedFilter}
+          />
         </ScrollView>
       </View>
 
       {filterModal && (
         <FilterModal
+          data={notificationFilterList}
           onClose={setModalVisibility}
           title={'category'}
           searchFilter={searchFilter}
           setSearchFilter={setSearchFilter}
+          onSelectedFilter={setSelectedFilter}
         />
       )}
     </View>
