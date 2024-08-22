@@ -1,4 +1,3 @@
-import {Text, View} from 'react-native';
 import React from 'react';
 import {Button} from 'react-native-paper';
 
@@ -14,7 +13,7 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
         <Button
           mode="contained-tonal"
           className="w-full py-1"
-          buttonColor="#fed700"
+          buttonColor="#ff7f50"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
           textColor="black"
           rippleColor="white"
@@ -28,7 +27,7 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
         <Button
           mode="contained-tonal"
           className="w-full py-1"
-          buttonColor="#fed700"
+          buttonColor="#ff7f50"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
           textColor="black"
           rippleColor="white"
