@@ -115,7 +115,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
           mode="flat"
           label="Username"
           placeholder="Enter your username"
-          activeUnderlineColor="#005ba1"
+          activeUnderlineColor="#FF7F50"
           contentStyle={{
             color: 'black',
           }}
@@ -135,7 +135,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
           label="Password"
           placeholder="Enter your password"
           secureTextEntry={!showPassword}
-          activeUnderlineColor="#005ba1"
+          activeUnderlineColor="#FF7F50"
           contentStyle={{
             color: 'black',
           }}
@@ -166,7 +166,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
         {/* Error text */}
         {errorMessage ? (
-          <Text className="text-red-600 text-sm pt-1 capitalize">
+          <Text className="text-red-600 text-sm capitalize">
             {errorMessage}
           </Text>
         ) : null}

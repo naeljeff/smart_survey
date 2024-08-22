@@ -1,6 +1,6 @@
-import {Text, TextInput, TouchableOpacity, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View, Animated} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 
 type FilterModalProps = {
   title: string;
@@ -15,10 +15,36 @@ const FilterModal = ({
   setSearchFilter,
   searchFilter,
 }: FilterModalProps) => {
+  const animation = useRef(new Animated.Value(0)).current;
+
+  useEffect(() => {
+    Animated.timing(animation, {
+      toValue: 1,
+      duration: 400,
+      useNativeDriver: true,
+    }).start();
+  }, [animation]);
+
+  const handleClose = () => {
+    Animated.timing(animation, {
+      toValue: 0,
+      duration: 400,
+      useNativeDriver: true,
+    }).start(() => {
+      onClose();
+    });
+  };
+
   return (
-    <View className="absolute inset-0 bg-gray-500/50 z-50">
-      <View className="flex min-h-full items-center justify-center p-7">
-        <View className="w-full h-full bg-white p-4 rounded-lg shadow-xl">
+    <Animated.View
+      className="absolute inset-0 bg-gray-500/50 z-50"
+      style={{opacity: animation}}>
+      <Animated.View
+        className="flex min-h-full items-center justify-center p-7"
+        style={{opacity: animation}}>
+        <Animated.View
+          className="w-full h-full bg-white p-4 rounded-lg shadow-xl"
+          style={{opacity: animation}}>
           {/* Header Filter */}
           <View className="w-full flex flex-row justify-between items-center px-1 mb-3">
             {/* Title */}
@@ -27,7 +53,7 @@ const FilterModal = ({
             </Text>
 
             {/* Close */}
-            <TouchableOpacity onPress={onClose}>
+            <TouchableOpacity onPress={handleClose}>
               <Ionicons name="close" size={24} color="black" />
             </TouchableOpacity>
           </View>
@@ -40,15 +66,18 @@ const FilterModal = ({
               value={searchFilter}
               onChangeText={setSearchFilter}
             />
-            <TouchableOpacity
-              className="absolute right-3 top-2.5 -translate-y-1/2"
-              onPress={() => setSearchFilter('')}>
-              <Ionicons name="close" size={20} color="black" />
-            </TouchableOpacity>
+
+            {searchFilter === '' ? null : (
+              <TouchableOpacity
+                className="absolute right-3 top-2.5 -translate-y-1/2"
+                onPress={() => setSearchFilter('')}>
+                <Ionicons name="close" size={20} color="black" />
+              </TouchableOpacity>
+            )}
           </View>
-        </View>
-      </View>
-    </View>
+        </Animated.View>
+      </Animated.View>
+    </Animated.View>
   );
 };
 

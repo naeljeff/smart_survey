@@ -15,7 +15,7 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
           className="w-full py-1"
           buttonColor="#ff7f50"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
-          textColor="black"
+          textColor="white"
           rippleColor="white"
           uppercase
           loading
@@ -29,7 +29,7 @@ const LoginButton = ({isLoading, handleFormSubmit}: LoginButtonProps) => {
           className="w-full py-1"
           buttonColor="#ff7f50"
           labelStyle={{fontSize: 16, fontWeight: 'bold'}}
-          textColor="black"
+          textColor="white"
           rippleColor="white"
           uppercase
           onPress={handleFormSubmit}>

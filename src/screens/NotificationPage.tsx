@@ -14,8 +14,6 @@ const NotificationPage = () => {
   const [filterModal, setFilterModal] = useState<boolean>(false);
   const [searchFilter, setSearchFilter] = useState<string>('');
 
-  console.log(searchFilter);
-
   const setModalVisibility = () => {
     setFilterModal(!filterModal);
   };
