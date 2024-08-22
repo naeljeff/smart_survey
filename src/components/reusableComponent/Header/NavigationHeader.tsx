@@ -15,7 +15,7 @@ const NavigationHeader = ({
   onRefresh,
 }: NavigationHeaderProp) => {
   return (
-    <View className="w-full h-[45px] px-4 flex flex-row justify-between items-center bg-white border-b border-gray-500/30 ">
+    <View className="w-full h-[45px] px-4 flex flex-row justify-between items-center bg-white border-b border-gray-500/30 z-10">
       {/* Back Button */}
       <View>
         <TouchableOpacity className=" flex flex-row gap-x-1" onPress={onPress}>

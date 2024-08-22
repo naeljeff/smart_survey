@@ -1,12 +1,26 @@
-import { Text, View } from 'react-native'
-import React from 'react'
+import {Button, Text, View} from 'react-native';
+import React, { useState } from 'react';
 
-const NotificationBody = () => {
+import NotificationList from '../molecules/NotificationList';
+
+type NotificationBodyProps = {
+  selectedFilter: string;
+  onOpenModal: () => void;
+};
+
+const NotificationBody = ({selectedFilter, onOpenModal}: NotificationBodyProps) => {
+
   return (
-    <View>
-      <Text>lorem2000</Text>
-    </View>
-  )
-}
+    <View className="z-30">
+      {/* Filter */}
+      <Button title="Open Filter Modal" onPress={onOpenModal}/>
 
-export default NotificationBody
+      <Text>Item yang dipilih: {selectedFilter}</Text>
+
+      {/* List */}
+      <NotificationList />
+    </View>
+  );
+};
+
+export default NotificationBody;
