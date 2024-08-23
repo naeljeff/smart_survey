@@ -8,15 +8,27 @@ import MenuAwalSurveyPenutupan from '../screens/MenuAwalSurveyPenutupan';
 import MenuAwalSupervisor from '../screens/MenuAwalSupervisor';
 import MenuAwalSurveyor from '../screens/MenuAwalSurveyor';
 import NotificationPage from '../screens/NotificationPage';
+import {surveyJobProps} from '../props/surveyJobProps';
+import SurveyPenutupanIncomingJobFUA from '../screens/SurveyPenutupanIncomingJobFUA';
 
 export type RootStackParamList = {
+  // Login Page
   login: undefined;
+
+  // Home Page
   main: undefined;
-  homeCarousel: { rowid: string, tag: string };
-  surveyPenutupan: undefined;
-  supervisor: undefined;
-  surveyor: undefined;
+  homeCarousel: {rowid: string; tag: string};
   notification: undefined;
+
+  // Survey Penutupan
+  surveyPenutupan: undefined;
+  surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
+
+  // Supervisor
+  supervisor: undefined;
+
+  // Surveyor
+  surveyor: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -28,6 +40,7 @@ const StackNavigator = () => {
       screenOptions={{
         headerShown: false,
       }}>
+      {/* Login Page */}
       <Stack.Screen
         name="login"
         component={LoginPage}
@@ -35,6 +48,8 @@ const StackNavigator = () => {
           gestureEnabled: false,
         }}
       />
+
+      {/* Home Page */}
       <Stack.Screen
         name="main"
         component={BottomTabsNavigator}
@@ -43,10 +58,23 @@ const StackNavigator = () => {
         }}
       />
       <Stack.Screen name="homeCarousel" component={HomeCarouselDetailPage} />
-      <Stack.Screen name="surveyPenutupan" component={MenuAwalSurveyPenutupan} />
-      <Stack.Screen name="supervisor" component={MenuAwalSupervisor} />
-      <Stack.Screen name="surveyor" component={MenuAwalSurveyor} />
       <Stack.Screen name="notification" component={NotificationPage} />
+
+      {/* Survey Penutupan */}
+      <Stack.Screen
+        name="surveyPenutupan"
+        component={MenuAwalSurveyPenutupan}
+      />
+      <Stack.Screen
+        name="surveyPenutupanFormIncomingJobFUA"
+        component={SurveyPenutupanIncomingJobFUA}
+      />
+
+      {/* Supervisor */}
+      <Stack.Screen name="supervisor" component={MenuAwalSupervisor} />
+
+      {/* Surveyor */}
+      <Stack.Screen name="surveyor" component={MenuAwalSurveyor} />
     </Stack.Navigator>
   );
 };

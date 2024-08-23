@@ -1,8 +1,4 @@
-import {
-  TextInput,
-  TouchableOpacity,
-  View,
-} from 'react-native';
+import {TextInput, TouchableOpacity, View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useState} from 'react';
 
@@ -46,7 +42,6 @@ const SurveyPenutupanSearchInput = ({
   };
 
   // Filter (on Change)
-  // Filter
   const onSearchByChange = (selection: string) => {
     setSelected(selection);
     setSearchByTerm(selection);
@@ -105,24 +100,28 @@ const SurveyPenutupanSearchInput = ({
         </View>
       </View>
 
-      {/* Filter Area */}
-      <View className="w-full flex flex-row justify-between items-center mb-1">
-        {/* Sort By */}
-        <View className="w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5">
-          <View className="w-[40%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
-            {/* Sort Option */}
-            <SearchInputSortBy onSortByChange={onSortByChange} />
+      {/* Filter Area  -> Di history ini gaada*/}
+      {searchTab === 'History' ? (
+        <View className="w-full h-[40px] mb-1" />
+      ) : (
+        <View className="w-full flex flex-row justify-between items-center mb-1">
+          {/* Sort By */}
+          <View className="w-[55%] h-[40px] flex flex-row gap-x-1 ml-0.5">
+            <View className="w-[40%] h-[30px] border border-black bg-white rounded-lg pl-2 py-1">
+              {/* Sort Option */}
+              <SearchInputSortBy onSortByChange={onSortByChange} />
+            </View>
+
+            <View className="w-[60%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
+              {/* Order By */}
+              <SearchInputOrderBy onOrderByChange={onOrderByChange} />
+            </View>
           </View>
 
-          <View className="w-[60%] h-[30px] text-sm border border-black bg-white rounded-lg pl-2 py-1">
-            {/* Sort Order */}
-            <SearchInputOrderBy onOrderByChange={onOrderByChange} />
-          </View>
+          {/* Add and Upload (buat sekarang diilangin dulu) */}
+          <View className="flex flex-row justify-center items-center gap-x-2 mb-2 mr-2"></View>
         </View>
-
-        {/* Add and Upload (buat sekarang diilangin dulu) */}
-        <View className="flex flex-row justify-center items-center gap-x-2 mb-2 mr-2"></View>
-      </View>
+      )}
     </View>
   );
 };
