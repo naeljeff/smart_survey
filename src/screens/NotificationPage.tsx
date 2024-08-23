@@ -59,6 +59,7 @@ const NotificationPage = () => {
           searchFilter={searchFilter}
           setSearchFilter={setSearchFilter}
           onSelectedFilter={setSelectedFilter}
+          selectedFilter={selectedFilter}
         />
       )}
     </View>

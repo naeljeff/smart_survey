@@ -18,6 +18,7 @@ type FilterModalProps = {
   setSearchFilter: (value: string) => void;
   onClose: () => void;
   onSelectedFilter: (value: string) => void;
+  selectedFilter: string;
 };
 
 const FilterModal = ({
@@ -27,8 +28,10 @@ const FilterModal = ({
   setSearchFilter,
   onSelectedFilter,
   searchFilter,
+  selectedFilter,
 }: FilterModalProps) => {
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
+  const [selectedItem, setSelectedItem] = useState<string | null>(selectedFilter);
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -38,6 +41,10 @@ const FilterModal = ({
       useNativeDriver: true,
     }).start();
   }, [animation]);
+
+  useEffect(() => {
+    setSelectedItem(selectedFilter); 
+  }, [selectedFilter]);
 
   const handleClose = () => {
     Animated.timing(animation, {
@@ -50,7 +57,13 @@ const FilterModal = ({
   };
 
   const handleSelectFilter = (value: string) => {
-    onSelectedFilter(value);
+    if (selectedItem === value) {
+      setSelectedItem(null);
+      onSelectedFilter('');
+    } else {
+      setSelectedItem(value);
+      onSelectedFilter(value);
+    }
     handleClose();
   };
 
@@ -78,9 +91,9 @@ const FilterModal = ({
           </View>
 
           {/* Searchbar */}
-          <View className="relative w-full h-[40px] flex flex-row">
+          <View className="relative w-full h-[40px] flex flex-row mb-3">
             <TextInput
-              className="w-full border border-black rounded-lg pl-3 pr-12 pb-2.5"
+              className="w-full border border-black rounded-lg pl-3 pr-12 pb-2.5 focus:border-[#ff7f50] focus:border-2"
               placeholder="Enter your search"
               value={searchFilter}
               onChangeText={setSearchFilter}
@@ -100,11 +113,16 @@ const FilterModal = ({
             {isLoadingData ? (
               <ActivityIndicator size="large" color="#00bffe" />
             ) : (
-              <View className="w-full h-full bg-pink-300">
+              <View className="w-full h-full">
                 <FlatList
+                  showsVerticalScrollIndicator={false}
                   data={data}
                   renderItem={({item}) => (
-                    <ModalListItem item={item} onPress={handleSelectFilter} />
+                    <ModalListItem
+                      item={item}
+                      onPress={handleSelectFilter}
+                      isSelected={selectedItem === item.label}
+                    />
                   )}
                   keyExtractor={item => item.key}
                 />
