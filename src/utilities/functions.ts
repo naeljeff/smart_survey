@@ -14,3 +14,12 @@ export const getTimeOfDay = () => {
     return 'night';
   }
 };
+
+export const formatDateStatusBarSurveyPenutupan = (currentDate: Date) => {
+  return `${String(currentDate.getDate()).padStart(
+    2,
+    '0',
+  )}-${currentDate.toLocaleString('en-US', {month: 'short'})}-${String(
+    currentDate.getFullYear(),
+  ).slice(-2)}`;
+};
