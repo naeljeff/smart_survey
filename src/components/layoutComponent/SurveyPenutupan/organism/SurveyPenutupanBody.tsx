@@ -5,8 +5,8 @@ import IncomingJobBody from './IncomingJob/IncomingJobBody';
 import JobMonitoringBody from './JobMonitoring/JobMonitoringBody';
 import MySurveyBody from './MySurvey/MySurveyBody';
 import HistoryBody from './History/HistoryBody';
-import SurveyPenutupanStatusBar from './SurveyPenutupanStatusBar';
-import SurveyPenutupanNavbar from './SurveyPenutupanNavbar';
+import SurveyPenutupanStatusBar from '../molecules/SurveyPenutupanStatusBar';
+import SurveyPenutupanNavbar from '../molecules/SurveyPenutupanNavbar';
 
 const SurveyPenutupanBody = () => {
   const [menuOptions, setMenuOptions] = useState<string>('Incoming Job');

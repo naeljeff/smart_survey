@@ -19,7 +19,7 @@ const SurveyPenutupanNavbar = ({onMenuChange}: SurveyPenutupanNavbarProps) => {
     onMenuChange(option);
   };
 
-  const dataCount: string = '99+';
+  const dataCount: number = 99;
 
   return (
     <View className="w-full h-[50px] flex justify-center bg-orange-200">
@@ -39,22 +39,13 @@ const SurveyPenutupanNavbar = ({onMenuChange}: SurveyPenutupanNavbarProps) => {
                 {item}
               </Text>
               {idx === 0 && (
-                // <Badge
-                //   size={16}
-                //   className={`absolute bg-red-500 ${
-                //     index === 0
-                //       ? 'top-[-3px] right-[-5px]'
-                //       : 'top-[-7px] right-[-8px]'
-                //   }`}>
-                //   {dataCount > 99 ? '99+' : dataCount}
-                // </Badge>
                 <Text
                   className={`absolute w-5 h-5 text-[10px] text-center pt-1 bg-red-500 text-white rounded-full ${
                     index === 0
                       ? 'top-[-8px] right-[-6px]'
                       : 'top-[-12px] right-[-7px]'
                   }`}>
-                  {dataCount}
+                  {dataCount > 99 ? '99+' : dataCount}
                 </Text>
               )}
             </TouchableOpacity>
