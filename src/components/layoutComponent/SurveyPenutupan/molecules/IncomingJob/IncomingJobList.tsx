@@ -1,23 +1,11 @@
 import {FlatList, RefreshControl, Text, View} from 'react-native';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '../../../../../routes/StackNavigator';
+import {IncomingJobListProps} from '../../../../../props/incomingJobListProps';
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
 import {calcAgingDate} from '../../../../../utilities/functions';
 import SurveyJobItem from '../../atoms/IncomingJob/SurveyJobItem';
-
-type IncomingJobListProps = {
-  data: surveyJobProps[];
-  search: string;
-  refreshing: boolean;
-  onRefresh: () => void;
-  searchByTerm: string;
-  sortBy: string;
-  orderBy: string;
-  navigation: NativeStackNavigationProp<RootStackParamList, 'surveyPenutupan'>;
-};
 
 const IncomingJobList = ({
   data,
@@ -38,12 +26,12 @@ const IncomingJobList = ({
   const filterSurveyData = useMemo(() => {
     const filteredSurveyData =
       searchByTerm === ''
-        ? data.filter(item =>
+        ? data?.data?.filter(item =>
             Object.values(item).some(value =>
               value.toString().toLowerCase().includes(search.toLowerCase()),
             ),
           )
-        : data.filter(
+        : data?.data?.filter(
             item =>
               typeof item[searchByTerm as SurveyJobPropsKey] === 'string' &&
               (item[searchByTerm as SurveyJobPropsKey] as string)
@@ -51,7 +39,7 @@ const IncomingJobList = ({
                 .includes(search.toLowerCase()),
           );
     return filteredSurveyData;
-  }, [data, search, searchByTerm]);
+  }, [data.data, search, searchByTerm]);
 
   const sortedSurveyDataByDate = useMemo(() => {
     let sortedSurveyData = [...filterSurveyData];
@@ -108,7 +96,7 @@ const IncomingJobList = ({
   );
 
   return (
-    <View className="flex-1 w-full bg-[#f7ebd7]">
+    <View className="flex-1 w-full bg-[#f7ebd7] pb-11">
       {filterSurveyData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />

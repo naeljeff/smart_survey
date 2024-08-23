@@ -6,7 +6,7 @@ import {Surface} from 'react-native-paper';
 type NavigationHeaderProp = {
   title: string;
   onPress: () => void;
-  onRefresh: () => void;
+  onRefresh?: () => void;
 };
 
 const NavigationHeader = ({
@@ -27,19 +27,23 @@ const NavigationHeader = ({
       {/* Text */}
       <Text className="text-lg text-black font-semibold mr-12">{title}</Text>
 
-      {/* Empty View */}
-      <Surface elevation={3} className="rounded-full">
-        <TouchableOpacity
-          className="w-7 h-7 flex justify-center items-center bg-white rounded-full"
-          onPress={onRefresh}>
-          <Ionicons
-            name="refresh"
-            size={22}
-            color="black"
-            className="font-semibold"
-          />
-        </TouchableOpacity>
-      </Surface>
+      {/* Refresh Button */}
+      {onRefresh ? (
+        <Surface elevation={3} className="rounded-full">
+          <TouchableOpacity
+            className="w-7 h-7 flex justify-center items-center bg-white rounded-full"
+            onPress={onRefresh}>
+            <Ionicons
+              name="refresh"
+              size={22}
+              color="black"
+              className="font-semibold"
+            />
+          </TouchableOpacity>
+        </Surface>
+      ) : (
+        <View className="w-7 h-7" />
+      )}
     </View>
   );
 };

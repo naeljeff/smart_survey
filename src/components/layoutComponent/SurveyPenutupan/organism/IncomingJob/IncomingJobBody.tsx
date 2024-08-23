@@ -52,16 +52,22 @@ const IncomingJobBody = () => {
       <Information />
 
       {/* List Incoming Job */}
-      <IncomingJobList
-        data={data}
-        search={searchTerm}
-        searchByTerm={searchByTerm}
-        sortBy={sortBy}
-        orderBy={orderBy}
-        refreshing={isLoading}
-        onRefresh={refetch}
-        navigation={navigation}
-      />
+      {isLoading ? (
+        <View className="w-full flex-1 bg-[#f7ebd7] inset-0 justify-center items-center">
+          <ActivityIndicator size="large" color="#f5af46" />
+        </View>
+      ) : (
+        <IncomingJobList
+          data={data}
+          search={searchTerm}
+          searchByTerm={searchByTerm}
+          sortBy={sortBy}
+          orderBy={orderBy}
+          refreshing={isLoading}
+          onRefresh={refetch}
+          navigation={navigation}
+        />
+      )}
     </View>
   );
 };
