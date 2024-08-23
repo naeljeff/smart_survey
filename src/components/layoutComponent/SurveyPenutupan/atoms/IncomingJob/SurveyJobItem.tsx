@@ -9,6 +9,7 @@ import {
   calcAgingDate,
   formatDateSurveyPenutupanIncomingJob,
 } from '../../../../../utilities/functions';
+import SurveyJobItemMenu from './SurveyJobItemMenu';
 
 type SurveyJobItemProps = {
   item: surveyJobProps;
@@ -67,7 +68,7 @@ const SurveyJobItem = React.memo(
             <Text className="text-xs text-black uppercase mb-2">
               {item.status}
             </Text>
-            {/* <JobListMenu item={item} /> */}
+            <SurveyJobItemMenu item={item} />
           </View>
         </TouchableOpacity>
       </View>
