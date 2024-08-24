@@ -7,6 +7,7 @@ import {UseGetProcessedSurveyData} from '../../../../../services/api/surveyPenut
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
+import MySurveyList from '../../molecules/MySurvey/MySurveyList';
 
 const MySurveyBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -56,7 +57,7 @@ const MySurveyBody = () => {
           <ActivityIndicator size="large" color="#f5af46" />
         </View>
       ) : (
-        <IncomingJobList
+        <MySurveyList
           data={data}
           search={searchTerm}
           searchByTerm={searchByTerm}

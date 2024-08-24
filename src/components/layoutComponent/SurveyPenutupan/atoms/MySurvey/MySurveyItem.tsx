@@ -5,28 +5,24 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
-import {
-  calcAgingDate,
-  formatDateSurveyPenutupanJob,
-} from '../../../../../utilities/functions';
-import SurveyJobItemMenu from './SurveyJobItemMenu';
+import { calcAgingDate, formatDateSurveyPenutupanJob } from '../../../../../utilities/functions';
 
-type SurveyJobItemProps = {
+type MySurveyItemProps = {
   item: surveyJobProps;
   index: number;
   navigation: NativeStackNavigationProp<RootStackParamList, 'surveyPenutupan'>;
 };
 
-const SurveyJobItem = React.memo(
-  ({item, index, navigation}: SurveyJobItemProps) => {
+const MySurveyItem = React.memo(
+  ({item, index, navigation}: MySurveyItemProps) => {
     const dayDiff = calcAgingDate(item.createdAt);
     const formattedDate = formatDateSurveyPenutupanJob(item.createdAt);
 
     const handleListPress = () => {
       console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
-      navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
-        item: item,
-      });
+    //   navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
+    //     item: item,
+    //   });
     };
 
     return (
@@ -38,8 +34,8 @@ const SurveyJobItem = React.memo(
           <View className="flex-[0.1] flex items-center justify-center ">
             <Ionicons name="mail" size={24} color="black" />
             {/* <Badge className="absolute bg-red-500 left-1 top-3.5" size={16}>
-              !
-            </Badge> */}
+                !
+              </Badge> */}
           </View>
 
           {/* Informasi kendaraan */}
@@ -68,7 +64,6 @@ const SurveyJobItem = React.memo(
             <Text className="text-xs text-black uppercase mb-2">
               {item.status}
             </Text>
-            <SurveyJobItemMenu item={item} />
           </View>
         </TouchableOpacity>
       </View>
@@ -76,4 +71,4 @@ const SurveyJobItem = React.memo(
   },
 );
 
-export default SurveyJobItem;
+export default MySurveyItem;
