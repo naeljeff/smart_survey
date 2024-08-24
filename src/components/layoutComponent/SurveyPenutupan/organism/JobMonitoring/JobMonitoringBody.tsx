@@ -7,6 +7,7 @@ import SurveyPenutupanSearchInput from '../../molecules/SurveyPenutupanSearchInp
 import Information from '../../../../reusableComponent/StaticDisplay/Information';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
+import JobMonitoringUserList from '../../molecules/JobMonitoring/JobMonitoringUserList';
 
 const JobMonitoringBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -51,7 +52,22 @@ const JobMonitoringBody = () => {
       <Information />
 
       {/* List Incoming Job */}
-      <Text>Job Monitoring</Text>
+      {isLoading ? (
+        <View className="w-full flex-1 bg-[#f7ebd7] inset-0 justify-center items-center">
+          <ActivityIndicator size="large" color="#f5af46" />
+        </View>
+      ) : (
+        <JobMonitoringUserList
+          // data={data}
+          // search={searchTerm}
+          // searchByTerm={searchByTerm}
+          // sortBy={sortBy}
+          // orderBy={orderBy}
+          // refreshing={isLoading}
+          // onRefresh={refetch}
+          // navigation={navigation}
+        />
+      )}
     </View>
   );
 };
