@@ -1,12 +1,12 @@
 import {ActivityIndicator, Text, View} from 'react-native';
 import React, {useState} from 'react';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import Information from '../../../../reusableComponent/StaticDisplay/Information';
 import SurveyPenutupanSearchInput from '../../molecules/SurveyPenutupanSearchInput';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
 import IncomingJobList from '../../molecules/IncomingJob/IncomingJobList';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 
 const IncomingJobBody = () => {
