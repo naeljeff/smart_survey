@@ -24,7 +24,7 @@ export const formatDateStatusBarSurveyPenutupan = (currentDate: Date) => {
   ).slice(-2)}`;
 };
 
-export const formatDateSurveyPenutupanIncomingJob = (date: string): string => {
+export const formatDateSurveyPenutupanJob = (date: string): string => {
   const itemDate = new Date(date);
   const formattedDate = `${String(itemDate.getDate()).padStart(
     2,
