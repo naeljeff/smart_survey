@@ -2,17 +2,16 @@ import {View, Text} from 'react-native';
 import React, {useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Surface, TextInput} from 'react-native-paper';
+import DeviceInfo from 'react-native-device-info';
 import Toast from 'react-native-simple-toast';
 import {CommonActions} from '@react-navigation/native';
 
 // Components
 import {RootStackParamList} from '../../../../routes/StackNavigator';
 import LoginButton from '../../../reusableComponent/Button/LoginButton';
-import {
-  UseGetUserValidationWithEmail,
-  UseGetUserValidationWithUsername,
-} from '../../../../services/api/user/getUserLogin';
 import {useUserStore} from '../../../../store/storeUser';
+import {useUserLoginWithEmailAndGenerateJwt} from '../../../../services/api/user/getUserLoginWithEmail';
+import { useUserLoginWithUsernameAndGenerateJwt } from '../../../../services/api/user/getUserLoginWithUsername';
 
 interface userInputForm {
   username: string;
@@ -29,11 +28,21 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     password: '',
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [deviceId, setDeviceId] = useState<string>('');
+  DeviceInfo.getUniqueId().then(uniqueId => {
+    setDeviceId(uniqueId);
+  });
+
   const {refetch: refetchEmail, isLoading: isLoadingEmail} =
-    UseGetUserValidationWithEmail(userForm.username, userForm.password);
+    useUserLoginWithEmailAndGenerateJwt(
+      userForm.username,
+      userForm.password,
+      deviceId,
+    );
 
   const {refetch: refetchUsername, isLoading: isLoadingUsername} =
-    UseGetUserValidationWithUsername(userForm.username, userForm.password);
+    useUserLoginWithUsernameAndGenerateJwt(userForm.username, userForm.password, deviceId,);
+
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isEmail, setIsEmail] = useState<boolean>(false);
   const setUserData = useUserStore(state => state.setUserData);
@@ -64,18 +73,18 @@ const LoginForm = ({navigation}: LoginFormProps) => {
       if (isEmail) {
         response = await refetchEmail();
         data = response.data;
-        if (data.status === '01') {
-          handleSuccessfulLogin(data);
+        if (data?.userValidationData?.status === '01') {
+          handleSuccessfulLogin(data?.userValidationData);
         } else {
-          handleFailedLogin(data);
+          handleFailedLogin(data?.userValidationData);
         }
       } else {
         response = await refetchUsername();
         data = response.data;
-        if (data.status === '01') {
-          handleSuccessfulLogin(data);
+        if (data?.userValidationData?.status === '01') {
+          handleSuccessfulLogin(data?.userValidationData);
         } else {
-          handleFailedLogin(data);
+          handleFailedLogin(data?.userValidationData);
         }
       }
     } catch (error) {
