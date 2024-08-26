@@ -28,7 +28,11 @@ const getUserValidationWithEmail = async (email: string, password: string) => {
   }
 };
 
-const generateUserJwt = async (deviceId: string, messageResponse: any) => {
+const generateUserJwt = async (
+  deviceId: string,
+  messageResponse: any,
+  token: string,
+) => {
   try {
     const res = await axios.post(
       BASE_LOGIN_GENERATE_JWT,
@@ -41,6 +45,7 @@ const generateUserJwt = async (deviceId: string, messageResponse: any) => {
         aegis_dept_full: messageResponse.aegis_dept_full || '',
         cabang: messageResponse.cabang || '',
         role: messageResponse.role || '',
+        token: token,
       },
       {
         headers: {'Content-Type': 'application/json'},
@@ -79,6 +84,7 @@ export const useUserLoginWithEmailAndGenerateJwt = (
       const jwtToken = await generateUserJwt(
         deviceId,
         userValidationData.message_response,
+        userValidationData.token,
       );
 
       // Kalau gagal bikin JWT throw error

@@ -1,17 +1,21 @@
 import {View, Text} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Surface, TextInput} from 'react-native-paper';
 import DeviceInfo from 'react-native-device-info';
 import Toast from 'react-native-simple-toast';
 import {CommonActions} from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Components
 import {RootStackParamList} from '../../../../routes/StackNavigator';
 import LoginButton from '../../../reusableComponent/Button/LoginButton';
 import {useUserStore} from '../../../../store/storeUser';
 import {useUserLoginWithEmailAndGenerateJwt} from '../../../../services/api/user/getUserLoginWithEmail';
-import { useUserLoginWithUsernameAndGenerateJwt } from '../../../../services/api/user/getUserLoginWithUsername';
+import {useUserLoginWithUsernameAndGenerateJwt} from '../../../../services/api/user/getUserLoginWithUsername';
+import {getTokens, isTokenExpired} from '../../../../utilities/jwtToken';
+import {refreshJwtToken} from '../../../../services/api/user/checkAndValidateJWT';
+import { handleTokenAuth } from '../../../../utilities/auth';
 
 interface userInputForm {
   username: string;
@@ -29,6 +33,10 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   });
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [deviceId, setDeviceId] = useState<string>('');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+  const [isEmail, setIsEmail] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
   DeviceInfo.getUniqueId().then(uniqueId => {
     setDeviceId(uniqueId);
   });
@@ -41,12 +49,49 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     );
 
   const {refetch: refetchUsername, isLoading: isLoadingUsername} =
-    useUserLoginWithUsernameAndGenerateJwt(userForm.username, userForm.password, deviceId,);
+    useUserLoginWithUsernameAndGenerateJwt(
+      userForm.username,
+      userForm.password,
+      deviceId,
+    );
 
-  const [errorMessage, setErrorMessage] = useState<string>('');
-  const [isEmail, setIsEmail] = useState<boolean>(false);
   const setUserData = useUserStore(state => state.setUserData);
 
+  useEffect(() => {
+    const checkTokenInStorage = async () => {
+      try {
+        const {jwtToken, refreshToken} = await getTokens();
+
+        if (jwtToken && !isTokenExpired(jwtToken)) {
+          // JWT VALID
+          handleTokenAuth(jwtToken, navigation);
+        } else if (refreshToken) {
+          // If JWT expired but refresh token is valid then generate new JWT
+          try {
+            const newJwtToken = await refreshJwtToken(refreshToken);
+            // If the new token successfully generated then do the same thing but also add the new JWT to async storage
+            if (newJwtToken) {
+              await AsyncStorage.setItem('jwt_token', newJwtToken);
+              handleTokenAuth(newJwtToken, navigation);
+            } else {
+              setIsLoading(false);
+            }
+          } catch (error) {
+            console.error('Error refreshing token:', error);
+            setIsLoading(false);
+          }
+        } else {
+          setIsLoading(false);
+        }
+      } catch (error) {
+        console.error('Error checking tokens:', error);
+        setIsLoading(false);
+      }
+    };
+    checkTokenInStorage();
+  }, [navigation, setUserData]);
+
+  // Handle form input
   const handleUsernameInput = (username: string) => {
     setUserForm({...userForm, username});
     setErrorMessage('');
@@ -73,19 +118,15 @@ const LoginForm = ({navigation}: LoginFormProps) => {
       if (isEmail) {
         response = await refetchEmail();
         data = response.data;
-        if (data?.userValidationData?.status === '01') {
-          handleSuccessfulLogin(data?.userValidationData);
-        } else {
-          handleFailedLogin(data?.userValidationData);
-        }
       } else {
         response = await refetchUsername();
         data = response.data;
-        if (data?.userValidationData?.status === '01') {
-          handleSuccessfulLogin(data?.userValidationData);
-        } else {
-          handleFailedLogin(data?.userValidationData);
-        }
+      }
+
+      if (data?.userValidationData?.status === '01') {
+        handleSuccessfulLogin(data?.userValidationData);
+      } else {
+        handleFailedLogin(data?.userValidationData);
       }
     } catch (error) {
       console.log(error);
