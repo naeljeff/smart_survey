@@ -19,20 +19,3 @@ export const refreshJwtToken = async (refreshToken: string) => {
     throw error;
   }
 };
-
-const checkAndRefreshToken = async () => {
-  const {jwtToken, refreshToken} = await getTokens();
-
-  if (jwtToken && isTokenExpired(jwtToken)) {
-    try {
-      const newJwtToken = await refreshJwtToken(refreshToken || '');
-      await AsyncStorage.setItem('jwt_token', newJwtToken);
-      return newJwtToken;
-    } catch (error) {
-      console.error('Failed to refresh JWT:', error);
-      throw error;
-    }
-  }
-
-  return jwtToken;
-};

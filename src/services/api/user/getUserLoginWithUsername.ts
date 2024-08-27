@@ -90,7 +90,6 @@ export const useUserLoginWithUsernameAndGenerateJwt = (
         userValidationData.token,
       );
 
-      console.log('jwtTokenUsername: ', jwtToken)
       // Kalau gagal bikin JWT throw error
       if (jwtToken.status !== '01') {
         throw new Error('Error generating JWT Token');
