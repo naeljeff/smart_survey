@@ -1,4 +1,4 @@
-import {View, Text} from 'react-native';
+import {View, Text, ActivityIndicator} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Surface, TextInput} from 'react-native-paper';
@@ -14,8 +14,8 @@ import {useUserStore} from '../../../../store/storeUser';
 import {useUserLoginWithEmailAndGenerateJwt} from '../../../../services/api/user/getUserLoginWithEmail';
 import {useUserLoginWithUsernameAndGenerateJwt} from '../../../../services/api/user/getUserLoginWithUsername';
 import {getTokens, isTokenExpired} from '../../../../utilities/jwtToken';
-import {refreshJwtToken} from '../../../../services/api/user/checkAndValidateJWT';
-import { handleTokenAuth } from '../../../../utilities/auth';
+import {refreshJwtToken} from '../../../../services/api/user/getUserRefreshJWT';
+import {handleTokenAuth} from '../../../../utilities/auth';
 
 interface userInputForm {
   username: string;
@@ -35,11 +35,51 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   const [deviceId, setDeviceId] = useState<string>('');
   const [errorMessage, setErrorMessage] = useState<string>('');
   const [isEmail, setIsEmail] = useState<boolean>(false);
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isCheckingToken, setIsCheckingToken] = useState<boolean>(true);
 
-  DeviceInfo.getUniqueId().then(uniqueId => {
-    setDeviceId(uniqueId);
-  });
+  useEffect(() => {
+    DeviceInfo.getUniqueId().then(uniqueId => {
+      setDeviceId(uniqueId);
+    });
+
+    const checkTokenInStorage = async () => {
+      try {
+        const {jwtToken, refreshToken} = await getTokens();
+
+        if (jwtToken) {
+          console.log('Access Token:', jwtToken);
+        }
+
+        if (refreshToken) {
+          console.log('Refresh Token:', refreshToken);
+        }
+
+        if (jwtToken && !isTokenExpired(jwtToken)) {
+          handleTokenAuth(jwtToken, navigation);
+        } else if (refreshToken) {
+          try {
+            const newJwtToken = await refreshJwtToken(refreshToken);
+            if (newJwtToken) {
+              console.log('refreshing token from component')
+              await AsyncStorage.setItem('jwt_token', newJwtToken);
+              handleTokenAuth(newJwtToken, navigation);
+            } else {
+              setIsCheckingToken(false);
+            }
+          } catch (error) {
+            console.log('Error refreshing token:', error);
+            setIsCheckingToken(false);
+          }
+        } else {
+          setIsCheckingToken(false);
+        }
+      } catch (error) {
+        console.log('Error checking tokens:', error);
+        setIsCheckingToken(false);
+      }
+    };
+    checkTokenInStorage();
+  }, [navigation]);
 
   const {refetch: refetchEmail, isLoading: isLoadingEmail} =
     useUserLoginWithEmailAndGenerateJwt(
@@ -56,40 +96,6 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     );
 
   const setUserData = useUserStore(state => state.setUserData);
-
-  useEffect(() => {
-    const checkTokenInStorage = async () => {
-      try {
-        const {jwtToken, refreshToken} = await getTokens();
-
-        if (jwtToken && !isTokenExpired(jwtToken)) {
-          // JWT VALID
-          handleTokenAuth(jwtToken, navigation);
-        } else if (refreshToken) {
-          // If JWT expired but refresh token is valid then generate new JWT
-          try {
-            const newJwtToken = await refreshJwtToken(refreshToken);
-            // If the new token successfully generated then do the same thing but also add the new JWT to async storage
-            if (newJwtToken) {
-              await AsyncStorage.setItem('jwt_token', newJwtToken);
-              handleTokenAuth(newJwtToken, navigation);
-            } else {
-              setIsLoading(false);
-            }
-          } catch (error) {
-            console.error('Error refreshing token:', error);
-            setIsLoading(false);
-          }
-        } else {
-          setIsLoading(false);
-        }
-      } catch (error) {
-        console.error('Error checking tokens:', error);
-        setIsLoading(false);
-      }
-    };
-    checkTokenInStorage();
-  }, [navigation, setUserData]);
 
   // Handle form input
   const handleUsernameInput = (username: string) => {
@@ -137,7 +143,6 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   const handleSuccessfulLogin = (data: any) => {
     Toast.show('Login successful!', Toast.LONG);
 
-    // Add to store
     if (data.message_response) {
       setUserData({
         token: data.token || '',
@@ -156,6 +161,14 @@ const LoginForm = ({navigation}: LoginFormProps) => {
   const handleFailedLogin = (data: any) => {
     setErrorMessage(data.message_response || 'Login failed, please try again');
   };
+
+  if (isCheckingToken) {
+    return (
+      <View className="flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#FF7F50" />
+      </View>
+    );
+  }
 
   return (
     <View className="w-full h-full">

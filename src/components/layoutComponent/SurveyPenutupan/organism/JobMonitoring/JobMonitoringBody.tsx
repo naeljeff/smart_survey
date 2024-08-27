@@ -1,5 +1,5 @@
 import {ActivityIndicator, Text, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
@@ -8,6 +8,7 @@ import Information from '../../../../reusableComponent/StaticDisplay/Information
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
 import JobMonitoringUserList from '../../molecules/JobMonitoring/JobMonitoringUserList';
+import { navigateToLogin } from '../../../../../utilities/navigationHelper';
 
 const JobMonitoringBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -15,11 +16,19 @@ const JobMonitoringBody = () => {
   const [sortBy, setSortBy] = useState<string>('');
   const [orderBy, setOrderBy] = useState<string>('');
 
-  const {data, isLoading, isError, refetch} = UseGetNewSurveyData();
+  const {data, isLoading, isError, refetch, error} = UseGetNewSurveyData();
   const navigation =
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'surveyPenutupan'>
     >();
+
+  useEffect(() => {
+    if (error) {
+      if ('isSessionError' in error && error.isSessionError) {
+        navigateToLogin(navigation);
+      }
+    }
+  }, [error, navigation, refetch]);
 
   if (isLoading) {
     return (
@@ -58,14 +67,14 @@ const JobMonitoringBody = () => {
         </View>
       ) : (
         <JobMonitoringUserList
-          // data={data}
-          // search={searchTerm}
-          // searchByTerm={searchByTerm}
-          // sortBy={sortBy}
-          // orderBy={orderBy}
-          // refreshing={isLoading}
-          // onRefresh={refetch}
-          // navigation={navigation}
+        // data={data}
+        // search={searchTerm}
+        // searchByTerm={searchByTerm}
+        // sortBy={sortBy}
+        // orderBy={orderBy}
+        // refreshing={isLoading}
+        // onRefresh={refetch}
+        // navigation={navigation}
         />
       )}
     </View>
