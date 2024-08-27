@@ -1,13 +1,17 @@
-import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 
-const BASE_URL: string = process.env.BASE_GET_NEW_SURVEY_URL || '';
+import createApiClient from '../../../utilities/apiClient';
+
 const KEY_ID: string = process.env.KEY_ID_NEW_SURVEY || '';
 
 export const fetchNewSurveyData = async () => {
+  const surveyApiClient = createApiClient(
+    process.env.BASE_GET_NEW_SURVEY_URL || '',
+  );
+  
   try {
-    const res = await axios.post(
-      BASE_URL,
+    const res = await surveyApiClient.post(
+      '',
       {
         key_id: KEY_ID,
       },
@@ -19,17 +23,17 @@ export const fetchNewSurveyData = async () => {
     );
     return res.data;
   } catch (error) {
-    console.log(`Error: ${error}`);
+    console.log(`Error getting new survey: ${error}`);
     throw error;
   }
 };
 
 export const UseGetNewSurveyData = () => {
-  const {isLoading, data, isError, refetch} = useQuery({
+  const {isLoading, data, isError, refetch, error} = useQuery({
     queryKey: ['newSurveyData'],
     queryFn: fetchNewSurveyData,
     refetchOnReconnect: 'always',
   });
 
-  return {isLoading, data, isError, refetch};
+  return {isLoading, data, isError, refetch, error};
 };

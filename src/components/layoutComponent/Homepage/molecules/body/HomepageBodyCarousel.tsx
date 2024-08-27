@@ -10,6 +10,7 @@ import CarouselItem from '../../atoms/CarouselItem';
 import {UseGetCarouselData} from '../../../../../services/api/carousel/getHomeCarousel';
 import {CarouselProps} from '../../../../../constants/carouselProps';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
+import {navigateToLogin} from '../../../../../utilities/navigationHelper';
 
 type HomeCarouselScreenNavigation = NativeStackNavigationProp<
   RootStackParamList,
@@ -27,14 +28,20 @@ const HomepageBodyCarousel = ({
   const {
     data,
     isLoading,
+    error,
     isError,
     refetch: refetchCarouselData,
   } = UseGetCarouselData();
   const navigation = useNavigation<HomeCarouselScreenNavigation>();
 
   useEffect(() => {
+    if (error) {
+      if ('isSessionError' in error && error.isSessionError) {
+        navigateToLogin(navigation);
+      }
+    }
     onRefetch(refetchCarouselData);
-  }, [refetchCarouselData]);
+  }, [error, refetchCarouselData, navigation, onRefetch]);
 
   const renderCarousel = ({
     item,

@@ -1,6 +1,5 @@
 import {jwtDecode} from 'jwt-decode';
 import {CommonActions} from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import {useUserStore} from '../store/storeUser';
 
 interface DecodedToken {

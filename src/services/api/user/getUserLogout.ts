@@ -1,13 +1,15 @@
 import {useMutation} from '@tanstack/react-query';
-import axios from 'axios';
 
-const BASE_LOGOUT_USER: string =
-  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/deleteTokenJWT.php';
+import createApiClient from '../../../utilities/apiClient';
 
 const deleteUserTokenJWT = async (deviceId: string) => {
+  const logoutApiClient = createApiClient(
+    'https://www.rks-s.com/prog-x/pengajuan_survey/api/user',
+  );
+
   try {
-    const response = await axios.post(
-      BASE_LOGOUT_USER,
+    const response = await logoutApiClient.post(
+      '/deleteTokenJWT.php',
       {
         device_id: deviceId,
       },

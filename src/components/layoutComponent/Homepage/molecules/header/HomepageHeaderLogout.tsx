@@ -38,12 +38,12 @@ const HomepageHeaderLogout = () => {
           Toast.show('Logout successful!', Toast.LONG);
         },
         onError: error => {
-          console.error('Failed to delete user JWT:', error);
+          console.log('Failed to delete user JWT:', error);
           Toast.show('Logout failed! Please try again.', Toast.LONG);
         },
       });
     } catch (error) {
-      console.error('Logout failed:', error);
+      console.log('Logout failed:', error);
       Toast.show('Logout failed!', Toast.LONG);
     }
   };

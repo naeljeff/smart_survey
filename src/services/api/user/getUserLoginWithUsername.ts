@@ -57,7 +57,6 @@ const generateUserJwt = async (
     return res.data;
   } catch (error: any) {
     console.log(`Error from axios generate user JWT: ${error.message}`);
-    console.error('Full error object:', error.toJSON ? error.toJSON() : error);
     throw error;
   }
 };

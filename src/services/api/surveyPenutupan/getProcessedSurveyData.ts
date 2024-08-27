@@ -1,13 +1,17 @@
-import axios from 'axios';
 import {useQuery} from '@tanstack/react-query';
 
-const BASE_URL: string = process.env.BASE_GET_PROCESSED_SURVEY_URL || '';
+import createApiClient from '../../../utilities/apiClient';
+
 const KEY_ID: string = process.env.KEY_ID_PROCESSED_SURVEY || '';
 
 export const fetchProcessedSurveyData = async () => {
+  const processedSurveyClient = createApiClient(
+    process.env.BASE_GET_PROCESSED_SURVEY_URL || '',
+  );
+
   try {
-    const res = await axios.post(
-      BASE_URL,
+    const res = await processedSurveyClient.post(
+      '',
       {
         key_id: KEY_ID,
       },
@@ -19,17 +23,17 @@ export const fetchProcessedSurveyData = async () => {
     );
     return res.data;
   } catch (error) {
-    console.log(`Error: ${error}`);
+    console.log(`Error getting processed survey: ${error}`);
     throw error;
   }
 };
 
 export const UseGetProcessedSurveyData = () => {
-  const {isLoading, data, isError, refetch} = useQuery({
+  const {isLoading, data, isError, refetch, error} = useQuery({
     queryKey: ['processedSurveyData'],
     queryFn: fetchProcessedSurveyData,
     refetchOnReconnect: 'always',
   });
 
-  return {isLoading, data, isError, refetch};
+  return {isLoading, data, isError, refetch, error};
 };
