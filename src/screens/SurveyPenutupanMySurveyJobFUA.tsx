@@ -28,7 +28,7 @@ const SurveyPenutupanMySurveyJobFUA = ({
   const {item} = route.params;
 
   return (
-    <View className="w-full h-full flex flex-col bg-[#f7ebd7]">
+    <View className="w-full h-full flex flex-col bg-[#FFF]">
       {/* Header */}
       <NavigationHeader title={'FUA'} onPress={() => navigation.goBack()} />
 

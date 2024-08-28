@@ -4,6 +4,7 @@ import React, {useState} from 'react';
 import FAwesome from 'react-native-vector-icons/FontAwesome6';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
+import JobMonitoringFUAStatus from '../../../atoms/JobMonitoring/JobMonitoringFUAStatus';
 
 type MySurveyFUAProps = {
   item?: surveyJobProps;
@@ -150,12 +151,12 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
               color="black"
             />
           </TouchableOpacity>
-          {/* {isStatusOpen && (
-            <SurveyFUAStatus
+          {isStatusOpen && (
+            <JobMonitoringFUAStatus
               openFUAStatus={setIsStatusOpen}
               statusFUA={setFUAStatus}
             />
-          )} */}
+          )}
         </View>
 
         {/* Remarks */}
