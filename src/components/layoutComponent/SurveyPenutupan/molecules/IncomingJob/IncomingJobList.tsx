@@ -96,7 +96,7 @@ const IncomingJobList = ({
   );
 
   return (
-    <View className="flex-1 w-full bg-[#f7ebd7] pb-11">
+    <View className="flex-1 w-full bg-[#fff] pb-11">
       {filterSurveyData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />

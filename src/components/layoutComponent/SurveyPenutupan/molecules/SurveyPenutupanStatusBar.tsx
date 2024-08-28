@@ -35,7 +35,7 @@ const SurveyPenutupanStatusBar = () => {
   const fullName = messageResponse?.full_name || '';
 
   return (
-    <View className="w-full h-[50px] px-2 flex flex-row justify-between items-center space-x-2 bg-[#585454]">
+    <View className="w-full h-[50px] px-2 flex flex-row justify-between items-center space-x-2 bg-[#A67B5B]">
       <Text className="text-xs text-white w-[70%]">{`Welcome, ${fullName}`}</Text>
 
       <Text className="text-xs text-white w-[30%]">

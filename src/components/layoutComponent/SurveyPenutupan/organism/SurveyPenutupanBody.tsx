@@ -31,7 +31,7 @@ const SurveyPenutupanBody = () => {
   };
 
   return (
-    <View className="w-full h-full flex flex-col bg-[#f7ebd7]">
+    <View className="w-full h-full flex flex-col bg-[#fff]">
       {/* Status Bar */}
       <SurveyPenutupanStatusBar />
 

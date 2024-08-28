@@ -35,21 +35,15 @@ const SurveyPenutupanMySurveyJobFUA = ({
       {/* Body */}
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
         {/* Appointment Schedule */}
-        {/* <IncomingJobAppointment item={item} /> */}
         <MySurveyAppointment item={item}/>
 
         {/* Personal Contact Schedule */}
-        {/* <IncomingJobPersonalContact
-          item={item}
-        /> */}
         <MySurveyPersonalContact />
 
         {/* Coorporate Contact Person */}
-        {/* <IncomingJobCoorporateContact /> */}
         <MySurveyCoorporateContact />
 
         {/* Follow Up Activity */}
-        {/* <IncomingJobFUA /> */}
         <MySurveyFUA />
       </ScrollView>
     </View>

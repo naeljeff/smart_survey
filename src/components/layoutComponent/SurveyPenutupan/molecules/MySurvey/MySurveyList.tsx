@@ -2,7 +2,7 @@ import {FlatList, RefreshControl, Text, View} from 'react-native';
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
 import MIcon from 'react-native-vector-icons/MaterialIcons';
 
-import {MySurveyListProp} from '../../../../../props/MySurveyListProps';
+import {MySurveyListProp} from '../../../../../props/mySurveyListProps';
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
 import {calcAgingDate} from '../../../../../utilities/functions';
 import MySurveyItem from '../../atoms/MySurvey/MySurveyItem';
@@ -96,7 +96,7 @@ const MySurveyList = ({
   );
 
   return (
-    <View className="flex-1 w-full bg-[#f7ebd7] pb-11">
+    <View className="flex-1 w-full bg-[#fff] pb-11">
       {filterSurveyData.length === 0 ? (
         <View className="w-full h-full flex flex-col justify-center items-center">
           <MIcon name="do-not-disturb-alt" size={80} color="black" />

@@ -44,23 +44,27 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
     const checkTokenInStorage = async () => {
       try {
+        // Get token from storage
         const {jwtToken, refreshToken} = await getTokens();
 
-        if (jwtToken) {
-          console.log('Access Token:', jwtToken);
-        }
+        // if (jwtToken) {
+        //   console.log('Access Token:', jwtToken);
+        // }
 
-        if (refreshToken) {
-          console.log('Refresh Token:', refreshToken);
-        }
+        // if (refreshToken) {
+        //   console.log('Refresh Token:', refreshToken);
+        // }
 
+        // If token exists and it's not expired yet
         if (jwtToken && !isTokenExpired(jwtToken)) {
           handleTokenAuth(jwtToken, navigation);
+        // If it's expired but refresh token exists
         } else if (refreshToken) {
           try {
+            // Get a new access token from refresh token
             const newJwtToken = await refreshJwtToken(refreshToken);
+            // If it's success then store the new access token otherwise throw error
             if (newJwtToken) {
-              console.log('refreshing token from component')
               await AsyncStorage.setItem('jwt_token', newJwtToken);
               handleTokenAuth(newJwtToken, navigation);
             } else {

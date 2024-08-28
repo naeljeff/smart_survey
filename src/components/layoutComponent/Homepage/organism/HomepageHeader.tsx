@@ -17,10 +17,10 @@ const HomeHeader = () => {
     <View
       className={`w-full h-full ${
         timeOfDay === 'morning'
-          ? 'bg-[#ede590]'
+          ? 'bg-[#78ABA8]'
           : timeOfDay === 'afternoon'
-          ? 'bg-[#edd189]'
-          : 'bg-[#3e52d6]'
+          ? 'bg-[#A67B5B]'
+          : 'bg-[#506D84]'
       } flex flex-row justify-between items-center px-5`}>
       {/* User Info */}
       <View className="h-full w-2/3 flex flex-col justify-center items-start ">
