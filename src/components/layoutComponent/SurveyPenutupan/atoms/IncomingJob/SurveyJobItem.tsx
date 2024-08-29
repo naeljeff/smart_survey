@@ -35,11 +35,12 @@ const SurveyJobItem = React.memo(
           onPress={handleListPress}
           className="w-screen flex flex-row justify-start items-center">
           {/* Icon Mail */}
-          <View className="flex-[0.1] flex items-center justify-center ">
+          <View className="relative flex-[0.1] flex items-center justify-center ">
             <Ionicons name="mail" size={24} color="black" />
-            {/* <Badge className="absolute bg-red-500 left-1 top-3.5" size={16}>
-              !
-            </Badge> */}
+            <Text
+              className={`absolute w-3.5 h-3.5 text-[8px] text-center pt-0.5 bg-red-500 text-white rounded-full top-4 left-1`}>
+                !
+            </Text>
           </View>
 
           {/* Informasi kendaraan */}

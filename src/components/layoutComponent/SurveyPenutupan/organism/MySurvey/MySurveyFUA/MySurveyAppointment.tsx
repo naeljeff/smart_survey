@@ -1,5 +1,5 @@
-import {Text, View} from 'react-native';
-import React, { useState } from 'react';
+import {Text, TextInput, View} from 'react-native';
+import React, {useState} from 'react';
 
 import {
   calcAgingDate,
@@ -7,13 +7,15 @@ import {
 } from '../../../../../../utilities/functions';
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 
-type IncomingJobAppointmentProps = {
+type MySurveyJobAppointmentProps = {
   item?: surveyJobProps;
 };
 
-const IncomingJobAppointment = React.memo(
-  ({item}: IncomingJobAppointmentProps) => {
-
+const MySurveyAppointment = React.memo(
+  ({item}: MySurveyJobAppointmentProps) => {
+    const [noPengajuan, setNoPengajuan] = useState<string>(
+      item?.noPengajuanSurvey || '',
+    );
     return (
       <View className="w-full flex flex-col items-start justify-center mb-2">
         <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -29,9 +31,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Register No</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.noPengajuanSurvey ?? 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.noPengajuanSurvey ?? 'Null'} */}
+            </TextInput>
           </View>
 
           {/* Unit No */}
@@ -40,9 +45,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Unit No</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.unitNo ?? 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.unitNo ?? 'Null'} */}
+            </TextInput>
           </View>
 
           {/* Requested By */}
@@ -51,9 +59,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Requested By</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.emailRequest ?? 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.emailRequest ?? 'Null'} */}
+            </TextInput>
           </View>
 
           {/* Requested Date */}
@@ -62,11 +73,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Requested Date</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.createdAt
-                ? formatDateSurveyPenutupanJob(item.createdAt)
-                : 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.createdAt ? formatDate(specificJob.createdAt) : 'Null'} */}
+            </TextInput>
           </View>
 
           {/* Aging */}
@@ -75,9 +87,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Aging</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.createdAt ? calcAgingDate(item.createdAt) : 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.createdAt ? calcAgingDate(specificJob.createdAt) : 'Null'} */}
+            </TextInput>
           </View>
 
           {/* Priority */}
@@ -86,9 +101,12 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Priority</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.priority ?? 'Null'}
-            </Text>
+            <TextInput
+              value={noPengajuan}
+              onChangeText={setNoPengajuan}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+              {/* {specificJob?.priority ?? 'Null'} */}
+            </TextInput>
           </View>
         </View>
       </View>
@@ -96,4 +114,4 @@ const IncomingJobAppointment = React.memo(
   },
 );
 
-export default IncomingJobAppointment;
+export default MySurveyAppointment;

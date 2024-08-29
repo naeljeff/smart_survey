@@ -103,7 +103,7 @@ const HomepageBodyCarousel = ({
           width: 10,
           height: 10,
           borderRadius: 5,
-          marginHorizontal: 8,
+          marginHorizontal: 2,
           backgroundColor: 'rgba(0, 0, 0, 0.92)',
         }}
         inactiveDotOpacity={0.4}

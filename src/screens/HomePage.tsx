@@ -45,10 +45,10 @@ const HomePage = () => {
       }
       className={`h-full w-full flex flex-col ${
         timeOfDay === 'morning'
-          ? 'bg-[#ede590]'
+          ? 'bg-[#78ABA8]'
           : timeOfDay === 'afternoon'
-          ? 'bg-[#edd189]'
-          : 'bg-[#3e52d6]'
+          ? 'bg-[#A67B5B]'
+          : 'bg-[#506D84]'
       }`}>
       {/* Header */}
       <View className="flex-1">

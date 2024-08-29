@@ -10,6 +10,7 @@ import MenuAwalSurveyor from '../screens/MenuAwalSurveyor';
 import NotificationPage from '../screens/NotificationPage';
 import {surveyJobProps} from '../props/surveyJobProps';
 import SurveyPenutupanIncomingJobFUA from '../screens/SurveyPenutupanIncomingJobFUA';
+import SurveyPenutupanMySurveyJobFUA from '../screens/SurveyPenutupanMySurveyJobFUA';
 
 export type RootStackParamList = {
   // Login Page
@@ -23,6 +24,7 @@ export type RootStackParamList = {
   // Survey Penutupan
   surveyPenutupan: undefined;
   surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
+  surveyPenutupanFormMySurveyJobFUA: {item: surveyJobProps};
 
   // Supervisor
   supervisor: undefined;
@@ -68,6 +70,10 @@ const StackNavigator = () => {
       <Stack.Screen
         name="surveyPenutupanFormIncomingJobFUA"
         component={SurveyPenutupanIncomingJobFUA}
+      />
+      <Stack.Screen
+        name="surveyPenutupanFormMySurveyJobFUA"
+        component={SurveyPenutupanMySurveyJobFUA}
       />
 
       {/* Supervisor */}

@@ -1,5 +1,6 @@
 import {Text, View, Image} from 'react-native';
 import React from 'react';
+
 import HomepageBodyMenu from '../molecules/body/HomepageBodyMenu';
 import HomepageBodyCarousel from '../molecules/body/HomepageBodyCarousel';
 

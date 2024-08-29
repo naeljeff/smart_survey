@@ -1,5 +1,6 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
+import {UseGetNewSurveyData} from '../../../../services/api/surveyPenutupan/getNewSurveyData';
 
 type SurveyPenutupanNavbarProps = {
   onMenuChange: (option: string) => void;
@@ -13,16 +14,17 @@ const SurveyPenutupanNavbar = ({onMenuChange}: SurveyPenutupanNavbarProps) => {
     'History',
   ];
   const [index, setIndex] = useState<number>(0);
+  const {data} = UseGetNewSurveyData();
 
   const handleMenuChangeOnPress = (option: string, idx: number) => {
     setIndex(idx);
     onMenuChange(option);
   };
 
-  const dataCount: number = 99;
+  const dataCount: number = data?.data?.length || 0;
 
   return (
-    <View className="w-full h-[50px] flex justify-center bg-orange-200">
+    <View className="w-full h-[50px] flex justify-center bg-[#FFD875]/60">
       {/* Menu */}
       <View className="w-full flex flex-row justify-center gap-x-2">
         {menu.map((item, idx) => (
@@ -30,7 +32,7 @@ const SurveyPenutupanNavbar = ({onMenuChange}: SurveyPenutupanNavbarProps) => {
             <TouchableOpacity
               onPress={() => handleMenuChangeOnPress(item, idx)}
               className={`mr-2 ${
-                index === idx ? 'bg-[#585454] py-1.5 px-1 rounded' : ''
+                index === idx ? 'bg-[#A67B5B]/80 py-1.5 px-1 rounded' : ''
               }`}>
               <Text
                 className={`relative text-sm text-black ${

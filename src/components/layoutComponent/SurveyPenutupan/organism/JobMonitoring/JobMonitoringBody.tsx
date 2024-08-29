@@ -8,7 +8,7 @@ import Information from '../../../../reusableComponent/StaticDisplay/Information
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
 import JobMonitoringUserList from '../../molecules/JobMonitoring/JobMonitoringUserList';
-import { navigateToLogin } from '../../../../../utilities/navigationHelper';
+import {navigateToLogin} from '../../../../../utilities/navigationHelper';
 
 const JobMonitoringBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -67,14 +67,14 @@ const JobMonitoringBody = () => {
         </View>
       ) : (
         <JobMonitoringUserList
-        // data={data}
-        // search={searchTerm}
-        // searchByTerm={searchByTerm}
-        // sortBy={sortBy}
-        // orderBy={orderBy}
-        // refreshing={isLoading}
-        // onRefresh={refetch}
-        // navigation={navigation}
+          data={data}
+          search={searchTerm}
+          searchByTerm={searchByTerm}
+          sortBy={sortBy}
+          orderBy={orderBy}
+          refreshing={isLoading}
+          onRefresh={refetch}
+          navigation={navigation}
         />
       )}
     </View>

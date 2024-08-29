@@ -5,7 +5,10 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
-import { calcAgingDate, formatDateSurveyPenutupanJob } from '../../../../../utilities/functions';
+import {
+  calcAgingDate,
+  formatDateSurveyPenutupanJob,
+} from '../../../../../utilities/functions';
 
 type MySurveyItemProps = {
   item: surveyJobProps;
@@ -20,9 +23,9 @@ const MySurveyItem = React.memo(
 
     const handleListPress = () => {
       console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
-    //   navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
-    //     item: item,
-    //   });
+      navigation.navigate('surveyPenutupanFormMySurveyJobFUA', {
+        item: item,
+      });
     };
 
     return (
