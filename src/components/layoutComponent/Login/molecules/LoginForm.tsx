@@ -143,8 +143,6 @@ const LoginForm = ({navigation}: LoginFormProps) => {
         data = response.data;
       }
 
-      console.log('response: ', response)
-
       if (data?.userValidationData?.status === '01') {
         handleSuccessfulLogin(data?.userValidationData);
       } else {
