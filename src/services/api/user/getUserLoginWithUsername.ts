@@ -5,7 +5,7 @@ import axios from 'axios';
 const BASE_LOGIN_GENERATE_JWT: string =
   'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/generateJWTToken.php';
 const BASE_LOGIN_USERNAME: string =
-  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/loginUsernameRM_LOGIN.php';
+  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/loginUsernameSmartSurvey.php';
 
 const getUserValidationWithUsername = async (
   username: string,
@@ -35,25 +35,26 @@ const generateUserJwt = async (
   deviceId: string,
   messageResponse: any,
   token: string,
+  source_login: string[],
 ) => {
+
+  const jsonData = {
+    device_id: deviceId,
+    full_name: messageResponse.full_name,
+    email: messageResponse.email || '',
+    no_hp: messageResponse.no_hp || '',
+    aegis_dept: messageResponse.aegis_dept || '',
+    aegis_dept_full: messageResponse.dept_full || '',
+    cabang: messageResponse.dept_aegis[0].CABANG || '',
+    role: messageResponse.role || null,
+    source_login: source_login || [],
+    token: token || [],
+  };
+
   try {
-    const res = await axios.post(
-      BASE_LOGIN_GENERATE_JWT,
-      {
-        device_id: deviceId,
-        full_name: messageResponse.full_name,
-        email: messageResponse.email || '',
-        no_hp: messageResponse.no_hp || '',
-        aegis_dept: messageResponse.aegis_dept || '',
-        aegis_dept_full: messageResponse.dept_full || '',
-        cabang: messageResponse.dept_aegis[0].CABANG || '',
-        role: messageResponse.role || null,
-        token: token,
-      },
-      {
-        headers: {'Content-Type': 'application/json'},
-      },
-    );
+    const res = await axios.post(BASE_LOGIN_GENERATE_JWT, jsonData, {
+      headers: {'Content-Type': 'application/json'},
+    });
     return res.data;
   } catch (error: any) {
     console.log(`Error from axios generate user JWT: ${error.message}`);
@@ -87,6 +88,7 @@ export const useUserLoginWithUsernameAndGenerateJwt = (
         deviceId,
         userValidationData.message_response,
         userValidationData.token,
+        userValidationData.source_login,
       );
 
       // Kalau gagal bikin JWT throw error

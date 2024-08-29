@@ -11,27 +11,46 @@ type HomepageNavigationProps = NativeStackNavigationProp<RootStackParamList>;
 
 const HomepageBodyMenu = () => {
   const navigation = useNavigation<HomepageNavigationProps>();
-  const {messageResponse} = useUserStore(state => ({
-    messageResponse: state.messageResponse,
+  const {source_login} = useUserStore(state => ({
+    source_login: state.source_login || [],
   }));
 
-  const cabang = messageResponse?.cabang || '';
-  const deptAegisCabang = messageResponse?.dept_aegis?.[0]?.CABANG || '';
-
-  const isRoleLike = cabang === '01' || deptAegisCabang === '01';
+  // Display menu based on role (grant)
+  const canAccessPenutupan = source_login.includes('RM_SUR_MENU_PENUTUPAN');
+  const canAccessKerusakan = source_login.includes('RM_SUR_MENU_KERUSAKAN');
+  const isRoleLike = source_login.includes('RM_SUR_LOGIN');
 
   return (
     <View
       className={`flex-1 flex-row items-start p-10 ${
-        isRoleLike ? 'justify-center' : 'justify-evenly'
+        isRoleLike && canAccessKerusakan && canAccessPenutupan
+          ? 'justify-evenly'
+          : isRoleLike && canAccessKerusakan
+          ? 'justify-evenly'
+          : isRoleLike && canAccessPenutupan
+          ? 'justify-center'
+          : ''
       }`}>
-      {isRoleLike ? (
-        <HomepageNavigationButton
-          title="Survey Penutupan"
-          icon="event-note"
-          onPress={() => navigation.navigate('surveyPenutupan')}
-        />
-      ) : (
+      {/* Semua bisa diakses (ada semua role) */}
+      {isRoleLike && canAccessPenutupan && canAccessKerusakan ? (
+        <>
+          <HomepageNavigationButton
+            title="Survey Penutupan"
+            icon="event-note"
+            onPress={() => navigation.navigate('surveyPenutupan')}
+          />
+          <HomepageNavigationButton
+            title="Supervisor"
+            icon="supervisor"
+            onPress={() => navigation.navigate('supervisor')}
+          />
+          <HomepageNavigationButton
+            title="Surveyor"
+            icon="surveyor"
+            onPress={() => navigation.navigate('surveyor')}
+          />
+        </>
+      ) : isRoleLike && canAccessKerusakan ? (
         <>
           <HomepageNavigationButton
             title="Supervisor"
@@ -44,6 +63,14 @@ const HomepageBodyMenu = () => {
             onPress={() => navigation.navigate('surveyor')}
           />
         </>
+      ) : isRoleLike && canAccessPenutupan ? (
+        <HomepageNavigationButton
+          title="Survey Penutupan"
+          icon="event-note"
+          onPress={() => navigation.navigate('surveyPenutupan')}
+        />
+      ) : (
+        ''
       )}
     </View>
   );

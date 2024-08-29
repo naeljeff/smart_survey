@@ -93,6 +93,24 @@ const LoginForm = ({navigation}: LoginFormProps) => {
 
   const setUserData = useUserStore(state => state.setUserData);
 
+  const extractErrorMessage = (error: any): string => {
+    if (typeof error === 'string') {
+      return error;
+    }
+    if (error?.failureReason) {
+      return typeof error.failureReason === 'string'
+        ? error.failureReason
+        : error.failureReason.toString(); 
+    }
+    if (error?.error) {
+      return typeof error.error === 'string'
+        ? error.error
+        : error.error.toString(); 
+    }
+    return 'An unexpected error occurred';
+  };
+  
+
   // Handle form input
   const handleUsernameInput = (username: string) => {
     setUserForm({...userForm, username});
@@ -125,14 +143,17 @@ const LoginForm = ({navigation}: LoginFormProps) => {
         data = response.data;
       }
 
+      console.log('response: ', response)
+
       if (data?.userValidationData?.status === '01') {
         handleSuccessfulLogin(data?.userValidationData);
       } else {
-        handleFailedLogin(data?.userValidationData);
+        handleFailedLogin(response || 'Login failed');
       }
     } catch (error) {
       console.log(error);
-      setErrorMessage('Error during login process');
+      const errorMessage = extractErrorMessage(error);
+      setErrorMessage(errorMessage);
     }
   };
 
@@ -143,6 +164,7 @@ const LoginForm = ({navigation}: LoginFormProps) => {
       setUserData({
         token: data.token || '',
         messageResponse: data.message_response,
+        source_login: data.source_login || [],
       });
     }
 
@@ -154,8 +176,9 @@ const LoginForm = ({navigation}: LoginFormProps) => {
     );
   };
 
-  const handleFailedLogin = (data: any) => {
-    setErrorMessage(data.message_response || 'Login failed, please try again');
+  const handleFailedLogin = (error: any) => {
+    const errorMessage = extractErrorMessage(error);
+    setErrorMessage(errorMessage);
   };
 
   if (isCheckingToken) {
