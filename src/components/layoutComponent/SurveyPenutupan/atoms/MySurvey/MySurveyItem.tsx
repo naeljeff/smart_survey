@@ -53,7 +53,7 @@ const MySurveyItem = React.memo(
             <Text className="text-xs text-black uppercase">{`${
               item.jenisAsuransi
             } + ${item.perluasan.join('; ')}`}</Text>
-            <Text className="text-xs text-black uppercase">{item.alamat}</Text>
+            <Text className="text-xs text-black uppercase">{item.alamatSurvey}</Text>
           </View>
 
           {/* Due Date */}

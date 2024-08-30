@@ -28,7 +28,7 @@ const MySurveyList = ({
       searchByTerm === ''
         ? data?.data?.filter(item =>
             Object.values(item).some(value =>
-              value.toString().toLowerCase().includes(search.toLowerCase()),
+              value!.toString().toLowerCase().includes(search.toLowerCase()),
             ),
           )
         : data?.data?.filter(

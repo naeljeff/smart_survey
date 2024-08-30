@@ -16,14 +16,14 @@ var react_native_1 = require("react-native");
 var react_native_maps_1 = require("react-native-maps");
 var GoogleMaps = function (_a) {
     var item = _a.item, lat = _a.lat, long = _a.long, alamat = _a.alamat;
+    console.log("Dari gmaps: " + item.alamatSurvey);
     return (react_1["default"].createElement(react_native_1.View, { style: styles.container },
-        react_1["default"].createElement(react_native_maps_1["default"], { style: styles.map, initialRegion: {
-                latitude: parseFloat(lat),
-                longitude: parseFloat(long),
-                latitudeDelta: 0.0922,
-                longitudeDelta: 0.0421
-            } },
-            react_1["default"].createElement(react_native_maps_1.Marker, { coordinate: { latitude: parseFloat(lat), longitude: parseFloat(long) }, title: alamat })),
+        react_1["default"].createElement(react_native_maps_1["default"], { style: styles.map, provider: react_native_maps_1.PROVIDER_GOOGLE, initialRegion: {
+                latitude: 37.78825,
+                longitude: -122.4324,
+                latitudeDelta: 0.015,
+                longitudeDelta: 0.0121
+            } }),
         react_1["default"].createElement(react_native_1.View, { style: styles.addressContainer },
             react_1["default"].createElement(react_native_1.Text, null, alamat))));
 };

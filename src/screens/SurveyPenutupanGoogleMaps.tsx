@@ -5,7 +5,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../routes/StackNavigator';
 import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
-import GoogleMaps from '../components/reusableComponent/Map/googleMaps';
+import GoogleMaps from '../components/reusableComponent/Map/GoogleMaps';
 
 type SurveyPenutupanGoogleMapsRouteProps = RouteProp<
   RootStackParamList,
@@ -31,7 +31,8 @@ const SurveyPenutupanGoogleMaps = ({route}: SurveyPenutupanGoogleMapsProps) => {
       />
 
       {/* Google Maps */}
-      {/* <GoogleMaps item={item} lat={lat} long={long} alamat={alamat} /> */}
+      <Text>Google Maps</Text>
+      <GoogleMaps item={item} lat={lat} long={long} alamat={alamat} />
     </View>
   );
 };

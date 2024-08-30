@@ -1,6 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import MapView, {Marker} from 'react-native-maps';
+import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
 
 import {surveyJobProps} from '../../../props/surveyJobProps';
 
@@ -12,20 +12,22 @@ type GoogleMapsProps = {
 };
 
 const GoogleMaps = ({item, lat, long, alamat}: GoogleMapsProps) => {
+  console.log(`Dari gmaps: ${item.alamatSurvey}`)
   return (
     <View style={styles.container}>
       <MapView
         style={styles.map}
+        provider={PROVIDER_GOOGLE}
         initialRegion={{
-          latitude: parseFloat(lat),
-          longitude: parseFloat(long),
-          latitudeDelta: 0.0922,
-          longitudeDelta: 0.0421,
+          latitude: 37.78825,
+         longitude: -122.4324,
+         latitudeDelta: 0.015,
+         longitudeDelta: 0.0121,
         }}>
-        <Marker
+        {/* <Marker
           coordinate={{latitude: parseFloat(lat), longitude: parseFloat(long)}}
           title={alamat}
-        />
+        /> */}
       </MapView>
       <View style={styles.addressContainer}>
         <Text>{alamat}</Text>

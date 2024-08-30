@@ -52,7 +52,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {item?.emailRequest ?? 'Null'}
+              {item?.requesterFullName ?? 'Null'}
             </Text>
           </View>
 
