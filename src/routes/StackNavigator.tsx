@@ -36,9 +36,6 @@ export type RootStackParamList = {
   // Maps
   googleMaps: {
     item: surveyJobProps;
-    lat: string;
-    long: string;
-    alamat: string;
   };
 };
 

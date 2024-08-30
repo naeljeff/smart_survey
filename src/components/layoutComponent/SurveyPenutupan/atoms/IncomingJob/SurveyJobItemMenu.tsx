@@ -1,19 +1,34 @@
 import {TouchableOpacity} from 'react-native';
 import React, {useState} from 'react';
 import Feather from 'react-native-vector-icons/Feather';
+import {Divider, Menu} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
-import {Divider, Menu} from 'react-native-paper';
+import {RootStackParamList} from '../../../../../routes/StackNavigator';
+
 
 type SurveyJobItemMenuProps = {
   item: surveyJobProps;
 };
 
 const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
+  const navigationToGoogleMap =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, 'googleMaps'>
+    >();
   const [menuState, setMenuState] = useState<boolean>(false);
 
   const openMenu = () => setMenuState(true);
   const closeMenu = () => setMenuState(false);
+
+  const handleOnPressView = () => {
+    console.log(`Item: ${item.noPengajuanSurvey}`);
+    navigationToGoogleMap.navigate('googleMaps', {
+      item: item,
+    });
+  };
 
   return (
     <Menu
@@ -33,7 +48,7 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
         titleStyle={{fontSize: 16, color: 'black'}}
         onPress={() => {
           closeMenu();
-          console.log(`View Clicked: ${item.noPengajuanSurvey}`);
+          handleOnPressView();
         }}
         title="View"
       />

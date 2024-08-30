@@ -1,11 +1,13 @@
-import {Text, View} from 'react-native';
-import React from 'react';
+import {ActivityIndicator, ScrollView, Text, View} from 'react-native';
+import React, {useEffect} from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../routes/StackNavigator';
 import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import GoogleMaps from '../components/reusableComponent/Map/GoogleMaps';
+import IncomingJobViewMapDetail from '../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobViewMapDetail/IncomingJobViewMapDetail';
+import {UseGetGoogleMapsData} from '../services/api/surveyPenutupan/getGoogleMapsData';
 
 type SurveyPenutupanGoogleMapsRouteProps = RouteProp<
   RootStackParamList,
@@ -17,22 +19,63 @@ type SurveyPenutupanGoogleMapsProps = {
 };
 
 const SurveyPenutupanGoogleMaps = ({route}: SurveyPenutupanGoogleMapsProps) => {
-  const {item, lat, long, alamat} = route.params;
+  const {item} = route.params;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
+  // React Query
+  // View
+  const {
+    data: dataGmaps,
+    refetch: refetchGmaps,
+    isError: isErrorGmaps,
+    isLoading: isLoadingGmaps,
+    error: errorGmaps,
+  } = UseGetGoogleMapsData(item.alamatSurvey);
+
+  useEffect(() => {
+    refetchGmaps();
+  }, [item.alamatSurvey, refetchGmaps]);
+
+  if (isLoadingGmaps) {
+    return (
+      <View className="h-screen w-screen flex flex-col justify-center items-center bg-gray-400/20">
+        <ActivityIndicator size="large" color="#00bffe" />
+      </View>
+    );
+  }
+
+  if (isErrorGmaps) {
+    return (
+      <Text className="h-screen w-screen text-center text-lg text-red-500">
+        Error loading data
+      </Text>
+    );
+  }
+
+  console.log('dataGmaps: ', dataGmaps.results[0].formatted_address);
+  console.log('dataGmaps: ', dataGmaps.results[0].geometry.location.lat);
+  console.log('dataGmaps: ', dataGmaps.results[0].geometry.location.lng);
+
   return (
-    <View className="flex-1 bg-white">
+    <View className="w-full h-full flex flex-col bg-[#FFF]">
       {/* Header */}
       <NavigationHeader
-        title={'Surveyor'}
+        title={'View Map'}
         onPress={() => navigation.goBack()}
-        onRefresh={() => {}}
       />
 
       {/* Google Maps */}
-      <Text>Google Maps</Text>
-      <GoogleMaps item={item} lat={lat} long={long} alamat={alamat} />
+      <View className="w-full h-[450px]">
+        <GoogleMaps item={item} />
+      </View>
+
+      {/* Details */}
+      <ScrollView
+        automaticallyAdjustKeyboardInsets={true}
+        className="flex-grow">
+        <IncomingJobViewMapDetail item={item} />
+      </ScrollView>
     </View>
   );
 };

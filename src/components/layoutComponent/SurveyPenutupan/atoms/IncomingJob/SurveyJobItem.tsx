@@ -39,7 +39,7 @@ const SurveyJobItem = React.memo(
             <Ionicons name="mail" size={24} color="black" />
             <Text
               className={`absolute w-3.5 h-3.5 text-[8px] text-center pt-0.5 bg-red-500 text-white rounded-full top-4 left-1`}>
-                !
+              !
             </Text>
           </View>
 
@@ -55,7 +55,9 @@ const SurveyJobItem = React.memo(
             <Text className="text-xs text-black uppercase">{`${
               item.jenisAsuransi
             } + ${item.perluasan.join('; ')}`}</Text>
-            <Text className="text-xs text-black uppercase">{item.alamatSurvey}</Text>
+            <Text className="text-xs text-black uppercase">
+              {item.alamatSurvey}
+            </Text>
           </View>
 
           {/* Due Date */}
