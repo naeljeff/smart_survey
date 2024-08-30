@@ -24,7 +24,7 @@ const HomepageBodyMenu = () => {
     <View
       className={`flex-1 flex-row items-start p-10 ${
         isRoleLike && canAccessKerusakan && canAccessPenutupan
-          ? 'justify-evenly'
+          ? 'justify-between'
           : isRoleLike && canAccessKerusakan
           ? 'justify-evenly'
           : isRoleLike && canAccessPenutupan
