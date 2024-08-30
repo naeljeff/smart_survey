@@ -1,9 +1,11 @@
-import {Text, TextInput, View} from 'react-native';
+import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
+import DatePicker from 'react-native-date-picker';
 
 import {
   calcAgingDate,
   formatDateSurveyPenutupanJob,
+  formatInputDateFUA,
 } from '../../../../../../utilities/functions';
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 
@@ -16,6 +18,33 @@ const MySurveyAppointment = React.memo(
     const [noPengajuan, setNoPengajuan] = useState<string>(
       item?.noPengajuanSurvey || '',
     );
+    const [unitNo, setUnitNo] = useState<string>(item?.unitNo || '');
+    const [requestedBy, setRequestedBy] = useState<string>(
+      item?.requesterFullName || '',
+    );
+
+    const initialRequestedDate = item?.createdAt
+      ? new Date(item.createdAt.replace(' ', 'T'))
+      : undefined;
+    const [requestedDate, setRequestedDate] = useState<Date | undefined>(
+      initialRequestedDate,
+    );
+    const [isRequestedDateOpen, setIsRequestedDateOpen] =
+      useState<boolean>(false);
+
+    const aging: number | null = item?.createdAt
+      ? calcAgingDate(item.createdAt)
+      : null;
+
+    const onConfirmRequestedDate = (date?: Date) => {
+      setIsRequestedDateOpen(false);
+      setRequestedDate(date);
+    };
+
+    const closeRequestedDate = () => {
+      setIsRequestedDateOpen(false);
+    };
+
     return (
       <View className="w-full flex flex-col items-start justify-center mb-2">
         <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -34,9 +63,7 @@ const MySurveyAppointment = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.noPengajuanSurvey ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Unit No */}
@@ -46,11 +73,9 @@ const MySurveyAppointment = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.unitNo ?? 'Null'} */}
-            </TextInput>
+              value={unitNo}
+              onChangeText={setUnitNo}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Requested By */}
@@ -60,11 +85,9 @@ const MySurveyAppointment = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.emailRequest ?? 'Null'} */}
-            </TextInput>
+              value={requestedBy}
+              onChangeText={setRequestedBy}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Requested Date */}
@@ -73,12 +96,24 @@ const MySurveyAppointment = React.memo(
               <Text className="text-black capitalize">Requested Date</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.createdAt ? formatDate(specificJob.createdAt) : 'Null'} */}
-            </TextInput>
+            <DatePicker
+              modal
+              open={isRequestedDateOpen}
+              date={requestedDate ?? new Date()}
+              locale="en-GB"
+              onConfirm={onConfirmRequestedDate}
+              onCancel={closeRequestedDate}
+            />
+            <TouchableOpacity
+              onPress={() => setIsRequestedDateOpen(true)}
+              className="flex-1">
+              <TextInput
+                value={formatInputDateFUA(requestedDate)}
+                editable={false}
+                placeholder="Select Appointment Date"
+                className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"
+              />
+            </TouchableOpacity>
           </View>
 
           {/* Aging */}
@@ -87,12 +122,9 @@ const MySurveyAppointment = React.memo(
               <Text className="text-black capitalize">Aging</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.createdAt ? calcAgingDate(specificJob.createdAt) : 'Null'} */}
-            </TextInput>
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
+              {aging}
+            </Text>
           </View>
 
           {/* Priority */}
@@ -101,12 +133,9 @@ const MySurveyAppointment = React.memo(
               <Text className="text-black capitalize">Priority</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.priority ?? 'Null'} */}
-            </TextInput>
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
+              {item?.priority || null}
+            </Text>
           </View>
         </View>
       </View>

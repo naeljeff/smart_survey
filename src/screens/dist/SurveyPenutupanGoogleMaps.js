@@ -22,7 +22,7 @@ var SurveyPenutupanGoogleMaps = function (_a) {
             react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#00bffe" })));
     }
     if (isErrorGmaps) {
-        return (react_1["default"].createElement(react_native_1.Text, { className: "h-screen w-screen text-center text-lg text-red-500" }, "Error loading data"));
+        return (react_1["default"].createElement(react_native_1.Text, { className: "h-screen w-screen text-center text-lg text-red-500" }, errorGmaps === null || errorGmaps === void 0 ? void 0 : errorGmaps.message));
     }
     console.log('dataGmaps: ', dataGmaps.results[0].formatted_address);
     console.log('dataGmaps: ', dataGmaps.results[0].geometry.location.lat);

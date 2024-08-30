@@ -48,7 +48,7 @@ const SurveyPenutupanGoogleMaps = ({route}: SurveyPenutupanGoogleMapsProps) => {
   if (isErrorGmaps) {
     return (
       <Text className="h-screen w-screen text-center text-lg text-red-500">
-        Error loading data
+        {errorGmaps?.message}
       </Text>
     );
   }
