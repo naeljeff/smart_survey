@@ -4,7 +4,6 @@ import DatePicker from 'react-native-date-picker';
 
 import {
   calcAgingDate,
-  formatDateSurveyPenutupanJob,
   formatInputDateFUA,
 } from '../../../../../../utilities/functions';
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
