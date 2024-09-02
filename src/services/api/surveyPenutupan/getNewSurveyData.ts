@@ -4,16 +4,16 @@ import createApiClient from '../../../utilities/apiClient';
 
 const KEY_ID: string = process.env.KEY_ID_NEW_SURVEY || '';
 
-export const fetchNewSurveyData = async () => {
-  const surveyApiClient = createApiClient(
-    process.env.BASE_GET_NEW_SURVEY_URL || '',
-  );
+export const fetchNewSurveyData = async (fullName: string) => {
+  const BASE_NEW_SURVEY_URL: string = process.env.BASE_GET_NEW_SURVEY_URL || '';
+  const surveyApiClient = createApiClient(BASE_NEW_SURVEY_URL);
 
   try {
     const res = await surveyApiClient.post(
       '',
       {
         key_id: KEY_ID,
+        user_full_name: fullName,
       },
       {
         headers: {
@@ -28,10 +28,10 @@ export const fetchNewSurveyData = async () => {
   }
 };
 
-export const UseGetNewSurveyData = () => {
+export const UseGetNewSurveyData = (fullName: string) => {
   const {isLoading, data, isError, refetch, error} = useQuery({
-    queryKey: ['newSurveyData'],
-    queryFn: fetchNewSurveyData,
+    queryKey: ['newSurveyData', fullName],
+    queryFn: () => fetchNewSurveyData(fullName),
     refetchOnReconnect: 'always',
   });
 

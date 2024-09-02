@@ -1,6 +1,7 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React, {useState} from 'react';
 import {UseGetNewSurveyData} from '../../../../services/api/surveyPenutupan/getNewSurveyData';
+import { useUserStore } from '../../../../store/storeUser';
 
 type SurveyPenutupanNavbarProps = {
   onMenuChange: (option: string) => void;
@@ -14,7 +15,12 @@ const SurveyPenutupanNavbar = ({onMenuChange}: SurveyPenutupanNavbarProps) => {
     'History',
   ];
   const [index, setIndex] = useState<number>(0);
-  const {data} = UseGetNewSurveyData();
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
+
+  const fullName = messageResponse?.full_name || '';
+  const {data} = UseGetNewSurveyData(fullName);
 
   const handleMenuChangeOnPress = (option: string, idx: number) => {
     setIndex(idx);
