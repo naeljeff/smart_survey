@@ -67,6 +67,7 @@ exports.UseGetGoogleMapsData = function (address) {
         queryKey: ['googleMapsData', address],
         queryFn: function () { return exports.fetchGoogleMapsData(address); },
         refetchOnReconnect: 'always',
+        refetchOnWindowFocus: true,
         enabled: !!address
     }), isLoading = _a.isLoading, data = _a.data, isError = _a.isError, refetch = _a.refetch, error = _a.error;
     return { isLoading: isLoading, data: data, isError: isError, refetch: refetch, error: error };

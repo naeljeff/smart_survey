@@ -34,6 +34,7 @@ export const UseGetProcessedSurveyData = (fullName: string) => {
     queryKey: ['processedSurveyData', fullName],
     queryFn: () => fetchProcessedSurveyData(fullName),
     refetchOnReconnect: 'always',
+    refetchOnWindowFocus: true,
   });
 
   return {isLoading, data, isError, refetch, error};

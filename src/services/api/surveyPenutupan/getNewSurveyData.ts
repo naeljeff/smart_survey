@@ -33,6 +33,7 @@ export const UseGetNewSurveyData = (fullName: string) => {
     queryKey: ['newSurveyData', fullName],
     queryFn: () => fetchNewSurveyData(fullName),
     refetchOnReconnect: 'always',
+    refetchOnWindowFocus: true,
   });
 
   return {isLoading, data, isError, refetch, error};

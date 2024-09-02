@@ -73,7 +73,8 @@ exports.UseGetProcessedSurveyData = function (fullName) {
     var _a = react_query_1.useQuery({
         queryKey: ['processedSurveyData', fullName],
         queryFn: function () { return exports.fetchProcessedSurveyData(fullName); },
-        refetchOnReconnect: 'always'
+        refetchOnReconnect: 'always',
+        refetchOnWindowFocus: true
     }), isLoading = _a.isLoading, data = _a.data, isError = _a.isError, refetch = _a.refetch, error = _a.error;
     return { isLoading: isLoading, data: data, isError: isError, refetch: refetch, error: error };
 };

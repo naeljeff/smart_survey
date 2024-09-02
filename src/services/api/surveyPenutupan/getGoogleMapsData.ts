@@ -22,6 +22,7 @@ export const UseGetGoogleMapsData = (address: string) => {
     queryKey: ['googleMapsData', address],
     queryFn: () => fetchGoogleMapsData(address),
     refetchOnReconnect: 'always',
+    refetchOnWindowFocus: true,
     enabled: !!address,
   });
 
