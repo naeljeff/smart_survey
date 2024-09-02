@@ -2,15 +2,11 @@ import {useQuery} from '@tanstack/react-query';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-const BASE_LOGIN_GENERATE_JWT: string =
-  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/generateJWTToken.php';
-const BASE_LOGIN_USERNAME: string =
-  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/loginUsernameSmartSurvey.php';
-
 const getUserValidationWithUsername = async (
   username: string,
   password: string,
 ) => {
+  const BASE_LOGIN_USERNAME: string = process.env.BASE_LOGIN_USERNAME_URL || '';
   try {
     const res = await axios.post(
       BASE_LOGIN_USERNAME,
@@ -37,7 +33,7 @@ const generateUserJwt = async (
   token: string,
   source_login: string[],
 ) => {
-
+  const BASE_LOGIN_GENERATE_JWT: string = process.env.BASE_GENERATE_JWT || '';
   const jsonData = {
     device_id: deviceId,
     full_name: messageResponse.full_name,

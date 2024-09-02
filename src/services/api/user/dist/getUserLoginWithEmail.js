@@ -40,14 +40,15 @@ exports.useUserLoginWithEmailAndGenerateJwt = void 0;
 var react_query_1 = require("@tanstack/react-query");
 var async_storage_1 = require("@react-native-async-storage/async-storage");
 var axios_1 = require("axios");
-var BASE_LOGIN_GENERATE_JWT = 'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/generateJWTToken.php';
-var BASE_LOGIN_EMAIL = 'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/loginEmailSmartSurvey.php';
 var getUserValidationWithEmail = function (email, password) { return __awaiter(void 0, void 0, void 0, function () {
-    var res, error_1;
+    var BASE_LOGIN_EMAIL, res, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
+                BASE_LOGIN_EMAIL = process.env.BASE_LOGIN_EMAIL_URL || '';
+                _a.label = 1;
+            case 1:
+                _a.trys.push([1, 3, , 4]);
                 return [4 /*yield*/, axios_1["default"].post(BASE_LOGIN_EMAIL, {
                         email: email,
                         password: password
@@ -56,22 +57,23 @@ var getUserValidationWithEmail = function (email, password) { return __awaiter(v
                             'Content-Type': 'application/json'
                         }
                     })];
-            case 1:
+            case 2:
                 res = _a.sent();
                 return [2 /*return*/, res.data];
-            case 2:
+            case 3:
                 error_1 = _a.sent();
                 console.log("Error from axios user login validation: " + error_1.message);
                 throw error_1;
-            case 3: return [2 /*return*/];
+            case 4: return [2 /*return*/];
         }
     });
 }); };
 var generateUserJwt = function (deviceId, messageResponse, token, source_login) { return __awaiter(void 0, void 0, void 0, function () {
-    var jsonData, res, error_2;
+    var BASE_LOGIN_GENERATE_JWT, jsonData, res, error_2;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
+                BASE_LOGIN_GENERATE_JWT = process.env.BASE_GENERATE_JWT || '';
                 jsonData = {
                     device_id: deviceId,
                     full_name: messageResponse.full_name,

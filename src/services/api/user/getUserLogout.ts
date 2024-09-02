@@ -3,13 +3,12 @@ import {useMutation} from '@tanstack/react-query';
 import createApiClient from '../../../utilities/apiClient';
 
 const deleteUserTokenJWT = async (deviceId: string) => {
-  const logoutApiClient = createApiClient(
-    'https://www.rks-s.com/prog-x/pengajuan_survey/api/user',
-  );
+  const BASE_LOGOUT_USER: string = process.env.BASE_LOGOUT_USER_URL || '';
+  const logoutApiClient = createApiClient(BASE_LOGOUT_USER);
 
   try {
     const response = await logoutApiClient.post(
-      '/deleteTokenJWT.php',
+      '',
       {
         device_id: deviceId,
       },

@@ -45,6 +45,7 @@ const MySurveyPersonalContact = React.memo(
             <TextInput
               value={address}
               onChangeText={setAddress}
+              multiline
               className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 

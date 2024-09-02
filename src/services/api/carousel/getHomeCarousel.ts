@@ -3,15 +3,14 @@ import DeviceInfo from 'react-native-device-info';
 
 import createApiClient from '../../../utilities/apiClient';
 
-const apiClient = createApiClient(
-  'https://www.araksa.com/prog-x/api/underwriting_approval',
-);
-
 const getHomeCarouselData = async () => {
+  const BASE_HOME_CAROUSEL_URL: string =
+    process.env.BASE_HOME_CAROUSEL_URL || '';
+  const apiClient = createApiClient(BASE_HOME_CAROUSEL_URL);
   const systemName = DeviceInfo.getSystemName().toUpperCase();
   try {
     const response = await apiClient.post(
-      '/api_get_slideshow.php',
+      '',
       {
         key_id: process.env.HOME_CAROUSEL_KEY_ID,
         source: 'Transmet',

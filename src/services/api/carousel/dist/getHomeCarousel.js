@@ -36,38 +36,46 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UseGetGoogleMapsData = exports.fetchGoogleMapsData = void 0;
+exports.UseGetCarouselData = void 0;
 var react_query_1 = require("@tanstack/react-query");
-var axios_1 = require("axios");
-exports.fetchGoogleMapsData = function (address) { return __awaiter(void 0, void 0, void 0, function () {
-    var BASE_URL, KEY_ID, formattedAddress, res, error_1;
+var react_native_device_info_1 = require("react-native-device-info");
+var apiClient_1 = require("../../../utilities/apiClient");
+var getHomeCarouselData = function () { return __awaiter(void 0, void 0, void 0, function () {
+    var BASE_HOME_CAROUSEL_URL, apiClient, systemName, response, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                BASE_URL = process.env.BASE_GOOGLE_MAP_API_URL || '';
-                KEY_ID = process.env.KEY_ID_GOOGLE_MAPS || '';
-                formattedAddress = encodeURIComponent(address);
+                BASE_HOME_CAROUSEL_URL = process.env.BASE_HOME_CAROUSEL_URL || '';
+                apiClient = apiClient_1["default"](BASE_HOME_CAROUSEL_URL);
+                systemName = react_native_device_info_1["default"].getSystemName().toUpperCase();
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, axios_1["default"].get(BASE_URL + "address=" + formattedAddress + "&key=" + KEY_ID)];
+                return [4 /*yield*/, apiClient.post('', {
+                        key_id: process.env.HOME_CAROUSEL_KEY_ID,
+                        source: 'Transmet',
+                        source_phone: systemName
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })];
             case 2:
-                res = _a.sent();
-                return [2 /*return*/, res.data];
+                response = _a.sent();
+                return [2 /*return*/, response.data];
             case 3:
                 error_1 = _a.sent();
-                console.error('Error fetching Google Maps data:', error_1);
+                console.error('Error fetching home carousel data:', error_1);
                 throw error_1;
             case 4: return [2 /*return*/];
         }
     });
 }); };
-exports.UseGetGoogleMapsData = function (address) {
+exports.UseGetCarouselData = function () {
     var _a = react_query_1.useQuery({
-        queryKey: ['googleMapsData', address],
-        queryFn: function () { return exports.fetchGoogleMapsData(address); },
-        refetchOnReconnect: 'always',
-        enabled: !!address
+        queryKey: ['homeCarousel'],
+        queryFn: getHomeCarouselData,
+        refetchOnReconnect: 'always'
     }), isLoading = _a.isLoading, data = _a.data, isError = _a.isError, refetch = _a.refetch, error = _a.error;
     return { isLoading: isLoading, data: data, isError: isError, refetch: refetch, error: error };
 };

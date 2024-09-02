@@ -5,7 +5,7 @@ import FAwesome from 'react-native-vector-icons/FontAwesome6';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import JobMonitoringFUAStatus from '../../../atoms/JobMonitoring/JobMonitoringFUAStatus';
-import { formatInputDateFUA } from '../../../../../../utilities/functions';
+import {formatInputDateFUA} from '../../../../../../utilities/functions';
 
 type MySurveyFUAProps = {
   item?: surveyJobProps;
@@ -114,9 +114,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             value={noPengajuan}
             onChangeText={setNoPengajuan}
             multiline={true}
-            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {/* {specificJob?.nama ?? 'Null'} */}
-          </TextInput>
+            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
         </View>
 
         {/* Status */}
@@ -158,9 +156,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             value={noPengajuan}
             onChangeText={setNoPengajuan}
             multiline={true}
-            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {/* {specificJob?.nama ?? 'Null'} */}
-          </TextInput>
+            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
         </View>
       </View>
     </View>

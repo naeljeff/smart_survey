@@ -22,7 +22,7 @@ var MySurveyPersonalContact = react_1["default"].memo(function (_a) {
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Address"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
-                react_1["default"].createElement(react_native_1.TextInput, { value: address, onChangeText: setAddress, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })),
+                react_1["default"].createElement(react_native_1.TextInput, { value: address, onChangeText: setAddress, multiline: true, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })),
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Phone Number"),
