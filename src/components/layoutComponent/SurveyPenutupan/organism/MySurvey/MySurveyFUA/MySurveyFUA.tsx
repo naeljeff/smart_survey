@@ -5,6 +5,7 @@ import FAwesome from 'react-native-vector-icons/FontAwesome6';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import JobMonitoringFUAStatus from '../../../atoms/JobMonitoring/JobMonitoringFUAStatus';
+import {formatInputDateFUA} from '../../../../../../utilities/functions';
 
 type MySurveyFUAProps = {
   item?: surveyJobProps;
@@ -42,18 +43,6 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
     setIsOpenAppointmentDate(false);
   };
 
-  const formatDateString = (date?: Date): string => {
-    if (!date) return '';
-
-    const day = date.getDate().toString().padStart(2, '0');
-    const month = date.toLocaleString('en-US', {month: 'short'});
-    const year = date.getFullYear().toString().slice(-2);
-    const hours = date.getHours().toString().padStart(2, '0');
-    const minutes = date.getMinutes().toString().padStart(2, '0');
-
-    return `${day}-${month}-${year} ${hours}:${minutes}`;
-  };
-
   return (
     <View className="w-full flex flex-col items-start justify-center mb-4">
       <Text className="text-lg text-black font-bold px-3">
@@ -81,7 +70,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             onPress={() => setIsOpenContactDate(true)}
             className="flex-1">
             <TextInput
-              value={formatDateString(contactDate)}
+              value={formatInputDateFUA(contactDate)}
               editable={false}
               placeholder="Select Contact Date"
               className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"
@@ -107,7 +96,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             onPress={() => setIsOpenAppointmentDate(true)}
             className="flex-1">
             <TextInput
-              value={formatDateString(appointmentDate)}
+              value={formatInputDateFUA(appointmentDate)}
               editable={false}
               placeholder="Select Appointment Date"
               className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"
@@ -125,9 +114,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             value={noPengajuan}
             onChangeText={setNoPengajuan}
             multiline={true}
-            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {/* {specificJob?.nama ?? 'Null'} */}
-          </TextInput>
+            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
         </View>
 
         {/* Status */}
@@ -169,9 +156,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
             value={noPengajuan}
             onChangeText={setNoPengajuan}
             multiline={true}
-            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-            {/* {specificJob?.nama ?? 'Null'} */}
-          </TextInput>
+            className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
         </View>
       </View>
     </View>

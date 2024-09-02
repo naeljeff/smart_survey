@@ -30,9 +30,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Company Name */}
@@ -44,9 +42,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* SOB Code */}
@@ -58,9 +54,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* SOB Name */}
@@ -72,9 +66,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* SOB Type */}
@@ -86,9 +78,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Contact Person */}
@@ -100,9 +90,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* SOB Phone */}
@@ -114,9 +102,7 @@ const MySurveyCoorporateContact = React.memo(
             <TextInput
               value={noPengajuan}
               onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* SOB Remarks */}
@@ -129,9 +115,7 @@ const MySurveyCoorporateContact = React.memo(
               value={noPengajuan}
               onChangeText={setNoPengajuan}
               multiline={true}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
         </View>
       </View>

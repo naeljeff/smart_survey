@@ -11,6 +11,7 @@ import NotificationPage from '../screens/NotificationPage';
 import {surveyJobProps} from '../props/surveyJobProps';
 import SurveyPenutupanIncomingJobFUA from '../screens/SurveyPenutupanIncomingJobFUA';
 import SurveyPenutupanMySurveyJobFUA from '../screens/SurveyPenutupanMySurveyJobFUA';
+import SurveyPenutupanGoogleMaps from '../screens/SurveyPenutupanGoogleMaps';
 
 export type RootStackParamList = {
   // Login Page
@@ -31,6 +32,11 @@ export type RootStackParamList = {
 
   // Surveyor
   surveyor: undefined;
+
+  // Maps
+  googleMaps: {
+    item: surveyJobProps;
+  };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -81,6 +87,9 @@ const StackNavigator = () => {
 
       {/* Surveyor */}
       <Stack.Screen name="surveyor" component={MenuAwalSurveyor} />
+
+      {/* Maps */}
+      <Stack.Screen name="googleMaps" component={SurveyPenutupanGoogleMaps} />
     </Stack.Navigator>
   );
 };

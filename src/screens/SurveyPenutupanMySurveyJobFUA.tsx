@@ -38,7 +38,7 @@ const SurveyPenutupanMySurveyJobFUA = ({
         <MySurveyAppointment item={item}/>
 
         {/* Personal Contact Schedule */}
-        <MySurveyPersonalContact />
+        <MySurveyPersonalContact item={item}/>
 
         {/* Coorporate Contact Person */}
         <MySurveyCoorporateContact />

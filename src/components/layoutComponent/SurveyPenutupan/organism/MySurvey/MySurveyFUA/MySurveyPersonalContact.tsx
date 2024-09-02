@@ -9,9 +9,12 @@ type MySurveyPersonalContactProps = {
 
 const MySurveyPersonalContact = React.memo(
   ({item}: MySurveyPersonalContactProps) => {
-    const [noPengajuan, setNoPengajuan] = useState<string>(
-      item?.noPengajuanSurvey || '',
-    );
+    const [name, setName] = useState<string>(item?.nama || '');
+    const [address, setAddress] = useState<string>(item?.alamatSurvey || '');
+    const [phoneNumber, setPhoneNumber] = useState<string>(item?.noTelp || '');
+    const [email, setEmail] = useState<string>(item?.email || '');
+    const [remarks, setRemarks] = useState<string>(item?.catatan || '');
+
     return (
       <View className="w-full flex flex-col items-start justify-center mb-2">
         <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -28,11 +31,9 @@ const MySurveyPersonalContact = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.nama ?? 'Null'} */}
-            </TextInput>
+              value={name}
+              onChangeText={setName}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Address */}
@@ -42,11 +43,10 @@ const MySurveyPersonalContact = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.alamat ?? 'Null'} */}
-            </TextInput>
+              value={address}
+              onChangeText={setAddress}
+              multiline
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Phone Number */}
@@ -56,11 +56,9 @@ const MySurveyPersonalContact = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.noTelp ?? 'Null'} */}
-            </TextInput>
+              value={phoneNumber}
+              onChangeText={setPhoneNumber}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Email */}
@@ -70,11 +68,9 @@ const MySurveyPersonalContact = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.email ?? 'Null'} */}
-            </TextInput>
+              value={email}
+              onChangeText={setEmail}
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
 
           {/* Remarks */}
@@ -84,12 +80,10 @@ const MySurveyPersonalContact = React.memo(
               <Text className="text-black capitalize">:</Text>
             </View>
             <TextInput
-              value={noPengajuan}
-              onChangeText={setNoPengajuan}
+              value={remarks}
+              onChangeText={setRemarks}
               multiline={true}
-              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
-              {/* {specificJob?.catatan ?? 'Null'} */}
-            </TextInput>
+              className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"></TextInput>
           </View>
         </View>
       </View>

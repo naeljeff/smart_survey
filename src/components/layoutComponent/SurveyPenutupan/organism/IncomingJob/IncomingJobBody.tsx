@@ -9,6 +9,7 @@ import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/g
 import IncomingJobList from '../../molecules/IncomingJob/IncomingJobList';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import {navigateToLogin} from '../../../../../utilities/navigationHelper';
+import {useUserStore} from '../../../../../store/storeUser';
 
 const IncomingJobBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -16,7 +17,13 @@ const IncomingJobBody = () => {
   const [sortBy, setSortBy] = useState<string>('');
   const [orderBy, setOrderBy] = useState<string>('');
 
-  const {data, isLoading, isError, refetch, error} = UseGetNewSurveyData();
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
+
+  const fullName = messageResponse?.full_name || '';
+  const {data, isLoading, isError, refetch, error} =
+    UseGetNewSurveyData(fullName);
   const navigation =
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'surveyPenutupan'>

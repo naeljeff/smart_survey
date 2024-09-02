@@ -1,9 +1,7 @@
 import axios from 'axios';
 
-const BASE_GENERATE_NEW_JWT: string =
-  'https://www.rks-s.com/prog-x/pengajuan_survey/api/user/generateJWTWithRefreshToken.php';
-
 export const refreshJwtToken = async (refreshToken: string) => {
+  const BASE_GENERATE_NEW_JWT: string = process.env.BASE_GENERATE_NEW_JWT || '';
   try {
     const response = await axios.post(BASE_GENERATE_NEW_JWT, {
       refresh_token: refreshToken,

@@ -9,14 +9,19 @@ import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
 import JobMonitoringUserList from '../../molecules/JobMonitoring/JobMonitoringUserList';
 import {navigateToLogin} from '../../../../../utilities/navigationHelper';
+import { useUserStore } from '../../../../../store/storeUser';
 
 const JobMonitoringBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
   const [searchByTerm, setSearchByTerm] = useState<string>('');
   const [sortBy, setSortBy] = useState<string>('');
   const [orderBy, setOrderBy] = useState<string>('');
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
 
-  const {data, isLoading, isError, refetch, error} = UseGetNewSurveyData();
+  const fullName = messageResponse?.full_name || '';
+  const {data, isLoading, isError, refetch, error} = UseGetNewSurveyData(fullName);
   const navigation =
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'surveyPenutupan'>

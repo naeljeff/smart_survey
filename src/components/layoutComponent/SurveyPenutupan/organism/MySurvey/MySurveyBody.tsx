@@ -9,6 +9,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
 import MySurveyList from '../../molecules/MySurvey/MySurveyList';
 import {navigateToLogin} from '../../../../../utilities/navigationHelper';
+import {useUserStore} from '../../../../../store/storeUser';
 
 const MySurveyBody = () => {
   const [searchTerm, setSearchTerm] = useState<string>('');
@@ -16,8 +17,14 @@ const MySurveyBody = () => {
   const [sortBy, setSortBy] = useState<string>('');
   const [orderBy, setOrderBy] = useState<string>('');
 
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
+
+  const fullName = messageResponse?.full_name || '';
+
   const {data, isLoading, isError, refetch, error} =
-    UseGetProcessedSurveyData();
+    UseGetProcessedSurveyData(fullName);
 
   const navigation =
     useNavigation<

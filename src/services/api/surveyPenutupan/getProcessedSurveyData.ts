@@ -4,16 +4,17 @@ import createApiClient from '../../../utilities/apiClient';
 
 const KEY_ID: string = process.env.KEY_ID_PROCESSED_SURVEY || '';
 
-export const fetchProcessedSurveyData = async () => {
-  const processedSurveyClient = createApiClient(
-    process.env.BASE_GET_PROCESSED_SURVEY_URL || '',
-  );
+export const fetchProcessedSurveyData = async (fullName: string) => {
+  const BASE_PROCESSED_SURVEY_URL =
+    process.env.BASE_GET_PROCESSED_SURVEY_URL || '';
+  const processedSurveyClient = createApiClient(BASE_PROCESSED_SURVEY_URL);
 
   try {
     const res = await processedSurveyClient.post(
       '',
       {
         key_id: KEY_ID,
+        user_full_name: fullName,
       },
       {
         headers: {
@@ -28,11 +29,12 @@ export const fetchProcessedSurveyData = async () => {
   }
 };
 
-export const UseGetProcessedSurveyData = () => {
+export const UseGetProcessedSurveyData = (fullName: string) => {
   const {isLoading, data, isError, refetch, error} = useQuery({
-    queryKey: ['processedSurveyData'],
-    queryFn: fetchProcessedSurveyData,
+    queryKey: ['processedSurveyData', fullName],
+    queryFn: () => fetchProcessedSurveyData(fullName),
     refetchOnReconnect: 'always',
+    refetchOnWindowFocus: true,
   });
 
   return {isLoading, data, isError, refetch, error};
