@@ -4,7 +4,7 @@ var react_native_1 = require("react-native");
 var react_1 = require("react");
 var SurveyJobDetailForMap = function (_a) {
     var item = _a.item;
-    return (react_1["default"].createElement(react_native_1.View, { className: "flex flex-col border-b border-black p-5 space-y-3" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex flex-col border-b border-black px-5 py-2 space-y-3" },
         react_1["default"].createElement(react_native_1.Text, { className: "font-bold text-black uppercase" },
             item.noPengajuanSurvey,
             "/",

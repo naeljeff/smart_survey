@@ -22,6 +22,10 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'googleMaps'>
     >();
+  const navigationToAssignJob =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, 'surveyPenutupanAssignJob'>
+    >();
   const [menuState, setMenuState] = useState<boolean>(false);
   const [confirmationModal, setConfirmationModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
@@ -37,7 +41,6 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
   const {refetch} = UseGetNewSurveyData(fullName);
 
   const handleOnPressView = () => {
-    console.log(`Item: ${item.noPengajuanSurvey}`);
     navigationToGoogleMap.navigate('googleMaps', {
       item: item,
     });
@@ -56,9 +59,8 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
   };
 
   const handleOnAssignSurvey = () => {
-    setModalType('assign');
-    setConfirmationModal(true);
     closeMenu();
+    navigationToAssignJob.navigate('surveyPenutupanAssignJob', {item: item});
   };
 
   const handleConfirm = async (confirmed: boolean) => {

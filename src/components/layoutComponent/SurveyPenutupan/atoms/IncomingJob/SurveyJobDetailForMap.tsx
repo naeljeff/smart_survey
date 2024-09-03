@@ -9,7 +9,7 @@ type SurveyJobDetailForMapProps = {
 
 const SurveyJobDetailForMap = ({item}: SurveyJobDetailForMapProps) => {
   return (
-    <View className="flex flex-col border-b border-black p-5 space-y-3">
+    <View className="flex flex-col border-b border-black px-5 py-2 space-y-3">
       {/* No Pengajuan Survey */}
       <Text className="font-bold text-black uppercase">
         {item.noPengajuanSurvey}/{item.unitNo}
