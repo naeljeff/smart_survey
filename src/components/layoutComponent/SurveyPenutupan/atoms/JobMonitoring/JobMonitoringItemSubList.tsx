@@ -3,6 +3,7 @@ import React from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import {Surface} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
 import {RootStackParamList} from '../../../../../routes/StackNavigator';
@@ -25,11 +26,20 @@ const JobMonitoringItemSubList = ({
   const dayDiff = calcAgingDate(item.createdAt);
   const formattedDate = formatDateSurveyPenutupanJob(item.createdAt);
 
+  const navigationToAssignJob =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, 'surveyPenutupanAssignJob'>
+    >();
+
   const handleMonitoringSubListPress = () => {
     console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
     navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
       item: item,
     });
+  };
+
+  const handleReassignJob = () => {
+    navigationToAssignJob.navigate('surveyPenutupanAssignJob', {item: item});
   };
   return (
     <TouchableOpacity
@@ -74,8 +84,7 @@ const JobMonitoringItemSubList = ({
         <Surface
           className="justify-center items-center border bg-white border-black rounded px-2 py-0.5"
           elevation={2}>
-          <TouchableOpacity
-            onPress={() => console.log(`Pressed: ${item.nama}`)}>
+          <TouchableOpacity onPress={handleReassignJob}>
             <Text className="text-xs text-black tracking-tighter">
               Reassign
             </Text>

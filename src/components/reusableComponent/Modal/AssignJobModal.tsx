@@ -7,6 +7,7 @@ import {
   TextInput,
 } from 'react-native';
 import React, {useEffect, useRef} from 'react';
+
 import {surveyJobProps} from '../../../props/surveyJobProps';
 import SurveyJobDetailForMap from '../../layoutComponent/SurveyPenutupan/atoms/IncomingJob/SurveyJobDetailForMap';
 
