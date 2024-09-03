@@ -5,20 +5,22 @@ import Information from '../../../../../reusableComponent/StaticDisplay/Informat
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import SurveyJobDetailForMap from '../../../atoms/IncomingJob/SurveyJobDetailForMap';
 
-type IncomingJobViewMapDetailProps = {
+type IncomingJobAssignJobProps = {
   item: surveyJobProps;
 };
 
-const IncomingJobViewMapDetail = ({item}: IncomingJobViewMapDetailProps) => {
+const IncomingJobAssignJob = ({item}: IncomingJobAssignJobProps) => {
   return (
     <View className="flex-1 bg-white">
       {/* Information */}
       <Information />
 
-      {/* Detail About Survey */}
-      <SurveyJobDetailForMap item={item}/>
+      {/* Survey Detail */}
+      <SurveyJobDetailForMap item={item} />
+
+      
     </View>
   );
 };
 
-export default IncomingJobViewMapDetail;
+export default IncomingJobAssignJob;

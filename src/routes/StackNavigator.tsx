@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
+// Screens
 import LoginPage from '../screens/LoginPage';
 import BottomTabsNavigator from './BottomTabNavigator';
 import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
@@ -12,6 +13,7 @@ import {surveyJobProps} from '../props/surveyJobProps';
 import SurveyPenutupanIncomingJobFUA from '../screens/SurveyPenutupanIncomingJobFUA';
 import SurveyPenutupanMySurveyJobFUA from '../screens/SurveyPenutupanMySurveyJobFUA';
 import SurveyPenutupanGoogleMaps from '../screens/SurveyPenutupanGoogleMaps';
+import SurveyPenutupanAssignJob from '../screens/SurveyPenutupanAssignJob';
 
 export type RootStackParamList = {
   // Login Page
@@ -26,6 +28,7 @@ export type RootStackParamList = {
   surveyPenutupan: undefined;
   surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
   surveyPenutupanFormMySurveyJobFUA: {item: surveyJobProps};
+  surveyPenutupanAssignJob: {item: surveyJobProps};
 
   // Supervisor
   supervisor: undefined;
@@ -81,6 +84,7 @@ const StackNavigator = () => {
         name="surveyPenutupanFormMySurveyJobFUA"
         component={SurveyPenutupanMySurveyJobFUA}
       />
+      <Stack.Screen name="surveyPenutupanAssignJob" component={SurveyPenutupanAssignJob} />
 
       {/* Supervisor */}
       <Stack.Screen name="supervisor" component={MenuAwalSupervisor} />
