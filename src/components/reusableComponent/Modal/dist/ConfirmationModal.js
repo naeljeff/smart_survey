@@ -34,9 +34,9 @@ var ConfirmationModal = function (_a) {
                         title,
                         " this survey?")),
                 react_1["default"].createElement(react_native_1.View, { className: "h-1/6 w-full flex flex-row justify-center items-center gap-x-5 mt-4" },
-                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "px-4 py-2 bg-green-500 rounded-md", onPress: function () { return onConfirm(true); } },
-                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold" }, "Confirm")),
-                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "px-4 py-2 bg-red-500 rounded-md", onPress: function () { return onConfirm(false); } },
-                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold" }, "Close")))))));
+                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "p-0.5 bg-green-500 rounded-md", onPress: function () { return onConfirm(true); } },
+                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold border border-white rounded-md px-3.5 py-1.5" }, "Confirm")),
+                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "p-0.5 bg-red-500 rounded-md", onPress: function () { return onConfirm(false); } },
+                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold border border-white rounded-md px-3.5 py-1.5" }, "Close")))))));
 };
 exports["default"] = ConfirmationModal;

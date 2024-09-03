@@ -1,17 +1,22 @@
-import {Text, TouchableOpacity, View, Animated, Modal} from 'react-native';
+import {
+  Text,
+  View,
+  Animated,
+  Modal,
+  TouchableOpacity,
+  TextInput,
+} from 'react-native';
 import React, {useEffect, useRef} from 'react';
+import {surveyJobProps} from '../../../props/surveyJobProps';
+import SurveyJobDetailForMap from '../../layoutComponent/SurveyPenutupan/atoms/IncomingJob/SurveyJobDetailForMap';
 
-type ConfirmationModalProps = {
-  title: string;
+type AssignJobModalProps = {
+  item: surveyJobProps;
   visible: boolean;
   onConfirm: (confirmed: boolean) => void;
 };
 
-const ConfirmationModal = ({
-  title,
-  visible,
-  onConfirm,
-}: ConfirmationModalProps) => {
+const AssignJobModal = ({item, visible, onConfirm}: AssignJobModalProps) => {
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -41,30 +46,37 @@ const ConfirmationModal = ({
         style={{
           opacity: animation,
         }}>
-        <View className="w-4/5 h-1/3 bg-white p-5 rounded-xl shadow-2xl">
+        <View className="w-4/5 h-3/5 bg-white px-5 py-1 rounded-xl shadow-2xl">
           {/* Header Modal */}
-          <View className="w-full h-1/6 flex flex-row justify-center items-center px-1 mb-3">
+          <View className="w-full h-[6%] flex flex-row justify-center items-center px-1 mb-2">
             {/* Confirmation Title */}
-            <Text className="text-lg text-black/90 font-semibold capitalize">
-              Confirmation
+            <Text className="text-[16px] text-black/90 font-semibold capitalize">
+              Supervisor Note
             </Text>
           </View>
 
+          <View className="w-full border-b border-black" />
+
           {/* Body Modal */}
-          <View className="h-4/6 flex-1 justify-center items-center p-4">
-            <Text className="text-justify text-black text-xl">
-              Are you sure you want to {title} this survey?
-            </Text>
+          <View className="flex-1 flex-col justify-start items-start py-1 bg-white">
+            {/* Survey Detail */}
+            <View className="w-full h-2/5">
+              <SurveyJobDetailForMap item={item} />
+            </View>
+            {/* Notes */}
+            <View className="w-full h-3/5 border border-black rounded-lg px-2">
+              <TextInput multiline placeholder="Notes" />
+            </View>
           </View>
 
           {/* Footer Modal */}
-          <View className="h-1/6 w-full flex flex-row justify-center items-center gap-x-5 mt-4">
+          <View className="h-[10%] w-full flex flex-row justify-center items-center gap-x-5 my-2">
             {/* Confirm */}
             <TouchableOpacity
               className="p-0.5 bg-green-500 rounded-md"
               onPress={() => onConfirm(true)}>
               <Text className="text-white font-semibold border border-white rounded-md px-3.5 py-1.5">
-                Confirm
+                Submit
               </Text>
             </TouchableOpacity>
 
@@ -73,7 +85,7 @@ const ConfirmationModal = ({
               className="p-0.5 bg-red-500 rounded-md"
               onPress={() => onConfirm(false)}>
               <Text className="text-white font-semibold border border-white rounded-md px-3.5 py-1.5">
-                Close
+                Back
               </Text>
             </TouchableOpacity>
           </View>
@@ -83,4 +95,4 @@ const ConfirmationModal = ({
   );
 };
 
-export default ConfirmationModal;
+export default AssignJobModal;

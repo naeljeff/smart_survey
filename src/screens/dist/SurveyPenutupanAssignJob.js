@@ -57,8 +57,8 @@ var SurveyPenutupanAssignJob = function (_a) {
     ];
     var renderItem = react_1.useCallback(function (_a) {
         var item = _a.item, index = _a.index;
-        return (react_1["default"].createElement(SurveyJobAssignJobItem_1["default"], { item: item, index: index }));
-    }, []);
+        return (react_1["default"].createElement(SurveyJobAssignJobItem_1["default"], { item: item, index: index, surveyItem: route.params.item }));
+    }, [route.params.item]);
     var getKey = react_1.useCallback(function (item) { return item.id.toString(); }, []);
     if (isLoadingGmaps) {
         return (react_1["default"].createElement(react_native_1.View, { className: "h-screen w-screen flex flex-col justify-center items-center bg-gray-400/20" },
@@ -73,7 +73,7 @@ var SurveyPenutupanAssignJob = function (_a) {
             react_1["default"].createElement(GoogleMaps_1["default"], { item: item })),
         react_1["default"].createElement(react_native_1.View, { className: "flex-1" },
             react_1["default"].createElement(IncomingJobViewMapDetail_1["default"], { item: item })),
-        react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-white -mt-[75px]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
+        react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-white -mt-[78px]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
             react_1["default"].createElement(MaterialIcons_1["default"], { name: "do-not-disturb-alt", size: 80, color: "black" }),
             react_1["default"].createElement(react_native_1.Text, { className: "italic text-gray-600 capitalize text-xl" }, "No Data Found"))) : (react_1["default"].createElement(react_native_1.FlatList, { data: tempData, keyExtractor: getKey, renderItem: renderItem })))));
 };
