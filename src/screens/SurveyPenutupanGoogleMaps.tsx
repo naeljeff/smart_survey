@@ -66,7 +66,7 @@ const SurveyPenutupanGoogleMaps = ({route}: SurveyPenutupanGoogleMapsProps) => {
       />
 
       {/* Google Maps */}
-      <View className="w-full h-[450px]">
+      <View className="w-full h-[500px]">
         <GoogleMaps item={item} />
       </View>
 
