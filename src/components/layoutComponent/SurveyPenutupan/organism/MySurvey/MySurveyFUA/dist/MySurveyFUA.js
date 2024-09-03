@@ -31,7 +31,7 @@ var MySurveyFUA = react_1["default"].memo(function (_a) {
     };
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-col items-start justify-center mb-4" },
         react_1["default"].createElement(react_native_1.Text, { className: "text-lg text-black font-bold px-3" }, "Follow Up Activity"),
-        react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black mb-2" }),
+        react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black mb-2 mt-1" }),
         react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-col justify-center items-start space-y-2 px-3" },
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },

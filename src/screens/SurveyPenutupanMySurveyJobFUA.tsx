@@ -9,6 +9,7 @@ import MySurveyAppointment from '../components/layoutComponent/SurveyPenutupan/o
 import MySurveyPersonalContact from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyPersonalContact';
 import MySurveyCoorporateContact from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyCoorporateContact';
 import MySurveyFUA from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUA';
+import MySurveyFUAButtons from '../components/layoutComponent/SurveyPenutupan/atoms/MySurvey/MySurveyFUA/MySurveyFUAButtons';
 
 type SurveyPenutupanMySurveyJobFUARouteProps = RouteProp<
   RootStackParamList,
@@ -45,6 +46,9 @@ const SurveyPenutupanMySurveyJobFUA = ({
 
         {/* Follow Up Activity */}
         <MySurveyFUA />
+
+        {/* Buttons */}
+        <MySurveyFUAButtons />
       </ScrollView>
     </View>
   );

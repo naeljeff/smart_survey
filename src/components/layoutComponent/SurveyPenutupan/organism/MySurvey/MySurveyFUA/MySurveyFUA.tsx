@@ -48,7 +48,7 @@ const MySurveyFUA = React.memo(({item}: MySurveyFUAProps) => {
       <Text className="text-lg text-black font-bold px-3">
         Follow Up Activity
       </Text>
-      <View className="w-full border-b border-black mb-2" />
+      <View className="w-full border-b border-black mb-2 mt-1" />
 
       {/* Follow Up Activity Form */}
       <View className="w-full flex flex-col justify-center items-start space-y-2 px-3">

@@ -7,7 +7,7 @@ const IncomingJobCoorporateContact = React.memo(() => {
       <Text className="text-lg text-black font-bold px-3">
         Coorporate Contact Person
       </Text>
-      <View className="w-full border-b border-black mb-2" />
+      <View className="w-full border-b border-black mb-2 mt-1" />
 
       {/* Cooporate Contact Person Form */}
       <View className="w-full flex flex-col justify-center items-start space-y-2 px-3">

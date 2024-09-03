@@ -8,6 +8,7 @@ var MySurveyAppointment_1 = require("../components/layoutComponent/SurveyPenutup
 var MySurveyPersonalContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyPersonalContact");
 var MySurveyCoorporateContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyCoorporateContact");
 var MySurveyFUA_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUA");
+var MySurveyFUAButtons_1 = require("../components/layoutComponent/SurveyPenutupan/atoms/MySurvey/MySurveyFUA/MySurveyFUAButtons");
 var SurveyPenutupanMySurveyJobFUA = function (_a) {
     var route = _a.route;
     var navigation = native_1.useNavigation();
@@ -18,6 +19,7 @@ var SurveyPenutupanMySurveyJobFUA = function (_a) {
             react_1["default"].createElement(MySurveyAppointment_1["default"], { item: item }),
             react_1["default"].createElement(MySurveyPersonalContact_1["default"], { item: item }),
             react_1["default"].createElement(MySurveyCoorporateContact_1["default"], null),
-            react_1["default"].createElement(MySurveyFUA_1["default"], null))));
+            react_1["default"].createElement(MySurveyFUA_1["default"], null),
+            react_1["default"].createElement(MySurveyFUAButtons_1["default"], null))));
 };
 exports["default"] = SurveyPenutupanMySurveyJobFUA;
