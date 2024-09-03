@@ -65,7 +65,7 @@ const AssignJobModal = ({item, visible, onConfirm}: AssignJobModalProps) => {
               <SurveyJobDetailForMap item={item} />
             </View>
             {/* Notes */}
-            <View className="w-full h-3/5 border border-black rounded-lg px-2">
+            <View className="w-full h-[57%] border border-black rounded-lg px-2 mt-3">
               <TextInput multiline placeholder="Notes" />
             </View>
           </View>

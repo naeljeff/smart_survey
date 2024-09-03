@@ -11,7 +11,6 @@ import GoogleMaps from '../components/reusableComponent/Map/GoogleMaps';
 import IncomingJobViewMapDetail from '../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobViewMapDetail/IncomingJobViewMapDetail';
 import {JobMonitoringListProps} from '../props/jobMonitoringListProps';
 import SurveyJobAssignJobItem from '../components/layoutComponent/SurveyPenutupan/atoms/IncomingJob/SurveyJobAssignJobItem';
-import {surveyJobProps} from '../props/surveyJobProps';
 
 type SurveyPenutupanAssignJobRouteProps = RouteProp<
   RootStackParamList,

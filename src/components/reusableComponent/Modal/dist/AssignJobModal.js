@@ -33,7 +33,7 @@ var AssignJobModal = function (_a) {
                 react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex-col justify-start items-start py-1 bg-white" },
                     react_1["default"].createElement(react_native_1.View, { className: "w-full h-2/5" },
                         react_1["default"].createElement(SurveyJobDetailForMap_1["default"], { item: item })),
-                    react_1["default"].createElement(react_native_1.View, { className: "w-full h-3/5 border border-black rounded-lg px-2" },
+                    react_1["default"].createElement(react_native_1.View, { className: "w-full h-[57%] border border-black rounded-lg px-2 mt-3" },
                         react_1["default"].createElement(react_native_1.TextInput, { multiline: true, placeholder: "Notes" }))),
                 react_1["default"].createElement(react_native_1.View, { className: "h-[10%] w-full flex flex-row justify-center items-center gap-x-5 my-2" },
                     react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "p-0.5 bg-green-500 rounded-md", onPress: function () { return onConfirm(true); } },

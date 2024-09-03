@@ -63,4 +63,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: smart-survey.apk
-          path: android/app/build/outputs/apk/release/smart-survey.apk
+          path: android/app/build/outputs/apk/release/app-release.apk
