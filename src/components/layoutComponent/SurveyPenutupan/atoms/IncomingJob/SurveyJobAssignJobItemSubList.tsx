@@ -21,7 +21,7 @@ const SurveyJobAssignJobItemSubList = ({
   const formattedDate = formatDateSurveyPenutupanJob(item.createdAt);
 
   return (
-    <View className="w-screen flex flex-row justify-start items-center">
+    <View className="w-screen flex flex-row justify-start items-center px-5 space-x-3">
       {/* Icon Mail */}
       <View className="flex-[0.1] flex items-center justify-center ">
         <Ionicons name="mail" size={24} color="black" />
@@ -32,7 +32,7 @@ const SurveyJobAssignJobItemSubList = ({
       </View>
 
       {/* Informasi kendaraan */}
-      <View className="flex-[0.5] flex-col gap-y-1">
+      <View className="flex-[0.65] flex-col gap-y-1">
         <Text className="font-bold text-black uppercase">
           {item.noPengajuanSurvey}/{item.unitNo}
         </Text>

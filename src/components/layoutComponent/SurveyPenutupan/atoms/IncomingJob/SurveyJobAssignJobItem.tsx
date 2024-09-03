@@ -14,6 +14,7 @@ type SurveyJobAssignJobItemProps = {
 
 const SurveyJobAssignJobItem = ({item, index}: SurveyJobAssignJobItemProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
+
   const testList = [
     {
       rowid: 45,
@@ -161,21 +162,35 @@ const SurveyJobAssignJobItem = ({item, index}: SurveyJobAssignJobItemProps) => {
       content={
         <ListItem.Content className="bg-[#fff]">
           <View className="w-screen flex-row justify-between items-center py-6 pr-10 pl-6 border-b border-black bg-[#fff]">
-            <Text className="flex-[0.5] text-lg text-black font-semibold">
+            <Text className="flex-[0.3] text-[16px] text-black font-semibold">
               {item.nama}
             </Text>
-            <View className="flex-[0.5] flex-row justify-end items-center">
-              {/* To Do List */}
-              <Surface
-                className="justify-center items-center border bg-white border-black rounded px-2 py-0.5"
-                elevation={2}>
-                <TouchableOpacity
-                  onPress={() => console.log(`Pressed: ${item.nama}`)}>
-                  <Text className="text-xs text-black tracking-tighter">
-                    To Do List
-                  </Text>
-                </TouchableOpacity>
-              </Surface>
+            <View className="flex-[0.7] flex-row justify-end items-center">
+              <View className="flex flex-row space-x-2">
+                {/* My Position */}
+                <Surface
+                  className="justify-center items-center border bg-white border-black rounded px-2 py-0.5"
+                  elevation={2}>
+                  <TouchableOpacity
+                    onPress={() => console.log(`Pressed: ${item.nama}`)}>
+                    <Text className="text-xs text-black tracking-tighter">
+                      My Position
+                    </Text>
+                  </TouchableOpacity>
+                </Surface>
+
+                {/* Assign */}
+                <Surface
+                  className="justify-center items-center border bg-white border-black rounded px-2 py-0.5"
+                  elevation={2}>
+                  <TouchableOpacity
+                    onPress={() => console.log(`Pressed: ${item.nama}`)}>
+                    <Text className="text-xs text-black tracking-tighter">
+                      Assign
+                    </Text>
+                  </TouchableOpacity>
+                </Surface>
+              </View>
 
               {/* Mail Icon */}
               <View className="flex-[0.3] flex items-center justify-center ml-2">
