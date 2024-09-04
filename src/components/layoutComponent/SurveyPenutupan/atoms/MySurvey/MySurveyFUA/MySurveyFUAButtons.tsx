@@ -1,14 +1,18 @@
-import {Text, TouchableOpacity, View} from 'react-native';
+import {Text, TouchableOpacity, View, Alert} from 'react-native';
 import React from 'react';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 
 type MySurveyFUAButtonProps = {
   item: surveyJobProps;
+  onSaveFua: () => void;
 };
 
-const MySurveyFUAButtons = ({item}: MySurveyFUAButtonProps) => {
-
+const MySurveyFUAButtons = ({item, onSaveFua}: MySurveyFUAButtonProps) => {
+  const handleSaveFuaPressed = () => {
+    Alert.alert('Follow Up Activity', 'Your FUA has been saved!', [{text: 'OK'}]);
+    onSaveFua();
+  };
   return (
     <View className="w-full h-[70px] mt-2 mb-3">
       <View className="flex-1 flex-row justify-center items-center px-3">
@@ -34,7 +38,7 @@ const MySurveyFUAButtons = ({item}: MySurveyFUAButtonProps) => {
 
           {/* Save */}
           <TouchableOpacity
-            onPress={() => console.log('Save FUA')}
+            onPress={handleSaveFuaPressed}
             className="h-[45%] w-full flex justify-center items-center px-2 py-1 rounded-md shadow-xl bg-gray-200 border border-black">
             <Text className="text-black">Save FUA</Text>
           </TouchableOpacity>

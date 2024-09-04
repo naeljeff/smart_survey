@@ -1,4 +1,15 @@
 "use strict";
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var react_native_date_picker_1 = require("react-native-date-picker");
@@ -7,24 +18,23 @@ var FontAwesome6_1 = require("react-native-vector-icons/FontAwesome6");
 var JobMonitoringFUAStatus_1 = require("../../../atoms/JobMonitoring/JobMonitoringFUAStatus");
 var functions_1 = require("../../../../../../utilities/functions");
 var MySurveyFUA = react_1["default"].memo(function (_a) {
-    var item = _a.item;
-    var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.noPengajuanSurvey) || ''), noPengajuan = _b[0], setNoPengajuan = _b[1];
-    var _c = react_1.useState(undefined), contactDate = _c[0], setContactDate = _c[1];
+    var _b, _c;
+    var tempFua = _a.tempFua, setTempFua = _a.setTempFua;
     var _d = react_1.useState(false), isOpenContactDate = _d[0], setIsOpenContactDate = _d[1];
-    var _e = react_1.useState(undefined), appointmentDate = _e[0], setAppointmentDate = _e[1];
-    var _f = react_1.useState(false), isOpenAppointmentDate = _f[0], setIsOpenAppointmentDate = _f[1];
-    var _g = react_1.useState(false), isStatusOpen = _g[0], setIsStatusOpen = _g[1];
-    var _h = react_1.useState('ongoing'), FUAStatus = _h[0], setFUAStatus = _h[1];
+    var _e = react_1.useState(false), isOpenAppointmentDate = _e[0], setIsOpenAppointmentDate = _e[1];
+    var _f = react_1.useState(false), isStatusOpen = _f[0], setIsStatusOpen = _f[1];
     var onConfirmContactDate = function (date) {
         setIsOpenContactDate(false);
-        setContactDate(date);
+        if (date)
+            setTempFua(function (prev) { return (__assign(__assign({}, prev), { contactDate: date })); });
     };
     var closeContactDate = function () {
         setIsOpenContactDate(false);
     };
     var onConfirmAppointmentDate = function (date) {
         setIsOpenAppointmentDate(false);
-        setAppointmentDate(date);
+        if (date)
+            setTempFua(function (prev) { return (__assign(__assign({}, prev), { appointmentDate: date })); });
     };
     var closeAppointmentDate = function () {
         setIsOpenAppointmentDate(false);
@@ -37,33 +47,39 @@ var MySurveyFUA = react_1["default"].memo(function (_a) {
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Contact Date"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
-                react_1["default"].createElement(react_native_date_picker_1["default"], { modal: true, open: isOpenContactDate, date: contactDate !== null && contactDate !== void 0 ? contactDate : new Date(), locale: "en-GB", onConfirm: onConfirmContactDate, onCancel: closeContactDate }),
+                react_1["default"].createElement(react_native_date_picker_1["default"], { modal: true, open: isOpenContactDate, date: (_b = tempFua.contactDate) !== null && _b !== void 0 ? _b : new Date(), locale: "en-GB", onConfirm: onConfirmContactDate, onCancel: closeContactDate }),
                 react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return setIsOpenContactDate(true); }, className: "flex-1" },
-                    react_1["default"].createElement(react_native_1.TextInput, { value: functions_1.formatInputDateFUA(contactDate), editable: false, placeholder: "Select Contact Date", className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" }))),
+                    react_1["default"].createElement(react_native_1.TextInput, { value: functions_1.formatInputDateFUA(tempFua.contactDate), editable: false, placeholder: "Select Contact Date", className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" }))),
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Appointment Date"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
-                react_1["default"].createElement(react_native_date_picker_1["default"], { modal: true, open: isOpenAppointmentDate, date: appointmentDate !== null && appointmentDate !== void 0 ? appointmentDate : new Date(), locale: "en-GB", onConfirm: onConfirmAppointmentDate, onCancel: closeAppointmentDate }),
+                react_1["default"].createElement(react_native_date_picker_1["default"], { modal: true, open: isOpenAppointmentDate, date: (_c = tempFua.appointmentDate) !== null && _c !== void 0 ? _c : new Date(), locale: "en-GB", onConfirm: onConfirmAppointmentDate, onCancel: closeAppointmentDate }),
                 react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return setIsOpenAppointmentDate(true); }, className: "flex-1" },
-                    react_1["default"].createElement(react_native_1.TextInput, { value: functions_1.formatInputDateFUA(appointmentDate), editable: false, placeholder: "Select Appointment Date", className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" }))),
+                    react_1["default"].createElement(react_native_1.TextInput, { value: functions_1.formatInputDateFUA(tempFua.appointmentDate), editable: false, placeholder: "Select Appointment Date", className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" }))),
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Address"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
-                react_1["default"].createElement(react_native_1.TextInput, { value: noPengajuan, onChangeText: setNoPengajuan, multiline: true, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })),
+                react_1["default"].createElement(react_native_1.TextInput, { value: tempFua.address, onChangeText: function (text) {
+                        return setTempFua(function (prev) { return (__assign(__assign({}, prev), { address: text })); });
+                    }, multiline: true, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })),
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Status"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
                 react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: function () { return setIsStatusOpen(true); }, className: "relative flex-1 flex-row items-center border border-gray-300 bg-gray-100 rounded pr-3" },
-                    react_1["default"].createElement(react_native_1.TextInput, { value: FUAStatus, editable: false, className: "flex-1 text-black text-xs uppercase py-1 px-2" }),
+                    react_1["default"].createElement(react_native_1.TextInput, { value: tempFua.status, editable: false, className: "flex-1 text-black text-xs uppercase py-1 px-2" }),
                     react_1["default"].createElement(FontAwesome6_1["default"], { name: isStatusOpen ? 'chevron-up' : 'chevron-down', size: 16, color: "black" })),
-                isStatusOpen && (react_1["default"].createElement(JobMonitoringFUAStatus_1["default"], { openFUAStatus: setIsStatusOpen, statusFUA: setFUAStatus }))),
+                isStatusOpen && (react_1["default"].createElement(JobMonitoringFUAStatus_1["default"], { openFUAStatus: setIsStatusOpen, statusFUA: function (status) {
+                        return setTempFua(function (prev) { return (__assign(__assign({}, prev), { status: status })); });
+                    } }))),
             react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-row items-center justify-between space-x-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "w-[30%] flex flex-row justify-between items-center" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, "Remarks"),
                     react_1["default"].createElement(react_native_1.Text, { className: "text-black capitalize" }, ":")),
-                react_1["default"].createElement(react_native_1.TextInput, { value: noPengajuan, onChangeText: setNoPengajuan, multiline: true, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })))));
+                react_1["default"].createElement(react_native_1.TextInput, { value: tempFua.remarks, onChangeText: function (text) {
+                        return setTempFua(function (prev) { return (__assign(__assign({}, prev), { remarks: text })); });
+                    }, multiline: true, className: "flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded" })))));
 });
 exports["default"] = MySurveyFUA;
