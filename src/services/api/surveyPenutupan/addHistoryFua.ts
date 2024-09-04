@@ -37,7 +37,7 @@ export const addNewHistoryFua = async (
     );
     return res.data;
   } catch (error) {
-    console.log(`Error getting new survey: ${error}`);
+    console.log(`Error adding new FUA history: ${error}`);
     throw error;
   }
 };
