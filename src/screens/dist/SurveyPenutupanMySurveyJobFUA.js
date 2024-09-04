@@ -20,6 +20,6 @@ var SurveyPenutupanMySurveyJobFUA = function (_a) {
             react_1["default"].createElement(MySurveyPersonalContact_1["default"], { item: item }),
             react_1["default"].createElement(MySurveyCoorporateContact_1["default"], null),
             react_1["default"].createElement(MySurveyFUA_1["default"], null),
-            react_1["default"].createElement(MySurveyFUAButtons_1["default"], null))));
+            react_1["default"].createElement(MySurveyFUAButtons_1["default"], { item: item }))));
 };
 exports["default"] = SurveyPenutupanMySurveyJobFUA;

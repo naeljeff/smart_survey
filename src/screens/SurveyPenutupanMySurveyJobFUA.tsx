@@ -48,7 +48,7 @@ const SurveyPenutupanMySurveyJobFUA = ({
         <MySurveyFUA />
 
         {/* Buttons */}
-        <MySurveyFUAButtons />
+        <MySurveyFUAButtons item={item}/>
       </ScrollView>
     </View>
   );

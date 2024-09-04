@@ -1,14 +1,23 @@
 import {Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 
-const MySurveyFUAButtons = () => {
+import {surveyJobProps} from '../../../../../../props/surveyJobProps';
+
+type MySurveyFUAButtonProps = {
+  item: surveyJobProps;
+};
+
+const MySurveyFUAButtons = ({item}: MySurveyFUAButtonProps) => {
+
   return (
     <View className="w-full h-[70px] mt-2 mb-3">
       <View className="flex-1 flex-row justify-center items-center px-3">
-        <View className='h-full flex-[1/3]'>
+        <View className="h-full flex-[1/3]">
           {/* History */}
           <TouchableOpacity
-            onPress={() => console.log('History FUA')}
+            onPress={() =>
+              console.log(`History FUA : ${item.noPengajuanSurvey}`)
+            }
             className="h-full w-full flex justify-center items-center px-2 py-1 bg-gray-200 rounded-md shadow-xl border border-black">
             <Text className="text-black">History FUA</Text>
           </TouchableOpacity>
