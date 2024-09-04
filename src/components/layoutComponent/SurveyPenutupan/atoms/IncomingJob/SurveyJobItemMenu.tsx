@@ -148,7 +148,7 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
 
       {confirmationModal && (
         <ConfirmationModal
-          title={modalType}
+          title={`Are you sure you want to ${modalType} this survey?`}
           visible={confirmationModal}
           onConfirm={handleConfirm}
         />

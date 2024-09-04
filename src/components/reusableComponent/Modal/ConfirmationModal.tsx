@@ -53,7 +53,7 @@ const ConfirmationModal = ({
           {/* Body Modal */}
           <View className="h-4/6 flex-1 justify-center items-center p-4">
             <Text className="text-justify text-black text-xl">
-              Are you sure you want to {title} this survey?
+              {title}
             </Text>
           </View>
 

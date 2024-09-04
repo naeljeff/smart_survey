@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-exports.formatInputDateFUA = exports.calcAgingDate = exports.formatDateSurveyPenutupanJob = exports.formatDateStatusBarSurveyPenutupan = exports.getTimeOfDay = void 0;
+exports.formatDateToDateTime = exports.formatInputDateFUA = exports.calcAgingDate = exports.formatDateSurveyPenutupanJob = exports.formatDateStatusBarSurveyPenutupan = exports.getTimeOfDay = void 0;
 var getCurrentHour = function () {
     var now = new Date();
     return now.getHours();
@@ -40,4 +40,15 @@ exports.formatInputDateFUA = function (date) {
     var hours = date.getHours().toString().padStart(2, '0');
     var minutes = date.getMinutes().toString().padStart(2, '0');
     return day + "-" + month + "-" + year + " " + hours + ":" + minutes;
+};
+exports.formatDateToDateTime = function (date) {
+    if (!date)
+        return '';
+    var year = date.getFullYear();
+    var month = String(date.getMonth() + 1).padStart(2, '0');
+    var day = String(date.getDate()).padStart(2, '0');
+    var hours = String(date.getHours()).padStart(2, '0');
+    var minutes = String(date.getMinutes()).padStart(2, '0');
+    var seconds = String(date.getSeconds()).padStart(2, '0');
+    return year + "-" + month + "-" + day + " " + hours + ":" + minutes + ":" + seconds;
 };

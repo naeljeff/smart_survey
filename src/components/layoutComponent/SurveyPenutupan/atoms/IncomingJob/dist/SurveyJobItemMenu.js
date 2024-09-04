@@ -141,6 +141,6 @@ var SurveyJobItemMenu = function (_a) {
             react_1["default"].createElement(react_native_paper_1.Menu.Item, { style: {
                     height: 50
                 }, titleStyle: { fontSize: 16, color: 'black' }, onPress: handleOnAssignSurvey, title: "Assign" })),
-        confirmationModal && (react_1["default"].createElement(ConfirmationModal_1["default"], { title: modalType, visible: confirmationModal, onConfirm: handleConfirm }))));
+        confirmationModal && (react_1["default"].createElement(ConfirmationModal_1["default"], { title: "Are you sure you want to " + modalType + " this survey?", visible: confirmationModal, onConfirm: handleConfirm }))));
 };
 exports["default"] = SurveyJobItemMenu;
