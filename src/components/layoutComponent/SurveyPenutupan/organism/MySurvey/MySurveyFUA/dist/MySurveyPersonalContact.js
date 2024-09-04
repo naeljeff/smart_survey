@@ -5,7 +5,7 @@ var react_1 = require("react");
 var MySurveyPersonalContact = react_1["default"].memo(function (_a) {
     var item = _a.item;
     var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.nama) || ''), name = _b[0], setName = _b[1];
-    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.alamatSurvey) || ''), address = _c[0], setAddress = _c[1];
+    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.alamat) || ''), address = _c[0], setAddress = _c[1];
     var _d = react_1.useState((item === null || item === void 0 ? void 0 : item.noTelp) || ''), phoneNumber = _d[0], setPhoneNumber = _d[1];
     var _e = react_1.useState((item === null || item === void 0 ? void 0 : item.email) || ''), email = _e[0], setEmail = _e[1];
     var _f = react_1.useState((item === null || item === void 0 ? void 0 : item.catatan) || ''), remarks = _f[0], setRemarks = _f[1];

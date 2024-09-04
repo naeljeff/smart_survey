@@ -68,10 +68,10 @@ const SurveyPenutupanHistoryFUA = ({route}: SurveyPenutupanHistoryProps) => {
           <RefreshControl refreshing={isLoading} onRefresh={refetch} />
         }>
         {/* Appointment Schedule */}
-        <MySurveyFuaHistoryAppointment />
+        <MySurveyFuaHistoryAppointment item={item} />
 
         {/* Personal Contact Schedule */}
-        <MySurveyFuaHistoryPersonalContact />
+        <MySurveyFuaHistoryPersonalContact item={item}/>
 
         {/* Coorporate Contact Person */}
         <MySurveyFuaHistoryCooporateContact />
