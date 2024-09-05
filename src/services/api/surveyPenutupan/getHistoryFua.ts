@@ -34,7 +34,7 @@ export const fetchHistoryFuaList = async (
 
 export const UseGetHistoryFuaList = (noPengajuan: string, unitNo: string) => {
   const {isLoading, data, isError, refetch, error} = useQuery({
-    queryKey: ['newSurveyData', noPengajuan, unitNo],
+    queryKey: ['historySurveyData', noPengajuan, unitNo],
     queryFn: () => fetchHistoryFuaList(noPengajuan, unitNo),
     refetchOnReconnect: 'always',
     refetchOnWindowFocus: true,

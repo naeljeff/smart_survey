@@ -6,6 +6,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RootStackParamList} from '../routes/StackNavigator';
 import GoSurveyBody from '../components/layoutComponent/SurveyPenutupan/organism/GoSurvey/GoSurveyBody';
+import { UseGetSpecificSurveyData } from '../services/api/surveyPenutupan/getSpecificSurveyById';
 
 type SurveyPenutupanMySurveyGoSurveyRoute = RouteProp<
   RootStackParamList,
@@ -22,6 +23,10 @@ const SurveyPenutupanMySurveyGoSurvey = ({
   const {item} = route.params;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+  const specificSurveyFunction = UseGetSpecificSurveyData(
+    item.noPengajuanSurvey,
+    item.unitNo,
+  );
 
   return (
     <View className="w-full h-full flex flex-col bg-white">
@@ -29,10 +34,11 @@ const SurveyPenutupanMySurveyGoSurvey = ({
       <NavigationHeader
         title={'Go Survey'}
         onPress={() => navigation.goBack()}
+        onRefresh={specificSurveyFunction.refetch}
       />
 
       {/* Go Survey Body */}
-      <GoSurveyBody />
+      <GoSurveyBody surveyFunction={specificSurveyFunction} />
     </View>
   );
 };

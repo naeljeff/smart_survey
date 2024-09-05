@@ -36,21 +36,21 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-exports.UseGetHistoryFuaList = exports.fetchHistoryFuaList = void 0;
+exports.UseGetSpecificSurveyData = exports.fetchSpecificSurveyById = void 0;
 var react_query_1 = require("@tanstack/react-query");
 var apiClient_1 = require("../../../utilities/apiClient");
-var KEY_ID = process.env.KEY_ID_GET_HISTORY_FUA || '';
-exports.fetchHistoryFuaList = function (noPengajuan, unitNo) { return __awaiter(void 0, void 0, void 0, function () {
-    var BASE_GET_HISTORY, surveyApiClient, res, error_1;
+var KEY_ID = process.env.KEY_ID_SPECIFIC_SURVEY || '';
+exports.fetchSpecificSurveyById = function (noPengajuan, unitNo) { return __awaiter(void 0, void 0, void 0, function () {
+    var BASE_GET_SPECIFIC_SURVEY, specificSurvey, res, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                BASE_GET_HISTORY = process.env.BASE_GET_HISTORY_FUA_URL || '';
-                surveyApiClient = apiClient_1["default"](BASE_GET_HISTORY);
+                BASE_GET_SPECIFIC_SURVEY = process.env.BASE_GET_SPECIFIC_SURVEY_URL || '';
+                specificSurvey = apiClient_1["default"](BASE_GET_SPECIFIC_SURVEY);
                 _a.label = 1;
             case 1:
                 _a.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, surveyApiClient.post('', {
+                return [4 /*yield*/, specificSurvey.post('', {
                         key_id: KEY_ID,
                         no_pengajuan: noPengajuan,
                         unit_no: unitNo
@@ -64,18 +64,18 @@ exports.fetchHistoryFuaList = function (noPengajuan, unitNo) { return __awaiter(
                 return [2 /*return*/, res.data];
             case 3:
                 error_1 = _a.sent();
-                console.log("Error getting FUA history list: " + error_1);
+                console.log("Error getting specific survey: " + error_1);
                 throw error_1;
             case 4: return [2 /*return*/];
         }
     });
 }); };
-exports.UseGetHistoryFuaList = function (noPengajuan, unitNo) {
-    var _a = react_query_1.useQuery({
-        queryKey: ['historySurveyData', noPengajuan, unitNo],
-        queryFn: function () { return exports.fetchHistoryFuaList(noPengajuan, unitNo); },
+exports.UseGetSpecificSurveyData = function (noPengajuan, unitNo) {
+    var specificSurveyFunction = react_query_1.useQuery({
+        queryKey: ['specificSurveyData', noPengajuan, unitNo],
+        queryFn: function () { return exports.fetchSpecificSurveyById(noPengajuan, unitNo); },
         refetchOnReconnect: 'always',
         refetchOnWindowFocus: true
-    }), isLoading = _a.isLoading, data = _a.data, isError = _a.isError, refetch = _a.refetch, error = _a.error;
-    return { isLoading: isLoading, data: data, isError: isError, refetch: refetch, error: error };
+    });
+    return specificSurveyFunction;
 };
