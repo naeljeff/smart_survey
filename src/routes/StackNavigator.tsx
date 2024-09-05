@@ -1,6 +1,7 @@
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import React from 'react';
 
+// Screens
 import LoginPage from '../screens/LoginPage';
 import BottomTabsNavigator from './BottomTabNavigator';
 import HomeCarouselDetailPage from '../screens/HomeCarouselDetailPage';
@@ -12,6 +13,9 @@ import {surveyJobProps} from '../props/surveyJobProps';
 import SurveyPenutupanIncomingJobFUA from '../screens/SurveyPenutupanIncomingJobFUA';
 import SurveyPenutupanMySurveyJobFUA from '../screens/SurveyPenutupanMySurveyJobFUA';
 import SurveyPenutupanGoogleMaps from '../screens/SurveyPenutupanGoogleMaps';
+import SurveyPenutupanAssignJob from '../screens/SurveyPenutupanAssignJob';
+import SurveyPenutupanHistoryFUA from '../screens/SurveyPenutupanHistoryFUA';
+import SurveyPenutupanMySurveyGoSurvey from '../screens/SurveyPenutupanMySurveyGoSurvey';
 
 export type RootStackParamList = {
   // Login Page
@@ -26,6 +30,9 @@ export type RootStackParamList = {
   surveyPenutupan: undefined;
   surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
   surveyPenutupanFormMySurveyJobFUA: {item: surveyJobProps};
+  surveyPenutupanAssignJob: {item: surveyJobProps};
+  surveyPenutupanHistoryFUA: {item: surveyJobProps};
+  surveyPenutupanGoSurvey: {item: surveyJobProps};
 
   // Supervisor
   supervisor: undefined;
@@ -80,6 +87,18 @@ const StackNavigator = () => {
       <Stack.Screen
         name="surveyPenutupanFormMySurveyJobFUA"
         component={SurveyPenutupanMySurveyJobFUA}
+      />
+      <Stack.Screen
+        name="surveyPenutupanAssignJob"
+        component={SurveyPenutupanAssignJob}
+      />
+      <Stack.Screen
+        name="surveyPenutupanHistoryFUA"
+        component={SurveyPenutupanHistoryFUA}
+      />
+      <Stack.Screen
+        name="surveyPenutupanGoSurvey"
+        component={SurveyPenutupanMySurveyGoSurvey}
       />
 
       {/* Supervisor */}

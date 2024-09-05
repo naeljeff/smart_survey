@@ -16,15 +16,15 @@ jobs:
 
       - name: Pull Docker Image
         run: docker pull naeljeff/smartsurvey:v0.1.0
-      
+
       - name: Start Container
         run: docker run -d -p 8081:8081 naeljeff/smartsurvey:v0.1.0
-      
+
       - name: Install npm dependencies
         run: |
           sudo chown -R $USER:$USER ./
           npm install
-      
+
       - name: Run test cases
         run: npm test
 
@@ -42,7 +42,7 @@ jobs:
         with:
           distribution: 'zulu'
           java-version: '17'
-        
+
       - name: Install android SDK
         uses: android-actions/setup-android@v2
         with:
@@ -60,7 +60,7 @@ jobs:
           ./gradlew assembleRelease
 
       - name: Upload APK
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
-          name: app-release.apk
+          name: smart-survey.apk
           path: android/app/build/outputs/apk/release/app-release.apk

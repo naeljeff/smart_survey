@@ -29,14 +29,11 @@ var ConfirmationModal = function (_a) {
                 react_1["default"].createElement(react_native_1.View, { className: "w-full h-1/6 flex flex-row justify-center items-center px-1 mb-3" },
                     react_1["default"].createElement(react_native_1.Text, { className: "text-lg text-black/90 font-semibold capitalize" }, "Confirmation")),
                 react_1["default"].createElement(react_native_1.View, { className: "h-4/6 flex-1 justify-center items-center p-4" },
-                    react_1["default"].createElement(react_native_1.Text, { className: "text-justify text-black text-xl" },
-                        "Are you sure you want to ",
-                        title,
-                        " this survey?")),
+                    react_1["default"].createElement(react_native_1.Text, { className: "text-justify text-black text-xl" }, title)),
                 react_1["default"].createElement(react_native_1.View, { className: "h-1/6 w-full flex flex-row justify-center items-center gap-x-5 mt-4" },
-                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "px-4 py-2 bg-green-500 rounded-md", onPress: function () { return onConfirm(true); } },
-                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold" }, "Confirm")),
-                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "px-4 py-2 bg-red-500 rounded-md", onPress: function () { return onConfirm(false); } },
-                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold" }, "Close")))))));
+                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "p-0.5 bg-green-500 rounded-md", onPress: function () { return onConfirm(true); } },
+                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold border border-white rounded-md px-3.5 py-1.5" }, "Confirm")),
+                    react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "p-0.5 bg-red-500 rounded-md", onPress: function () { return onConfirm(false); } },
+                        react_1["default"].createElement(react_native_1.Text, { className: "text-white font-semibold border border-white rounded-md px-3.5 py-1.5" }, "Close")))))));
 };
 exports["default"] = ConfirmationModal;

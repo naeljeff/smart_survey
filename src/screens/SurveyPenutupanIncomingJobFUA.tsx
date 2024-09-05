@@ -9,6 +9,8 @@ import IncomingJobAppointment from '../components/layoutComponent/SurveyPenutupa
 import IncomingJobPersonalContact from '../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobPersonalContact';
 import IncomingJobCoorporateContact from '../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobCoorporateContact';
 import IncomingJobFUA from '../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobFUA';
+import {UseGetNewSurveyData} from '../services/api/surveyPenutupan/getNewSurveyData';
+import {useUserStore} from '../store/storeUser';
 
 type SurveyPenutupanIncomingJobFUARouteProps = RouteProp<
   RootStackParamList,
@@ -26,10 +28,21 @@ const SurveyPenutupanIncomingJobFUA = ({
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const {item} = route.params;
 
+  const {messageResponse} = useUserStore(state => ({
+    messageResponse: state.messageResponse,
+  }));
+
+  const fullName = messageResponse?.full_name || '';
+  const {refetch: refetchSurveyData} = UseGetNewSurveyData(fullName);
+
   return (
     <View className="w-full h-full flex flex-col bg-[#fff]">
       {/* Header */}
-      <NavigationHeader title={'FUA'} onPress={() => navigation.goBack()} />
+      <NavigationHeader
+        title={'FUA'}
+        onPress={() => navigation.goBack()}
+        onRefresh={refetchSurveyData}
+      />
 
       {/* Body */}
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
@@ -37,9 +50,7 @@ const SurveyPenutupanIncomingJobFUA = ({
         <IncomingJobAppointment item={item} />
 
         {/* Personal Contact Schedule */}
-        <IncomingJobPersonalContact
-          item={item}
-        />
+        <IncomingJobPersonalContact item={item} />
 
         {/* Coorporate Contact Person */}
         <IncomingJobCoorporateContact />

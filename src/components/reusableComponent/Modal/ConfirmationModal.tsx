@@ -1,12 +1,5 @@
-import {
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-  Animated,
-  Modal,
-} from 'react-native';
-import React, {useEffect, useRef, useState} from 'react';
+import {Text, TouchableOpacity, View, Animated, Modal} from 'react-native';
+import React, {useEffect, useRef} from 'react';
 
 type ConfirmationModalProps = {
   title: string;
@@ -60,7 +53,7 @@ const ConfirmationModal = ({
           {/* Body Modal */}
           <View className="h-4/6 flex-1 justify-center items-center p-4">
             <Text className="text-justify text-black text-xl">
-              Are you sure you want to {title} this survey?
+              {title}
             </Text>
           </View>
 
@@ -68,16 +61,20 @@ const ConfirmationModal = ({
           <View className="h-1/6 w-full flex flex-row justify-center items-center gap-x-5 mt-4">
             {/* Confirm */}
             <TouchableOpacity
-              className="px-4 py-2 bg-green-500 rounded-md"
+              className="p-0.5 bg-green-500 rounded-md"
               onPress={() => onConfirm(true)}>
-              <Text className="text-white font-semibold">Confirm</Text>
+              <Text className="text-white font-semibold border border-white rounded-md px-3.5 py-1.5">
+                Confirm
+              </Text>
             </TouchableOpacity>
 
             {/* Close */}
             <TouchableOpacity
-              className="px-4 py-2 bg-red-500 rounded-md"
+              className="p-0.5 bg-red-500 rounded-md"
               onPress={() => onConfirm(false)}>
-              <Text className="text-white font-semibold">Close</Text>
+              <Text className="text-white font-semibold border border-white rounded-md px-3.5 py-1.5">
+                Close
+              </Text>
             </TouchableOpacity>
           </View>
         </View>

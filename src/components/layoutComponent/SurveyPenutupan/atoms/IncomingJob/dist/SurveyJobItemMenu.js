@@ -49,6 +49,7 @@ var getNewSurveyData_1 = require("../../../../../services/api/surveyPenutupan/ge
 var SurveyJobItemMenu = function (_a) {
     var item = _a.item;
     var navigationToGoogleMap = native_1.useNavigation();
+    var navigationToAssignJob = native_1.useNavigation();
     var _b = react_1.useState(false), menuState = _b[0], setMenuState = _b[1];
     var _c = react_1.useState(false), confirmationModal = _c[0], setConfirmationModal = _c[1];
     var _d = react_1.useState(''), modalType = _d[0], setModalType = _d[1];
@@ -60,7 +61,6 @@ var SurveyJobItemMenu = function (_a) {
     var fullName = (messageResponse === null || messageResponse === void 0 ? void 0 : messageResponse.full_name) || '';
     var refetch = getNewSurveyData_1.UseGetNewSurveyData(fullName).refetch;
     var handleOnPressView = function () {
-        console.log("Item: " + item.noPengajuanSurvey);
         navigationToGoogleMap.navigate('googleMaps', {
             item: item
         });
@@ -76,9 +76,8 @@ var SurveyJobItemMenu = function (_a) {
         closeMenu();
     };
     var handleOnAssignSurvey = function () {
-        setModalType('assign');
-        setConfirmationModal(true);
         closeMenu();
+        navigationToAssignJob.navigate('surveyPenutupanAssignJob', { item: item });
     };
     var handleConfirm = function (confirmed) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, res, error_1;
@@ -142,6 +141,6 @@ var SurveyJobItemMenu = function (_a) {
             react_1["default"].createElement(react_native_paper_1.Menu.Item, { style: {
                     height: 50
                 }, titleStyle: { fontSize: 16, color: 'black' }, onPress: handleOnAssignSurvey, title: "Assign" })),
-        confirmationModal && (react_1["default"].createElement(ConfirmationModal_1["default"], { title: modalType, visible: confirmationModal, onConfirm: handleConfirm }))));
+        confirmationModal && (react_1["default"].createElement(ConfirmationModal_1["default"], { title: "Are you sure you want to " + modalType + " this survey?", visible: confirmationModal, onConfirm: handleConfirm }))));
 };
 exports["default"] = SurveyJobItemMenu;

@@ -3,6 +3,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
     <application
       android:name=".MainApplication"
@@ -15,7 +16,7 @@
       <!-- Google Maps -->
       <meta-data
       android:name="com.google.android.geo.API_KEY"
-      android:value="AIzaSyAQMs-TrYlZH4wjnP7W7ZQkdNx1_zamgoc" />
+      android:value="${GOOGLE_MAPS_API_KEY}" />
 
       <activity
         android:name=".MainActivity"

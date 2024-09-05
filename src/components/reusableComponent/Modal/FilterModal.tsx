@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import React, {useEffect, useRef, useState} from 'react';
+
 import ModalListItem from './ModalListItem';
 
 type FilterModalProps = {

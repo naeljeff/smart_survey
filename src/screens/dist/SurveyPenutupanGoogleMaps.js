@@ -29,7 +29,7 @@ var SurveyPenutupanGoogleMaps = function (_a) {
     console.log('dataGmaps: ', dataGmaps.results[0].geometry.location.lng);
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#FFF]" },
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'View Map', onPress: function () { return navigation.goBack(); } }),
-        react_1["default"].createElement(react_native_1.View, { className: "w-full h-[450px]" },
+        react_1["default"].createElement(react_native_1.View, { className: "w-full h-[500px]" },
             react_1["default"].createElement(GoogleMaps_1["default"], { item: item })),
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true, className: "flex-grow" },
             react_1["default"].createElement(IncomingJobViewMapDetail_1["default"], { item: item }))));

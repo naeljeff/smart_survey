@@ -1,5 +1,5 @@
 import {Text, View} from 'react-native';
-import React, { useState } from 'react';
+import React from 'react';
 
 import {
   calcAgingDate,
@@ -29,7 +29,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Register No</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.noPengajuanSurvey ?? 'Null'}
             </Text>
           </View>
@@ -40,7 +40,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Unit No</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.unitNo ?? 'Null'}
             </Text>
           </View>
@@ -51,7 +51,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Requested By</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.requesterFullName ?? 'Null'}
             </Text>
           </View>
@@ -62,7 +62,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Requested Date</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.createdAt
                 ? formatDateSurveyPenutupanJob(item.createdAt)
                 : 'Null'}
@@ -75,7 +75,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Aging</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.createdAt ? calcAgingDate(item.createdAt) : 'Null'}
             </Text>
           </View>
@@ -86,7 +86,7 @@ const IncomingJobAppointment = React.memo(
               <Text className="text-black capitalize">Priority</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.priority ?? 'Null'}
             </Text>
           </View>

@@ -5,7 +5,7 @@ interface UserState {
   messageResponse: Record<string, any> | null;
   source_login: string[] | string | null;
   setUserData: (data: {
-    token: string[] | string ;
+    token: string[] | string;
     messageResponse: Record<string, any>;
     source_login: string[] | string;
   }) => void;

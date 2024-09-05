@@ -9,7 +9,6 @@ type IncomingJobPersonalContactProps = {
 
 const IncomingJobPersonalContact = React.memo(
   ({item}: IncomingJobPersonalContactProps) => {
-
     return (
       <View className="w-full flex flex-col items-start justify-center mb-2">
         <Text className="text-lg text-black font-bold px-3 py-1.5">
@@ -25,7 +24,7 @@ const IncomingJobPersonalContact = React.memo(
               <Text className="text-black capitalize">Name</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className=" flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.nama ?? 'Null'}
             </Text>
           </View>
@@ -36,7 +35,7 @@ const IncomingJobPersonalContact = React.memo(
               <Text className="text-black capitalize">Address</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.alamat ?? 'Null'}
             </Text>
           </View>
@@ -47,7 +46,7 @@ const IncomingJobPersonalContact = React.memo(
               <Text className="text-black capitalize">Phone Number</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.noTelp ?? 'Null'}
             </Text>
           </View>
@@ -58,7 +57,7 @@ const IncomingJobPersonalContact = React.memo(
               <Text className="text-black capitalize">Email</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.email ?? 'Null'}
             </Text>
           </View>
@@ -69,7 +68,7 @@ const IncomingJobPersonalContact = React.memo(
               <Text className="text-black capitalize">MKG Remarks</Text>
               <Text className="text-black capitalize">:</Text>
             </View>
-            <Text className="flex-1 text-gray-400 text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded">
+            <Text className="flex-1 text-gray-400 text-xs uppercase py-2.5 px-2 border border-gray-300 bg-gray-100 rounded">
               {item?.catatan ?? 'Null'}
             </Text>
           </View>
