@@ -5,6 +5,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RootStackParamList} from '../routes/StackNavigator';
+import GoSurveyBody from '../components/layoutComponent/SurveyPenutupan/organism/GoSurvey/GoSurveyBody';
 
 type SurveyPenutupanMySurveyGoSurveyRoute = RouteProp<
   RootStackParamList,
@@ -19,7 +20,6 @@ const SurveyPenutupanMySurveyGoSurvey = ({
   route,
 }: SurveyPenutupanMySurveyGoSurveyProps) => {
   const {item} = route.params;
-  console.log(`item: ${item}`);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
@@ -30,7 +30,9 @@ const SurveyPenutupanMySurveyGoSurvey = ({
         title={'Go Survey'}
         onPress={() => navigation.goBack()}
       />
-      <Text>SurveyPenutupanMySurveyGoSurvey</Text>
+
+      {/* Go Survey Body */}
+      <GoSurveyBody />
     </View>
   );
 };
