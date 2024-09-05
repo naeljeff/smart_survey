@@ -1,9 +1,9 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-
-import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RootStackParamList} from '../routes/StackNavigator';
 
 type SurveyPenutupanMySurveyGoSurveyRoute = RouteProp<
@@ -22,7 +22,7 @@ const SurveyPenutupanMySurveyGoSurvey = ({
   console.log(`item: ${item}`);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    
+
   return (
     <View className="w-full h-full flex flex-col bg-white">
       {/* Header */}

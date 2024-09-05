@@ -2,8 +2,8 @@
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var react_1 = require("react");
-var NavigationHeader_1 = require("../components/reusableComponent/Header/NavigationHeader");
 var native_1 = require("@react-navigation/native");
+var NavigationHeader_1 = require("../components/reusableComponent/Header/NavigationHeader");
 var SurveyPenutupanMySurveyGoSurvey = function (_a) {
     var route = _a.route;
     var item = route.params.item;

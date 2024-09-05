@@ -14,10 +14,16 @@ import SurveyJobDetailForMap from '../../layoutComponent/SurveyPenutupan/atoms/I
 type AssignJobModalProps = {
   item: surveyJobProps;
   visible: boolean;
+  setUserNotes: (text: string | null) => void;
   onConfirm: (confirmed: boolean) => void;
 };
 
-const AssignJobModal = ({item, visible, onConfirm}: AssignJobModalProps) => {
+const AssignJobModal = ({
+  item,
+  visible,
+  setUserNotes,
+  onConfirm,
+}: AssignJobModalProps) => {
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -65,8 +71,12 @@ const AssignJobModal = ({item, visible, onConfirm}: AssignJobModalProps) => {
               <SurveyJobDetailForMap item={item} />
             </View>
             {/* Notes */}
-            <View className="w-full h-[57%] border border-black rounded-lg px-2 mt-3">
-              <TextInput multiline placeholder="Notes" />
+            <View className="w-full h-[57%] border border-black rounded-lg px-2 mt-1">
+              <TextInput
+                multiline
+                placeholder="Notes"
+                onChangeText={text => setUserNotes(text)}
+              />
             </View>
           </View>
 
