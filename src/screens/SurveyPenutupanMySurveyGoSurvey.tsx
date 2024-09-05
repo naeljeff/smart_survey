@@ -22,6 +22,7 @@ const SurveyPenutupanMySurveyGoSurvey = ({
   console.log(`item: ${item}`);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
+    
   return (
     <View className="w-full h-full flex flex-col bg-white">
       {/* Header */}
