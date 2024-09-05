@@ -65,7 +65,7 @@ const SurveyPenutupanHistoryFUA = ({route}: SurveyPenutupanHistoryProps) => {
       <ScrollView
         automaticallyAdjustKeyboardInsets={true}
         refreshControl={
-          <RefreshControl refreshing={isLoading} onRefresh={refetch} />
+          <RefreshControl refreshing={isLoading} onRefresh={refetch} colors={['#00bfff']}/>
         }>
         {/* Appointment Schedule */}
         <MySurveyFuaHistoryAppointment item={item} />

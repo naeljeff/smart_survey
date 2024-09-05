@@ -1,8 +1,16 @@
-import {ActivityIndicator, Text, View} from 'react-native';
-import React from 'react';
+import {
+  ActivityIndicator,
+  RefreshControl,
+  ScrollView,
+  Text,
+  View,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
 import {UseQueryResult} from '@tanstack/react-query';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
+import GoSurveyGeneralInfoFields from '../../../atoms/GoSurvey/GoSurveyGeneralInfoFields';
+import GoSurveyGeneralInfoDropdown from '../../../atoms/GoSurvey/GoSurveyGeneralInfoDropdown';
 
 type surveyJobPropAsData = {
   data: surveyJobProps;
@@ -16,6 +24,21 @@ const GoSurveyGeneralInfoBody = ({
   surveyFunction,
 }: GoSurveyGeneralInfoBodyProps) => {
   const data = surveyFunction?.data?.data;
+  const [formData, setFormData] = useState<surveyJobProps>(data!);
+
+  // Make sure data is fetched
+  useEffect(() => {
+    if (data) {
+      setFormData(data);
+    }
+  }, [data]);
+
+  const handleFieldChange = (fieldName: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [fieldName]: value,
+    }));
+  };
 
   if (surveyFunction?.isLoading) {
     return (
@@ -34,10 +57,90 @@ const GoSurveyGeneralInfoBody = ({
   }
 
   return (
-    <View>
-      <Text>General Info Body</Text>
-      <Text>{data?.noPengajuanSurvey}</Text>
-    </View>
+    <ScrollView
+      automaticallyAdjustKeyboardInsets={true}
+      className="flex-grow"
+      refreshControl={
+        <RefreshControl
+          refreshing={surveyFunction.isLoading}
+          onRefresh={surveyFunction.refetch}
+          colors={['#00bfff']}
+        />
+      }>
+      {/* General Info */}
+      <View className="w-full border-b border-black">
+        <Text className="font-semibold text-black text-[16px] px-5 py-1">
+          General Info
+        </Text>
+      </View>
+      <Text className="text-black text-lg px-5 py-1 mb-6">
+        {data?.noPengajuanSurvey}/{data?.unitNo}
+      </Text>
+
+      {/* Data Of Insured */}
+      <View className="w-full border-b border-black">
+        <Text className="text-black text-[16px] px-5 py-1">
+          General Info Body
+        </Text>
+      </View>
+      <View className="w-full px-5 py-1 flex flex-col items-center">
+        {/* Nama */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.nama}
+          onChange={handleFieldChange}
+          fieldName={'nama'}
+          properties={'nama'}
+        />
+
+        {/* Type of Report */}
+        <GoSurveyGeneralInfoDropdown
+          data={'Raksa'}
+          onChange={handleFieldChange}
+          fieldName={'type of report'}
+          properties={'report'}
+        />
+
+        {/* Alamat Survey */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.alamatSurvey}
+          onChange={handleFieldChange}
+          fieldName={'survey address'}
+          properties={'alamatSurvey'}
+        />
+
+        {/* Phone Number */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.noTelp}
+          onChange={handleFieldChange}
+          fieldName={'phone no'}
+          properties={'noTelp'}
+        />
+
+        {/* Email */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.email}
+          onChange={handleFieldChange}
+          fieldName={'email'}
+          properties={'email'}
+        />
+
+        {/* Survey Data */}
+        <GoSurveyGeneralInfoDropdown
+          data={'Awal Penutupan'}
+          onChange={handleFieldChange}
+          fieldName={'survey data'}
+          properties={'surveyData'}
+        />
+
+        {/* Type Of Cover */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.jenisAsuransi}
+          onChange={handleFieldChange}
+          fieldName={'type of cover'}
+          properties={'jenisAsuransi'}
+        />
+      </View>
+    </ScrollView>
   );
 };
 

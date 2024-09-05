@@ -110,7 +110,7 @@ const IncomingJobList = ({
           renderItem={renderItem}
           keyExtractor={getKey}
           refreshControl={
-            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+            <RefreshControl refreshing={refreshing} onRefresh={onRefresh} colors={['#00bfff']}/>
           }
           onEndReached={handleLoadMore}
           onEndReachedThreshold={0.5}
