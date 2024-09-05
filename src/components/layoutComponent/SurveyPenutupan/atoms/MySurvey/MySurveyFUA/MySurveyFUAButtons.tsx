@@ -1,4 +1,4 @@
-import {Text, TouchableOpacity, View, Alert} from 'react-native';
+import {Text, TouchableOpacity, View, Alert, Linking} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
@@ -17,9 +17,13 @@ const MySurveyFUAButtons = ({
   onSaveFua,
   onTriggerSubmitFua,
 }: MySurveyFUAButtonProps) => {
-  const navigation =
+  const navigationToHistory =
     useNavigation<
       NativeStackNavigationProp<RootStackParamList, 'surveyPenutupanHistoryFUA'>
+    >();
+  const navigationToGoSurvey =
+    useNavigation<
+      NativeStackNavigationProp<RootStackParamList, 'surveyPenutupanGoSurvey'>
     >();
 
   const handleSaveFuaPressed = () => {
@@ -30,8 +34,18 @@ const MySurveyFUAButtons = ({
   };
 
   const handleOpenHistoryFua = () => {
-    navigation.navigate('surveyPenutupanHistoryFUA', {item: item});
+    navigationToHistory.navigate('surveyPenutupanHistoryFUA', {item: item});
   };
+
+  const handleCallContactPerson = () => {
+    const phoneNumber = `tel:${item.noTelp}`;
+    Linking.openURL(phoneNumber);
+  };
+
+  const handleOpenGoSurvey = () => {
+    navigationToGoSurvey.navigate('surveyPenutupanGoSurvey', {item: item});
+  };
+
   return (
     <>
       <View className="w-full h-[70px] mt-2 mb-3">
@@ -49,7 +63,7 @@ const MySurveyFUAButtons = ({
           <View className="h-full flex-[1/3] flex flex-col justify-between items-center mx-5">
             {/* Call */}
             <TouchableOpacity
-              onPress={() => console.log('Call')}
+              onPress={handleCallContactPerson}
               className="h-[45%] w-full flex justify-center items-center px-2 py-1 rounded-md shadow-xl bg-gray-200 border border-black">
               <Text className="text-black">Call Contact Person</Text>
             </TouchableOpacity>
@@ -66,7 +80,7 @@ const MySurveyFUAButtons = ({
           <View className="h-full flex-[1/3] flex flex-col justify-between items-center">
             {/* Go Survey */}
             <TouchableOpacity
-              onPress={() => console.log('Go Survey')}
+              onPress={handleOpenGoSurvey}
               className="h-[45%] w-full flex justify-center items-center px-2 py-1 rounded-md shadow-xl bg-orange-400">
               <Text className="text-black">Go Survey</Text>
             </TouchableOpacity>
