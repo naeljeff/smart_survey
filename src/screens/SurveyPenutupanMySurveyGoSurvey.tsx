@@ -38,7 +38,7 @@ const SurveyPenutupanMySurveyGoSurvey = ({
       />
 
       {/* Go Survey Body */}
-      <GoSurveyBody surveyFunction={specificSurveyFunction} />
+      <GoSurveyBody surveyFunction={specificSurveyFunction}/>
     </View>
   );
 };

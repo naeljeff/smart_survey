@@ -27,7 +27,7 @@ var GoSurveyBody = function (_a) {
     var handleGoSurveyMenuChangeNavigation = function (menu) {
         setMenuGoSurvey(menu);
     };
-    return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-white" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex flex-col bg-white" },
         react_1["default"].createElement(GoSurveyMenuOptions_1["default"], { onMenuChange: handleGoSurveyMenuChangeNavigation }),
         renderComponent()));
 };

@@ -3,6 +3,7 @@ import {
   RefreshControl,
   ScrollView,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React, {useEffect, useState} from 'react';
@@ -80,7 +81,7 @@ const GoSurveyGeneralInfoBody = ({
       {/* Data Of Insured */}
       <View className="w-full border-b border-black">
         <Text className="text-black text-[16px] px-5 py-1">
-          General Info Body
+          Data Of Insured
         </Text>
       </View>
       <View className="w-full px-5 py-1 flex flex-col items-center">
@@ -139,6 +140,110 @@ const GoSurveyGeneralInfoBody = ({
           fieldName={'type of cover'}
           properties={'jenisAsuransi'}
         />
+      </View>
+
+      {/* Data Of Vehicle */}
+      {/* license no, make, category, model, body type, chassis no, engine no, year, color, transmission, fuel */}
+      <View className="w-full border-b border-black mt-3">
+        <Text className="text-black text-[16px] px-5 py-1">
+          Data Of Vehicle
+        </Text>
+      </View>
+      <View className="w-full px-5 py-1 flex flex-col items-center">
+        {/* License No */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.platNomor}
+          onChange={handleFieldChange}
+          fieldName={'license no'}
+          properties={'platNomor'}
+        />
+
+        {/* Make */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.merek}
+          onChange={handleFieldChange}
+          fieldName={'make'}
+          properties={'merek'}
+        />
+
+        {/* Category */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.tipe}
+          onChange={handleFieldChange}
+          fieldName={'category'}
+          properties={'tipe'}
+        />
+
+        {/* Model */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.model}
+          onChange={handleFieldChange}
+          fieldName={'model'}
+          properties={'model'}
+        />
+
+        {/* Body Type */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.bodyType}
+          onChange={handleFieldChange}
+          fieldName={'body type'}
+          properties={'bodyType'}
+        />
+
+        {/* Chassis No */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.chassisNo}
+          onChange={handleFieldChange}
+          fieldName={'chassis no'}
+          properties={'chassisNo'}
+        />
+
+        {/* Engine No */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.engineNo}
+          onChange={handleFieldChange}
+          fieldName={'engine no'}
+          properties={'engineNo'}
+        />
+
+        {/* Year */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.year}
+          onChange={handleFieldChange}
+          fieldName={'year'}
+          properties={'year'}
+        />
+
+        {/* Color */}
+        <GoSurveyGeneralInfoFields
+          data={formData?.warna}
+          onChange={handleFieldChange}
+          fieldName={'license no'}
+          properties={'warna'}
+        />
+
+        {/* Transmission */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.transmission}
+          onChange={handleFieldChange}
+          fieldName={'transmission'}
+          properties={'transmission'}
+        />
+
+        {/* Fuel */}
+        <GoSurveyGeneralInfoDropdown
+          data={formData?.fuel}
+          onChange={handleFieldChange}
+          fieldName={'fuel'}
+          properties={'fuel'}
+        />
+      </View>
+
+      {/* Button */}
+      <View className="w-full flex justify-center items-center py-3 my-5">
+        <TouchableOpacity className="bg-gray-100 rounded-md px-4 py-1.5 border border-black" onPress={() => console.log('pressed')}>
+          <Text className="text-black text-sm text-center">Save</Text>
+        </TouchableOpacity>
       </View>
     </ScrollView>
   );

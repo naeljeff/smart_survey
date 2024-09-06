@@ -39,7 +39,7 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
     setMenuGoSurvey(menu);
   };
   return (
-    <View className="w-full h-full flex flex-col bg-white">
+    <View className="flex-1 flex flex-col bg-white">
       {/* Go Survey Menu Options */}
       <GoSurveyMenuOptions onMenuChange={handleGoSurveyMenuChangeNavigation} />
 

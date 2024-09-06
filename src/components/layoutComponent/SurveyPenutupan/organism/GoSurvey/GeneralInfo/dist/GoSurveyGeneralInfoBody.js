@@ -47,7 +47,7 @@ var GoSurveyGeneralInfoBody = function (_a) {
             "/", data === null || data === void 0 ? void 0 :
             data.unitNo),
         react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black" },
-            react_1["default"].createElement(react_native_1.Text, { className: "text-black text-[16px] px-5 py-1" }, "General Info Body")),
+            react_1["default"].createElement(react_native_1.Text, { className: "text-black text-[16px] px-5 py-1" }, "Data Of Insured")),
         react_1["default"].createElement(react_native_1.View, { className: "w-full px-5 py-1 flex flex-col items-center" },
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.nama, onChange: handleFieldChange, fieldName: 'nama', properties: 'nama' }),
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: 'Raksa', onChange: handleFieldChange, fieldName: 'type of report', properties: 'report' }),
@@ -55,6 +55,23 @@ var GoSurveyGeneralInfoBody = function (_a) {
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.noTelp, onChange: handleFieldChange, fieldName: 'phone no', properties: 'noTelp' }),
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.email, onChange: handleFieldChange, fieldName: 'email', properties: 'email' }),
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: 'Awal Penutupan', onChange: handleFieldChange, fieldName: 'survey data', properties: 'surveyData' }),
-            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.jenisAsuransi, onChange: handleFieldChange, fieldName: 'type of cover', properties: 'jenisAsuransi' }))));
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.jenisAsuransi, onChange: handleFieldChange, fieldName: 'type of cover', properties: 'jenisAsuransi' })),
+        react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black mt-3" },
+            react_1["default"].createElement(react_native_1.Text, { className: "text-black text-[16px] px-5 py-1" }, "Data Of Vehicle")),
+        react_1["default"].createElement(react_native_1.View, { className: "w-full px-5 py-1 flex flex-col items-center" },
+            react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.platNomor, onChange: handleFieldChange, fieldName: 'license no', properties: 'platNomor' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.merek, onChange: handleFieldChange, fieldName: 'make', properties: 'merek' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.tipe, onChange: handleFieldChange, fieldName: 'category', properties: 'tipe' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.model, onChange: handleFieldChange, fieldName: 'model', properties: 'model' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.bodyType, onChange: handleFieldChange, fieldName: 'body type', properties: 'bodyType' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.chassisNo, onChange: handleFieldChange, fieldName: 'chassis no', properties: 'chassisNo' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.engineNo, onChange: handleFieldChange, fieldName: 'engine no', properties: 'engineNo' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.year, onChange: handleFieldChange, fieldName: 'year', properties: 'year' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.warna, onChange: handleFieldChange, fieldName: 'license no', properties: 'warna' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.transmission, onChange: handleFieldChange, fieldName: 'transmission', properties: 'transmission' }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.fuel, onChange: handleFieldChange, fieldName: 'fuel', properties: 'fuel' })),
+        react_1["default"].createElement(react_native_1.View, { className: "w-full flex justify-center items-center py-3 my-5" },
+            react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "bg-gray-100 rounded-md px-4 py-1.5 border border-black", onPress: function () { return console.log('pressed'); } },
+                react_1["default"].createElement(react_native_1.Text, { className: "text-black text-sm text-center" }, "Save")))));
 };
 exports["default"] = GoSurveyGeneralInfoBody;
