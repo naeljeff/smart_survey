@@ -70,7 +70,7 @@ var GoSurveyGeneralInfoBody = function (_a) {
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.transmission, onChange: handleFieldChange, fieldName: 'transmission', properties: 'transmission', placeholder: "Select Transmission" }),
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.fuel, onChange: handleFieldChange, fieldName: 'fuel', properties: 'fuel', placeholder: "Select Fuel" })),
         react_1["default"].createElement(react_native_1.View, { className: "w-full flex justify-center items-center py-3 my-5" },
-            react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "bg-gray-100 rounded-md px-4 py-1.5 border border-black", onPress: function () { return console.log('pressed'); } },
+            react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "bg-gray-100 rounded-md px-4 py-1.5 border border-black", onPress: function () { return console.log('data: ', formData); } },
                 react_1["default"].createElement(react_native_1.Text, { className: "text-black text-sm text-center" }, "Save")))));
 };
 exports["default"] = GoSurveyGeneralInfoBody;

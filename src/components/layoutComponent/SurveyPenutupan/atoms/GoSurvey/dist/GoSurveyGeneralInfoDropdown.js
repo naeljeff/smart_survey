@@ -50,54 +50,52 @@ var GoSurveyGeneralInfoDropdown = function (_a) {
     var _c = react_1.useState(''), searchFilter = _c[0], setSearchFilter = _c[1];
     var _d = react_1.useState(''), selectedFilter = _d[0], setSelectedFilter = _d[1];
     var _e = react_1.useState([]), dynamicData = _e[0], setDynamicData = _e[1];
-    var _f = react_1.useState(false), loading = _f[0], setLoading = _f[1];
-    var _g = react_1.useState(null), error = _g[0], setError = _g[1];
     react_1.useEffect(function () {
         var getDropDownData = function () { return __awaiter(void 0, void 0, void 0, function () {
             var responseData, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
-                        setLoading(true);
-                        setError(null);
-                        _a.label = 1;
-                    case 1:
-                        _a.trys.push([1, 8, 9, 10]);
+                        _a.trys.push([0, 7, 8, 9]);
                         responseData = void 0;
-                        if (!(properties === 'tipe')) return [3 /*break*/, 3];
+                        if (!(properties === 'tipe')) return [3 /*break*/, 2];
                         return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties, dependencies === null || dependencies === void 0 ? void 0 : dependencies.make)];
+                    case 1:
+                        responseData = _a.sent();
+                        return [3 /*break*/, 6];
                     case 2:
-                        responseData = _a.sent();
-                        return [3 /*break*/, 7];
-                    case 3:
-                        if (!(properties === 'model')) return [3 /*break*/, 5];
+                        if (!(properties === 'model')) return [3 /*break*/, 4];
                         return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties, dependencies === null || dependencies === void 0 ? void 0 : dependencies.make, dependencies === null || dependencies === void 0 ? void 0 : dependencies.tipe)];
-                    case 4:
+                    case 3:
                         responseData = _a.sent();
-                        return [3 /*break*/, 7];
-                    case 5: return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties)];
+                        return [3 /*break*/, 6];
+                    case 4: return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties)];
+                    case 5:
+                        responseData = _a.sent();
+                        _a.label = 6;
                     case 6:
-                        responseData = _a.sent();
-                        _a.label = 7;
-                    case 7:
                         setDynamicData(responseData || []);
-                        return [3 /*break*/, 10];
-                    case 8:
+                        return [3 /*break*/, 9];
+                    case 7:
                         error_1 = _a.sent();
-                        setError('Failed to fetch data');
                         console.error("Error fetching data for " + properties + ": ", error_1);
-                        return [3 /*break*/, 10];
-                    case 9:
-                        setLoading(false);
-                        return [7 /*endfinally*/];
-                    case 10: return [2 /*return*/];
+                        return [3 /*break*/, 9];
+                    case 8: return [7 /*endfinally*/];
+                    case 9: return [2 /*return*/];
                 }
             });
         }); };
         if (isDropdownOpen)
             getDropDownData();
-    }, [properties, isDropdownOpen]);
+    }, [properties, dependencies === null || dependencies === void 0 ? void 0 : dependencies.make, dependencies === null || dependencies === void 0 ? void 0 : dependencies.tipe, isDropdownOpen]);
     var handleSelectedFilter = function (value) {
+        if (properties === 'merek') {
+            onChange === null || onChange === void 0 ? void 0 : onChange('tipe', '');
+            onChange === null || onChange === void 0 ? void 0 : onChange('model', '');
+        }
+        else if (properties === 'tipe') {
+            onChange === null || onChange === void 0 ? void 0 : onChange('model', '');
+        }
         onChange === null || onChange === void 0 ? void 0 : onChange(properties, value);
         setSelectedFilter(value);
         setIsDropdownOpen(false);

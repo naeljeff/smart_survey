@@ -36,13 +36,6 @@ const NotificationPage = () => {
           contentContainerStyle={{
             flexGrow: 1,
           }}
-          // refreshControl={
-          //   <RefreshControl
-          //     refreshing={refreshing}
-          //     onRefresh={onRefresh}
-          //     colors={['#00bfff']}
-          //   />
-          // }
         >
           <NotificationBody
             onOpenModal={setModalVisibility}

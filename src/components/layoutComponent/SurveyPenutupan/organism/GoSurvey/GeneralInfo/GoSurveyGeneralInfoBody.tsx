@@ -251,7 +251,7 @@ const GoSurveyGeneralInfoBody = ({
       <View className="w-full flex justify-center items-center py-3 my-5">
         <TouchableOpacity
           className="bg-gray-100 rounded-md px-4 py-1.5 border border-black"
-          onPress={() => console.log('pressed')}>
+          onPress={() => console.log('data: ', formData)}>
           <Text className="text-black text-sm text-center">Save</Text>
         </TouchableOpacity>
       </View>

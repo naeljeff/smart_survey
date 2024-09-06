@@ -29,14 +29,9 @@ const GoSurveyGeneralInfoDropdown = ({
   const [searchFilter, setSearchFilter] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<string>('');
   const [dynamicData, setDynamicData] = useState<any[]>([]);
-  const [loading, setLoading] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     const getDropDownData = async () => {
-      setLoading(true);
-      setError(null);
-
       try {
         let responseData;
         if (properties === 'tipe')
@@ -53,18 +48,24 @@ const GoSurveyGeneralInfoDropdown = ({
         else responseData = await goSurveyDataByProperties(properties);
         setDynamicData(responseData || []);
       } catch (error) {
-        setError('Failed to fetch data');
         console.error(`Error fetching data for ${properties}: `, error);
       } finally {
-        setLoading(false);
       }
     };
 
     if (isDropdownOpen) getDropDownData();
-  }, [properties, isDropdownOpen]);
+  }, [properties, dependencies?.make, dependencies?.tipe, isDropdownOpen]);
 
   const handleSelectedFilter = (value: string) => {
+    if (properties === 'merek') {
+      onChange?.('tipe', '');
+      onChange?.('model', '');
+    } else if (properties === 'tipe') {
+      onChange?.('model', '');
+    }
+
     onChange?.(properties, value);
+
     setSelectedFilter(value);
     setIsDropdownOpen(false);
   };
