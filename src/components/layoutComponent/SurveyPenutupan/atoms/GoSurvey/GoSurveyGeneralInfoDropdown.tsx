@@ -2,7 +2,6 @@ import {Text, TextInput, TouchableOpacity, View} from 'react-native';
 import React, {useEffect, useState} from 'react';
 import FAwesome from 'react-native-vector-icons/FontAwesome6';
 
-import {notificationFilterList} from '../../../../../services/data/notificationFilterList';
 import GoSurveyOptionModal from '../../../../reusableComponent/Modal/GoSurveyOptionModal';
 import {goSurveyDataByProperties} from '../../../../../services/data/goSurveyGeneralInfoDataList';
 
@@ -12,6 +11,7 @@ type GoSurveyGeneralInfoDropdownProps = {
   properties: string;
   placeholder?: string;
   onChange?: (properties: string, value: string) => void;
+  dependencies?: {[key: string]: any};
 };
 
 const GoSurveyGeneralInfoDropdown = ({
@@ -20,6 +20,7 @@ const GoSurveyGeneralInfoDropdown = ({
   onChange,
   placeholder,
   properties,
+  dependencies,
 }: GoSurveyGeneralInfoDropdownProps) => {
   const [isDropdownOpen, setIsDropdownOpen] = useState<boolean>(false);
   const setModalVisibility = () => {
@@ -37,8 +38,20 @@ const GoSurveyGeneralInfoDropdown = ({
       setError(null);
 
       try {
-        const data = await goSurveyDataByProperties(properties);
-        setDynamicData(data || []);
+        let responseData;
+        if (properties === 'tipe')
+          responseData = await goSurveyDataByProperties(
+            properties,
+            dependencies?.make,
+          );
+        else if (properties === 'model')
+          responseData = await goSurveyDataByProperties(
+            properties,
+            dependencies?.make,
+            dependencies?.tipe,
+          );
+        else responseData = await goSurveyDataByProperties(properties);
+        setDynamicData(responseData || []);
       } catch (error) {
         setError('Failed to fetch data');
         console.error(`Error fetching data for ${properties}: `, error);

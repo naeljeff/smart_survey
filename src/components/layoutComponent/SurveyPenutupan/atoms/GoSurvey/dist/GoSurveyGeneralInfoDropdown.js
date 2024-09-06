@@ -42,7 +42,7 @@ var FontAwesome6_1 = require("react-native-vector-icons/FontAwesome6");
 var GoSurveyOptionModal_1 = require("../../../../reusableComponent/Modal/GoSurveyOptionModal");
 var goSurveyGeneralInfoDataList_1 = require("../../../../../services/data/goSurveyGeneralInfoDataList");
 var GoSurveyGeneralInfoDropdown = function (_a) {
-    var data = _a.data, fieldName = _a.fieldName, onChange = _a.onChange, placeholder = _a.placeholder, properties = _a.properties;
+    var data = _a.data, fieldName = _a.fieldName, onChange = _a.onChange, placeholder = _a.placeholder, properties = _a.properties, dependencies = _a.dependencies;
     var _b = react_1.useState(false), isDropdownOpen = _b[0], setIsDropdownOpen = _b[1];
     var setModalVisibility = function () {
         setIsDropdownOpen(!isDropdownOpen);
@@ -54,7 +54,7 @@ var GoSurveyGeneralInfoDropdown = function (_a) {
     var _g = react_1.useState(null), error = _g[0], setError = _g[1];
     react_1.useEffect(function () {
         var getDropDownData = function () { return __awaiter(void 0, void 0, void 0, function () {
-            var data_1, error_1;
+            var responseData, error_1;
             return __generator(this, function (_a) {
                 switch (_a.label) {
                     case 0:
@@ -62,21 +62,35 @@ var GoSurveyGeneralInfoDropdown = function (_a) {
                         setError(null);
                         _a.label = 1;
                     case 1:
-                        _a.trys.push([1, 3, 4, 5]);
-                        return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties)];
+                        _a.trys.push([1, 8, 9, 10]);
+                        responseData = void 0;
+                        if (!(properties === 'tipe')) return [3 /*break*/, 3];
+                        return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties, dependencies === null || dependencies === void 0 ? void 0 : dependencies.make)];
                     case 2:
-                        data_1 = _a.sent();
-                        setDynamicData(data_1 || []);
-                        return [3 /*break*/, 5];
+                        responseData = _a.sent();
+                        return [3 /*break*/, 7];
                     case 3:
+                        if (!(properties === 'model')) return [3 /*break*/, 5];
+                        return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties, dependencies === null || dependencies === void 0 ? void 0 : dependencies.make, dependencies === null || dependencies === void 0 ? void 0 : dependencies.tipe)];
+                    case 4:
+                        responseData = _a.sent();
+                        return [3 /*break*/, 7];
+                    case 5: return [4 /*yield*/, goSurveyGeneralInfoDataList_1.goSurveyDataByProperties(properties)];
+                    case 6:
+                        responseData = _a.sent();
+                        _a.label = 7;
+                    case 7:
+                        setDynamicData(responseData || []);
+                        return [3 /*break*/, 10];
+                    case 8:
                         error_1 = _a.sent();
                         setError('Failed to fetch data');
                         console.error("Error fetching data for " + properties + ": ", error_1);
-                        return [3 /*break*/, 5];
-                    case 4:
+                        return [3 /*break*/, 10];
+                    case 9:
                         setLoading(false);
                         return [7 /*endfinally*/];
-                    case 5: return [2 /*return*/];
+                    case 10: return [2 /*return*/];
                 }
             });
         }); };

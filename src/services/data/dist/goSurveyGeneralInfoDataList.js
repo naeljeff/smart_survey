@@ -78,6 +78,83 @@ var getVehicleMakes = function () { return __awaiter(void 0, void 0, void 0, fun
         }
     });
 }); };
+var getVehicleTypes = function (make) { return __awaiter(void 0, void 0, void 0, function () {
+    var res, responseData, formattedResponse, error_2;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, surveyApiClient.post('', {
+                        action: 'getTypes',
+                        make: make
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })];
+            case 1:
+                res = _a.sent();
+                responseData = res.data.Data;
+                formattedResponse = responseData.map(function (item) {
+                    var keyWords = item.toLowerCase().split(' ');
+                    var key = keyWords
+                        .map(function (word, index) {
+                        return index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1);
+                    })
+                        .join('');
+                    var label = keyWords
+                        .map(function (word) { return word.charAt(0).toUpperCase() + word.slice(1); })
+                        .join(' ');
+                    return { key: key, label: label };
+                });
+                return [2 /*return*/, formattedResponse];
+            case 2:
+                error_2 = _a.sent();
+                console.log("Error getting vehicle types: " + error_2);
+                throw error_2;
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
+var getVehicleModels = function (make, type) { return __awaiter(void 0, void 0, void 0, function () {
+    var res, responseData, formattedResponse, error_3;
+    return __generator(this, function (_a) {
+        switch (_a.label) {
+            case 0:
+                _a.trys.push([0, 2, , 3]);
+                return [4 /*yield*/, surveyApiClient.post('', {
+                        action: 'getModels',
+                        make: make,
+                        type: type
+                    }, {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    })];
+            case 1:
+                res = _a.sent();
+                responseData = res.data.Data;
+                formattedResponse = responseData.map(function (item) {
+                    var keyWords = item.toLowerCase().split(' ');
+                    var key = keyWords
+                        .map(function (word, index) {
+                        return index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1);
+                    })
+                        .join('');
+                    var label = keyWords
+                        .map(function (word) { return word.charAt(0).toUpperCase() + word.slice(1); })
+                        .join(' ');
+                    return { key: key, label: label };
+                });
+                return [2 /*return*/, formattedResponse];
+            case 2:
+                error_3 = _a.sent();
+                console.log("Error getting vehicle models: " + error_3);
+                throw error_3;
+            case 3: return [2 /*return*/];
+        }
+    });
+}); };
 exports.goSurveyDataByProperties = function (properties, make, type) {
     switch (properties) {
         case 'surveyData':
@@ -90,6 +167,10 @@ exports.goSurveyDataByProperties = function (properties, make, type) {
             return surveyPenutupanGoSurveyGeneralInfoList_1.fuelDataList;
         case 'merek':
             return getVehicleMakes();
+        case 'tipe':
+            return getVehicleTypes(make);
+        case 'model':
+            return getVehicleModels(make, type);
         default:
             return null;
     }

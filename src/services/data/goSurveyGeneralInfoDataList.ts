@@ -49,6 +49,88 @@ const getVehicleMakes = async () => {
   }
 };
 
+const getVehicleTypes = async (make: string | undefined) => {
+  try {
+    const res = await surveyApiClient.post(
+      '',
+      {
+        action: 'getTypes',
+        make: make
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    const responseData = res.data.Data;
+
+    const formattedResponse = responseData.map((item: string) => {
+      const keyWords = item.toLowerCase().split(' ');
+
+      const key = keyWords
+        .map((word, index) =>
+          index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1),
+        )
+        .join('');
+
+      const label = keyWords
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      return {key, label};
+    });
+    return formattedResponse;
+  } catch (error) {
+    console.log(`Error getting vehicle types: ${error}`);
+    throw error;
+  }
+};
+
+const getVehicleModels = async (
+  make: string | undefined,
+  type: string | undefined,
+) => {
+  try {
+    const res = await surveyApiClient.post(
+      '',
+      {
+        action: 'getModels',
+        make: make,
+        type: type,
+      },
+      {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    const responseData = res.data.Data;
+
+    const formattedResponse = responseData.map((item: string) => {
+      const keyWords = item.toLowerCase().split(' ');
+
+      const key = keyWords
+        .map((word, index) =>
+          index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1),
+        )
+        .join('');
+
+      const label = keyWords
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+
+      return {key, label};
+    });
+    return formattedResponse;
+  } catch (error) {
+    console.log(`Error getting vehicle models: ${error}`);
+    throw error;
+  }
+};
+
 export const goSurveyDataByProperties = (
   properties: string,
   make?: string,
@@ -65,6 +147,10 @@ export const goSurveyDataByProperties = (
       return fuelDataList;
     case 'merek':
       return getVehicleMakes();
+    case 'tipe':
+      return getVehicleTypes(make);
+    case 'model':
+      return getVehicleModels(make, type);
     default:
       return null;
   }

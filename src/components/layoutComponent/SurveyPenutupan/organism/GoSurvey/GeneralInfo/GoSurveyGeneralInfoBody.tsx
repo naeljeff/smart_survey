@@ -24,10 +24,10 @@ type GoSurveyGeneralInfoBodyProps = {
 const GoSurveyGeneralInfoBody = ({
   surveyFunction,
 }: GoSurveyGeneralInfoBodyProps) => {
-  const data = surveyFunction?.data?.data;
-  const [formData, setFormData] = useState<surveyJobProps>(data!);
+  const [formData, setFormData] = useState<surveyJobProps | null>(null);
 
-  // Make sure data is fetched
+  const data = surveyFunction?.data?.data;
+
   useEffect(() => {
     if (data) {
       setFormData(data);
@@ -36,7 +36,7 @@ const GoSurveyGeneralInfoBody = ({
 
   const handleFieldChange = (properties: string, value: string) => {
     setFormData(prev => ({
-      ...prev,
+      ...prev!,
       [properties]: value,
     }));
   };
@@ -174,6 +174,7 @@ const GoSurveyGeneralInfoBody = ({
           fieldName={'category'}
           properties={'tipe'}
           placeholder="Select a Category"
+          dependencies={{make: formData?.merek}}
         />
 
         {/* Model */}
@@ -183,6 +184,7 @@ const GoSurveyGeneralInfoBody = ({
           fieldName={'model'}
           properties={'model'}
           placeholder="Select a Model"
+          dependencies={{make: formData?.merek, tipe: formData?.tipe}}
         />
 
         {/* Body Type */}

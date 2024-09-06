@@ -81,8 +81,6 @@ const GoSurveyOptionModal = ({
     item.label.toLowerCase().includes(searchFilter.toLowerCase()),
   );
 
-  console.log('selected item: ', selectedItem)
-
   return (
     <Modal animationType="fade" transparent={true} visible={visible}>
       <Animated.View

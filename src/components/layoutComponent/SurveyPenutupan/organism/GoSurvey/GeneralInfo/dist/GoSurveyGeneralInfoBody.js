@@ -18,9 +18,8 @@ var GoSurveyGeneralInfoDropdown_1 = require("../../../atoms/GoSurvey/GoSurveyGen
 var GoSurveyGeneralInfoBody = function (_a) {
     var _b;
     var surveyFunction = _a.surveyFunction;
+    var _c = react_1.useState(null), formData = _c[0], setFormData = _c[1];
     var data = (_b = surveyFunction === null || surveyFunction === void 0 ? void 0 : surveyFunction.data) === null || _b === void 0 ? void 0 : _b.data;
-    var _c = react_1.useState(data), formData = _c[0], setFormData = _c[1];
-    // Make sure data is fetched
     react_1.useEffect(function () {
         if (data) {
             setFormData(data);
@@ -61,8 +60,8 @@ var GoSurveyGeneralInfoBody = function (_a) {
         react_1["default"].createElement(react_native_1.View, { className: "w-full px-5 py-1 flex flex-col items-center" },
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.platNomor, onChange: handleFieldChange, fieldName: 'license no', properties: 'platNomor' }),
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.merek, onChange: handleFieldChange, fieldName: 'make', properties: 'merek', placeholder: "Select a Make" }),
-            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.tipe, onChange: handleFieldChange, fieldName: 'category', properties: 'tipe', placeholder: "Select a Category" }),
-            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.model, onChange: handleFieldChange, fieldName: 'model', properties: 'model', placeholder: "Select a Model" }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.tipe, onChange: handleFieldChange, fieldName: 'category', properties: 'tipe', placeholder: "Select a Category", dependencies: { make: formData === null || formData === void 0 ? void 0 : formData.merek } }),
+            react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.model, onChange: handleFieldChange, fieldName: 'model', properties: 'model', placeholder: "Select a Model", dependencies: { make: formData === null || formData === void 0 ? void 0 : formData.merek, tipe: formData === null || formData === void 0 ? void 0 : formData.tipe } }),
             react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.bodyType, onChange: handleFieldChange, fieldName: 'body type', properties: 'bodyType', placeholder: "Select Body Type" }),
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.chassisNo, onChange: handleFieldChange, fieldName: 'chassis no', properties: 'chassisNo' }),
             react_1["default"].createElement(GoSurveyGeneralInfoFields_1["default"], { data: formData === null || formData === void 0 ? void 0 : formData.engineNo, onChange: handleFieldChange, fieldName: 'engine no', properties: 'engineNo' }),

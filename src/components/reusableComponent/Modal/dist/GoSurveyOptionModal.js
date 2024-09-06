@@ -48,7 +48,6 @@ var GoSurveyOptionModal = function (_a) {
     var filterSelectionList = data.filter(function (item) {
         return item.label.toLowerCase().includes(searchFilter.toLowerCase());
     });
-    console.log('selected item: ', selectedItem);
     return (react_1["default"].createElement(react_native_1.Modal, { animationType: "fade", transparent: true, visible: visible },
         react_1["default"].createElement(react_native_1.Animated.View, { className: "flex-1 justify-center items-center bg-black/20", style: { opacity: animation } },
             react_1["default"].createElement(react_native_1.View, { className: "flex min-h-full items-center justify-center p-7" },
