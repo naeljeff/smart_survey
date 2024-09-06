@@ -5,7 +5,7 @@ type GoSurveyGeneralInfoFieldProps = {
   data: any;
   fieldName: string;
   properties: string;
-  onChange?: (fieldName: string, value: string) => void;
+  onChange?: (properties: string, value: string) => void;
 };
 
 const GoSurveyGeneralInfoFields = ({

@@ -164,6 +164,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'make'}
           properties={'merek'}
+          placeholder='Select a Make'
         />
 
         {/* Category */}
@@ -172,6 +173,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'category'}
           properties={'tipe'}
+          placeholder='Select a Category'
         />
 
         {/* Model */}
@@ -180,6 +182,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'model'}
           properties={'model'}
+          placeholder='Select a Model'
         />
 
         {/* Body Type */}
@@ -188,6 +191,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'body type'}
           properties={'bodyType'}
+          placeholder='Select Body Type'
         />
 
         {/* Chassis No */}
@@ -228,6 +232,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'transmission'}
           properties={'transmission'}
+          placeholder="Select Transmission"
         />
 
         {/* Fuel */}
@@ -236,12 +241,15 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'fuel'}
           properties={'fuel'}
+          placeholder="Select Fuel"
         />
       </View>
 
       {/* Button */}
       <View className="w-full flex justify-center items-center py-3 my-5">
-        <TouchableOpacity className="bg-gray-100 rounded-md px-4 py-1.5 border border-black" onPress={() => console.log('pressed')}>
+        <TouchableOpacity
+          className="bg-gray-100 rounded-md px-4 py-1.5 border border-black"
+          onPress={() => console.log('pressed')}>
           <Text className="text-black text-sm text-center">Save</Text>
         </TouchableOpacity>
       </View>

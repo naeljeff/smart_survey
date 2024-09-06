@@ -39,6 +39,9 @@ var FilterModal = function (_a) {
         }
         handleClose();
     };
+    var filterSelectionList = data.filter(function (item) {
+        return item.label.toLowerCase().includes(searchFilter.toLowerCase());
+    });
     return (react_1["default"].createElement(react_native_1.Animated.View, { className: "absolute inset-0 bg-gray-500/50 z-50", style: { opacity: animation } },
         react_1["default"].createElement(react_native_1.Animated.View, { className: "flex min-h-full items-center justify-center p-7", style: { opacity: animation } },
             react_1["default"].createElement(react_native_1.Animated.View, { className: "w-full h-full bg-white p-4 rounded-lg shadow-xl", style: { opacity: animation } },
@@ -53,7 +56,7 @@ var FilterModal = function (_a) {
                     searchFilter === '' ? null : (react_1["default"].createElement(react_native_1.TouchableOpacity, { className: "absolute right-3 top-2.5 -translate-y-1/2", onPress: function () { return setSearchFilter(''); } },
                         react_1["default"].createElement(Ionicons_1["default"], { name: "close", size: 20, color: "black" })))),
                 react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex items-center justify-center" }, isLoadingData ? (react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#00bffe" })) : (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full" },
-                    react_1["default"].createElement(react_native_1.FlatList, { showsVerticalScrollIndicator: false, data: data, renderItem: function (_a) {
+                    react_1["default"].createElement(react_native_1.FlatList, { showsVerticalScrollIndicator: false, data: filterSelectionList, renderItem: function (_a) {
                             var item = _a.item;
                             return (react_1["default"].createElement(ModalListItem_1["default"], { item: item, onPress: handleSelectFilter, isSelected: selectedItem === item.label }));
                         }, keyExtractor: function (item) { return item.key; } }))))))));
