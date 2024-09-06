@@ -34,10 +34,10 @@ const GoSurveyGeneralInfoBody = ({
     }
   }, [data]);
 
-  const handleFieldChange = (fieldName: string, value: string) => {
+  const handleFieldChange = (properties: string, value: string) => {
     setFormData(prev => ({
       ...prev,
-      [fieldName]: value,
+      [properties]: value,
     }));
   };
 
@@ -164,7 +164,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'make'}
           properties={'merek'}
-          placeholder='Select a Make'
+          placeholder="Select a Make"
         />
 
         {/* Category */}
@@ -173,7 +173,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'category'}
           properties={'tipe'}
-          placeholder='Select a Category'
+          placeholder="Select a Category"
         />
 
         {/* Model */}
@@ -182,7 +182,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'model'}
           properties={'model'}
-          placeholder='Select a Model'
+          placeholder="Select a Model"
         />
 
         {/* Body Type */}
@@ -191,7 +191,7 @@ const GoSurveyGeneralInfoBody = ({
           onChange={handleFieldChange}
           fieldName={'body type'}
           properties={'bodyType'}
-          placeholder='Select Body Type'
+          placeholder="Select Body Type"
         />
 
         {/* Chassis No */}

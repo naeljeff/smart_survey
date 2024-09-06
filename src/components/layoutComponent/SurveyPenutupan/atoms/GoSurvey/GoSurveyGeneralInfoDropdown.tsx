@@ -1,9 +1,10 @@
 import {Text, TextInput, TouchableOpacity, View} from 'react-native';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import FAwesome from 'react-native-vector-icons/FontAwesome6';
 
 import {notificationFilterList} from '../../../../../services/data/notificationFilterList';
 import GoSurveyOptionModal from '../../../../reusableComponent/Modal/GoSurveyOptionModal';
+import {goSurveyDataByProperties} from '../../../../../services/data/goSurveyGeneralInfoDataList';
 
 type GoSurveyGeneralInfoDropdownProps = {
   data: any;
@@ -26,6 +27,35 @@ const GoSurveyGeneralInfoDropdown = ({
   };
   const [searchFilter, setSearchFilter] = useState<string>('');
   const [selectedFilter, setSelectedFilter] = useState<string>('');
+  const [dynamicData, setDynamicData] = useState<any[]>([]);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const getDropDownData = async () => {
+      setLoading(true);
+      setError(null);
+
+      try {
+        const data = await goSurveyDataByProperties(properties);
+        setDynamicData(data || []);
+      } catch (error) {
+        setError('Failed to fetch data');
+        console.error(`Error fetching data for ${properties}: `, error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    if (isDropdownOpen) getDropDownData();
+  }, [properties, isDropdownOpen]);
+
+  const handleSelectedFilter = (value: string) => {
+    onChange?.(properties, value);
+    setSelectedFilter(value);
+    setIsDropdownOpen(false);
+  };
+
   return (
     <View className="w-full flex flex-row items-center justify-between space-x-2 mt-2">
       <View className="w-[30%] flex flex-row justify-between items-center">
@@ -48,23 +78,17 @@ const GoSurveyGeneralInfoDropdown = ({
           color="black"
         />
       </TouchableOpacity>
-      {/* {isDropdownOpen && (
-        <JobMonitoringFUAStatus
-          openFUAStatus={setIsStatusOpen}
-          statusFUA={status => setTempFua(prev => ({...prev, status: status}))}
-        />
-      )} */}
 
       {isDropdownOpen && (
         <GoSurveyOptionModal
           visible={isDropdownOpen}
-          data={notificationFilterList}
+          data={dynamicData}
           onClose={setModalVisibility}
           title={fieldName}
           searchFilter={searchFilter}
           setSearchFilter={setSearchFilter}
-          onSelectedFilter={setSelectedFilter}
-          selectedFilter={selectedFilter}
+          onSelectedFilter={handleSelectedFilter}
+          selectedFilter={data}
         />
       )}
     </View>

@@ -8,6 +8,7 @@ type ModalListItemProps = {
 };
 
 const ModalListItem = ({item, onPress, isSelected}: ModalListItemProps) => {
+  console.log('item: ', item);
   return (
     <TouchableOpacity onPress={() => onPress(item.label)}>
       <View

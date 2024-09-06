@@ -35,7 +35,9 @@ const GoSurveyOptionModal = ({
   selectedFilter,
 }: GoSurveyOptionModalProps) => {
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>('');
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    selectedFilter,
+  );
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -78,6 +80,8 @@ const GoSurveyOptionModal = ({
   const filterSelectionList = data.filter(item =>
     item.label.toLowerCase().includes(searchFilter.toLowerCase()),
   );
+
+  console.log('selected item: ', selectedItem)
 
   return (
     <Modal animationType="fade" transparent={true} visible={visible}>
@@ -130,7 +134,10 @@ const GoSurveyOptionModal = ({
                       <ModalListItem
                         item={item}
                         onPress={handleSelectFilter}
-                        isSelected={selectedItem === item.label}
+                        isSelected={
+                          selectedItem?.toLocaleLowerCase() ===
+                          item.label.toLocaleLowerCase()
+                        }
                       />
                     )}
                     keyExtractor={item => item.key}

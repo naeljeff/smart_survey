@@ -7,7 +7,7 @@ var ModalListItem_1 = require("./ModalListItem");
 var GoSurveyOptionModal = function (_a) {
     var title = _a.title, visible = _a.visible, data = _a.data, searchFilter = _a.searchFilter, setSearchFilter = _a.setSearchFilter, onClose = _a.onClose, onSelectedFilter = _a.onSelectedFilter, selectedFilter = _a.selectedFilter;
     var _b = react_1.useState(false), isLoadingData = _b[0], setIsLoadingData = _b[1];
-    var _c = react_1.useState(''), selectedItem = _c[0], setSelectedItem = _c[1];
+    var _c = react_1.useState(selectedFilter), selectedItem = _c[0], setSelectedItem = _c[1];
     var animation = react_1.useRef(new react_native_1.Animated.Value(0)).current;
     react_1.useEffect(function () {
         if (visible) {
@@ -48,6 +48,7 @@ var GoSurveyOptionModal = function (_a) {
     var filterSelectionList = data.filter(function (item) {
         return item.label.toLowerCase().includes(searchFilter.toLowerCase());
     });
+    console.log('selected item: ', selectedItem);
     return (react_1["default"].createElement(react_native_1.Modal, { animationType: "fade", transparent: true, visible: visible },
         react_1["default"].createElement(react_native_1.Animated.View, { className: "flex-1 justify-center items-center bg-black/20", style: { opacity: animation } },
             react_1["default"].createElement(react_native_1.View, { className: "flex min-h-full items-center justify-center p-7" },
@@ -63,7 +64,8 @@ var GoSurveyOptionModal = function (_a) {
                     react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex items-center justify-center" }, isLoadingData ? (react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#00bffe" })) : (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full" },
                         react_1["default"].createElement(react_native_1.FlatList, { showsVerticalScrollIndicator: false, data: filterSelectionList, renderItem: function (_a) {
                                 var item = _a.item;
-                                return (react_1["default"].createElement(ModalListItem_1["default"], { item: item, onPress: handleSelectFilter, isSelected: selectedItem === item.label }));
+                                return (react_1["default"].createElement(ModalListItem_1["default"], { item: item, onPress: handleSelectFilter, isSelected: (selectedItem === null || selectedItem === void 0 ? void 0 : selectedItem.toLocaleLowerCase()) ===
+                                        item.label.toLocaleLowerCase() }));
                             }, keyExtractor: function (item) { return item.key; } })))))))));
 };
 exports["default"] = GoSurveyOptionModal;
