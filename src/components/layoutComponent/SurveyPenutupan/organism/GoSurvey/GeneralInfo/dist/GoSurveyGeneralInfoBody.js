@@ -55,7 +55,7 @@ var GoSurveyGeneralInfoDropdown_1 = require("../../../atoms/GoSurvey/GoSurveyGen
 var patchGeneralInfoGoSurvey_1 = require("../../../../../../services/api/surveyPenutupan/patchGeneralInfoGoSurvey");
 var GoSurveyGeneralInfoBody = function (_a) {
     var _b;
-    var surveyFunction = _a.surveyFunction;
+    var surveyFunction = _a.surveyFunction, navigateToSurvey = _a.navigateToSurvey;
     var _c = react_1.useState(null), formData = _c[0], setFormData = _c[1];
     var data = (_b = surveyFunction === null || surveyFunction === void 0 ? void 0 : surveyFunction.data) === null || _b === void 0 ? void 0 : _b.data;
     react_1.useEffect(function () {
@@ -84,9 +84,9 @@ var GoSurveyGeneralInfoBody = function (_a) {
                     return [4 /*yield*/, patchGeneralInfoGoSurvey_1.patchGeneralInfoGoSurvey(data, noPengajuan)];
                 case 2:
                     res = _a.sent();
-                    console.log(data, noPengajuan);
                     if (res.status === '01') {
                         react_native_simple_toast_1["default"].show('Survey Has Been Saved!', react_native_simple_toast_1["default"].SHORT);
+                        navigateToSurvey();
                     }
                     else if (res.status === '02') {
                         react_native_simple_toast_1["default"].show('Save Survey Failed!', react_native_simple_toast_1["default"].SHORT);

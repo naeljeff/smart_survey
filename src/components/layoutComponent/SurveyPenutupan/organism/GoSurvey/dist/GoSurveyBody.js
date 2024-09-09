@@ -10,10 +10,14 @@ var GoSurveySignatureBody_1 = require("./Signature/GoSurveySignatureBody");
 var GoSurveyBody = function (_a) {
     var surveyFunction = _a.surveyFunction;
     var _b = react_1.useState('General Info'), menuGoSurvey = _b[0], setMenuGoSurvey = _b[1];
+    var _c = react_1.useState(0), activeTab = _c[0], setActiveTab = _c[1];
     var renderComponent = function () {
+        console.log(menuGoSurvey);
         switch (menuGoSurvey) {
             case 'General Info':
-                return react_1["default"].createElement(GoSurveyGeneralInfoBody_1["default"], { surveyFunction: surveyFunction });
+                return (react_1["default"].createElement(GoSurveyGeneralInfoBody_1["default"], { surveyFunction: surveyFunction, navigateToSurvey: function () {
+                        return handleGoSurveyMenuChangeNavigation('Survey', 1);
+                    } }));
             case 'Survey':
                 return react_1["default"].createElement(GoSurveySurveyBody_1["default"], { surveyFunction: surveyFunction });
             case 'Survey Info':
@@ -24,11 +28,12 @@ var GoSurveyBody = function (_a) {
                 return null;
         }
     };
-    var handleGoSurveyMenuChangeNavigation = function (menu) {
+    var handleGoSurveyMenuChangeNavigation = function (menu, index) {
         setMenuGoSurvey(menu);
+        setActiveTab(index);
     };
     return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex flex-col bg-white" },
-        react_1["default"].createElement(GoSurveyMenuOptions_1["default"], { onMenuChange: handleGoSurveyMenuChangeNavigation }),
+        react_1["default"].createElement(GoSurveyMenuOptions_1["default"], { onMenuChange: handleGoSurveyMenuChangeNavigation, activeTab: activeTab }),
         renderComponent()));
 };
 exports["default"] = GoSurveyBody;

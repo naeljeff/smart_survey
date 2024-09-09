@@ -3,16 +3,15 @@ import React, {useState} from 'react';
 import MCI from 'react-native-vector-icons/MaterialCommunityIcons';
 
 type GoSurveyMenuProps = {
-  onMenuChange: (menu: string) => void;
+  onMenuChange: (menu: string, index: number) => void;
+  activeTab: number;
 };
 
-const GoSurveyMenuOptions = ({onMenuChange}: GoSurveyMenuProps) => {
+const GoSurveyMenuOptions = ({onMenuChange, activeTab}: GoSurveyMenuProps) => {
   const menu: string[] = ['General Info', 'Survey', 'Survey Info', 'Signature'];
-  const [index, setIndex] = useState<number>(0);
 
   const handleMenuChangeOnPress = (menu: string, index: number) => {
-    setIndex(index);
-    onMenuChange(menu);
+    onMenuChange(menu, index);
   };
   return (
     <View className="w-full h-[50px] flex justify-center bg-[#555555]">
@@ -23,7 +22,7 @@ const GoSurveyMenuOptions = ({onMenuChange}: GoSurveyMenuProps) => {
             <TouchableOpacity
               onPress={() => handleMenuChangeOnPress(item, idx)}
               className={`w-[80px] flex flex-col justify-center items-center rounded-md py-0.5 px-0.5 ${
-                index === idx ? 'bg-[#484848]' : ''
+                activeTab === idx ? 'bg-[#484848]' : ''
               }`}>
               {item === 'General Info' ? (
                 <MCI name="notebook" size={24} color={'white'} />

@@ -19,11 +19,20 @@ type GoSurveyBodyProps = {
 
 const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
   const [menuGoSurvey, setMenuGoSurvey] = useState<string>('General Info');
+  const [activeTab, setActiveTab] = useState<number>(0);
 
   const renderComponent = () => {
+    console.log(menuGoSurvey);
     switch (menuGoSurvey) {
       case 'General Info':
-        return <GoSurveyGeneralInfoBody surveyFunction={surveyFunction} />;
+        return (
+          <GoSurveyGeneralInfoBody
+            surveyFunction={surveyFunction}
+            navigateToSurvey={() =>
+              handleGoSurveyMenuChangeNavigation('Survey', 1)
+            }
+          />
+        );
       case 'Survey':
         return <GoSurveySurveyBody surveyFunction={surveyFunction} />;
       case 'Survey Info':
@@ -35,13 +44,17 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
     }
   };
 
-  const handleGoSurveyMenuChangeNavigation = (menu: string) => {
+  const handleGoSurveyMenuChangeNavigation = (menu: string, index: number) => {
     setMenuGoSurvey(menu);
+    setActiveTab(index);
   };
   return (
     <View className="flex-1 flex flex-col bg-white">
       {/* Go Survey Menu Options */}
-      <GoSurveyMenuOptions onMenuChange={handleGoSurveyMenuChangeNavigation} />
+      <GoSurveyMenuOptions
+        onMenuChange={handleGoSurveyMenuChangeNavigation}
+        activeTab={activeTab}
+      />
 
       {/* Render Component */}
       {renderComponent()}
