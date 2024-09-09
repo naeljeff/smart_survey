@@ -71,7 +71,7 @@ var SurveyPenutupanAssignJob = function (_a) {
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'Assign Job', onPress: function () { return navigation.goBack(); } }),
         react_1["default"].createElement(react_native_1.View, { className: "w-full h-[300px]" },
             react_1["default"].createElement(GoogleMaps_1["default"], { item: item })),
-        react_1["default"].createElement(react_native_1.View, { className: "flex-1" },
+        react_1["default"].createElement(react_native_1.ScrollView, { className: "w-full h-[60px]", contentContainerStyle: { flexGrow: 1 } },
             react_1["default"].createElement(IncomingJobViewMapDetail_1["default"], { item: item })),
         react_1["default"].createElement(react_native_1.View, { className: "flex-1 w-full bg-white -mt-[78px]" }, tempData.length === 0 ? (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col justify-center items-center" },
             react_1["default"].createElement(MaterialIcons_1["default"], { name: "do-not-disturb-alt", size: 80, color: "black" }),

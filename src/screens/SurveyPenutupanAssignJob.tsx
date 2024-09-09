@@ -1,4 +1,4 @@
-import {ActivityIndicator, FlatList, Text, View} from 'react-native';
+import {ActivityIndicator, FlatList, ScrollView, Text, View} from 'react-native';
 import React, {useCallback, useEffect} from 'react';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
@@ -125,9 +125,11 @@ const SurveyPenutupanAssignJob = ({route}: SurveyPenutupanAssignJobProps) => {
       </View>
 
       {/* Details */}
-      <View className="flex-1">
+      <ScrollView
+        className="w-full h-[60px]"
+        contentContainerStyle={{flexGrow: 1}}>
         <IncomingJobViewMapDetail item={item} />
-      </View>
+      </ScrollView>
 
       {/* List Surveyor */}
       <View className="flex-1 w-full bg-white -mt-[78px]">
