@@ -52,7 +52,6 @@ const MySurveyFUAButtons = ({
     setConfirmedGoSurvey(false);
     if (confirmed)
       navigationToGoSurvey.navigate('surveyPenutupanGoSurvey', {item: item});
-    else console.log('no');
   };
 
   return (

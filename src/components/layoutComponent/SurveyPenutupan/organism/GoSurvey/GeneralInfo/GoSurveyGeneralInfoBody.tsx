@@ -6,12 +6,14 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Toast from 'react-native-simple-toast';
 import React, {useEffect, useState} from 'react';
 import {UseQueryResult} from '@tanstack/react-query';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import GoSurveyGeneralInfoFields from '../../../atoms/GoSurvey/GoSurveyGeneralInfoFields';
 import GoSurveyGeneralInfoDropdown from '../../../atoms/GoSurvey/GoSurveyGeneralInfoDropdown';
+import {patchGeneralInfoGoSurvey} from '../../../../../../services/api/surveyPenutupan/patchGeneralInfoGoSurvey';
 
 type surveyJobPropAsData = {
   data: surveyJobProps;
@@ -39,6 +41,30 @@ const GoSurveyGeneralInfoBody = ({
       ...prev!,
       [properties]: value,
     }));
+  };
+
+  const handleSaveGeneralInfo = async (
+    data: surveyJobProps | null,
+    noPengajuan: string | undefined,
+  ) => {
+    if (!data) {
+      Toast.show('No data to save!', Toast.SHORT);
+      return;
+    }
+
+    try {
+      const res = await patchGeneralInfoGoSurvey(data, noPengajuan!);
+      console.log(data, noPengajuan);
+      if (res.status === '01') {
+        Toast.show('Survey Has Been Saved!', Toast.SHORT);
+      } else if (res.status === '02') {
+        Toast.show('Save Survey Failed!', Toast.SHORT);
+      }
+      surveyFunction.refetch();
+    } catch (error) {
+      console.log('Failed to accept survey:', error);
+      throw Error;
+    }
   };
 
   if (surveyFunction?.isLoading) {
@@ -251,7 +277,9 @@ const GoSurveyGeneralInfoBody = ({
       <View className="w-full flex justify-center items-center py-3 my-5">
         <TouchableOpacity
           className="bg-gray-100 rounded-md px-4 py-1.5 border border-black"
-          onPress={() => console.log('data: ', formData)}>
+          onPress={() =>
+            handleSaveGeneralInfo(formData, formData?.noPengajuanSurvey)
+          }>
           <Text className="text-black text-sm text-center">Save</Text>
         </TouchableOpacity>
       </View>

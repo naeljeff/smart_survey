@@ -66,8 +66,6 @@ var MySurveyFUAButtons = function (_a) {
             setConfirmedGoSurvey(false);
             if (confirmed)
                 navigationToGoSurvey.navigate('surveyPenutupanGoSurvey', { item: item });
-            else
-                console.log('no');
             return [2 /*return*/];
         });
     }); };
