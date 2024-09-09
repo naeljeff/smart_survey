@@ -42,7 +42,14 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
           />
         );
       case 'Survey Info':
-        return <GoSurveySurveyInfoBody surveyFunction={surveyFunction} />;
+        return (
+          <GoSurveySurveyInfoBody
+            surveyFunction={surveyFunction}
+            navigateToSignature={() =>
+              handleGoSurveyMenuChangeNavigation('Signature', 3)
+            }
+          />
+        );
       case 'Signature':
         return <GoSurveySignatureBody surveyFunction={surveyFunction} />;
       default:

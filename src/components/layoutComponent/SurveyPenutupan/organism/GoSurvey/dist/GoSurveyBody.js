@@ -22,7 +22,9 @@ var GoSurveyBody = function (_a) {
                         handleGoSurveyMenuChangeNavigation('Survey Info', 2);
                     } }));
             case 'Survey Info':
-                return react_1["default"].createElement(GoSurveySurveyInfoBody_1["default"], { surveyFunction: surveyFunction });
+                return (react_1["default"].createElement(GoSurveySurveyInfoBody_1["default"], { surveyFunction: surveyFunction, navigateToSignature: function () {
+                        return handleGoSurveyMenuChangeNavigation('Signature', 3);
+                    } }));
             case 'Signature':
                 return react_1["default"].createElement(GoSurveySignatureBody_1["default"], { surveyFunction: surveyFunction });
             default:
