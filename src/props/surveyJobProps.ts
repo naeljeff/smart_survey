@@ -22,8 +22,16 @@ export type surveyJobProps = {
   jenisAsuransi: string;
   status: string;
   platNomor: string;
-  alamatSurvey: string | "";
+  warna: string;
+  alamatSurvey: string | '';
   statusUser: string | null;
+  notesAssign: string | null;
+  bodyType: string | null;
+  chassisNo: string | null;
+  engineNo: string | null;
+  year: string | null;
+  transmission: string | null;
+  fuel: string | null;
 
   perluasan: string[];
 };

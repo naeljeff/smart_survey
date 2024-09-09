@@ -1,10 +1,12 @@
 import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
-
-import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RouteProp, useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+
+import NavigationHeader from '../components/reusableComponent/Header/NavigationHeader';
 import {RootStackParamList} from '../routes/StackNavigator';
+import GoSurveyBody from '../components/layoutComponent/SurveyPenutupan/organism/GoSurvey/GoSurveyBody';
+import { UseGetSpecificSurveyData } from '../services/api/surveyPenutupan/getSpecificSurveyById';
 
 type SurveyPenutupanMySurveyGoSurveyRoute = RouteProp<
   RootStackParamList,
@@ -19,18 +21,24 @@ const SurveyPenutupanMySurveyGoSurvey = ({
   route,
 }: SurveyPenutupanMySurveyGoSurveyProps) => {
   const {item} = route.params;
-  console.log(`item: ${item}`);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-    
+  const specificSurveyFunction = UseGetSpecificSurveyData(
+    item.noPengajuanSurvey,
+    item.unitNo,
+  );
+
   return (
     <View className="w-full h-full flex flex-col bg-white">
       {/* Header */}
       <NavigationHeader
         title={'Go Survey'}
         onPress={() => navigation.goBack()}
+        onRefresh={specificSurveyFunction.refetch}
       />
-      <Text>SurveyPenutupanMySurveyGoSurvey</Text>
+
+      {/* Go Survey Body */}
+      <GoSurveyBody surveyFunction={specificSurveyFunction}/>
     </View>
   );
 };

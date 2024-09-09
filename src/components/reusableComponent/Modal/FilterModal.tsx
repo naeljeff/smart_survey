@@ -32,7 +32,9 @@ const FilterModal = ({
   selectedFilter,
 }: FilterModalProps) => {
   const [isLoadingData, setIsLoadingData] = useState<boolean>(false);
-  const [selectedItem, setSelectedItem] = useState<string | null>(selectedFilter);
+  const [selectedItem, setSelectedItem] = useState<string | null>(
+    selectedFilter,
+  );
   const animation = useRef(new Animated.Value(0)).current;
 
   useEffect(() => {
@@ -44,7 +46,7 @@ const FilterModal = ({
   }, [animation]);
 
   useEffect(() => {
-    setSelectedItem(selectedFilter); 
+    setSelectedItem(selectedFilter);
   }, [selectedFilter]);
 
   const handleClose = () => {
@@ -67,6 +69,10 @@ const FilterModal = ({
     }
     handleClose();
   };
+
+  const filterSelectionList = data.filter(item =>
+    item.label.toLowerCase().includes(searchFilter.toLowerCase()),
+  );
 
   return (
     <Animated.View
@@ -117,7 +123,7 @@ const FilterModal = ({
               <View className="w-full h-full">
                 <FlatList
                   showsVerticalScrollIndicator={false}
-                  data={data}
+                  data={filterSelectionList}
                   renderItem={({item}) => (
                     <ModalListItem
                       item={item}

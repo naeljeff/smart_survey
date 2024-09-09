@@ -23,7 +23,7 @@ var SurveyPenutupanHistoryFUA = function (_a) {
     }
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-white" },
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'History FUA', onPress: function () { return navigation.goBack(); }, onRefresh: refetch }),
-        react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true, refreshControl: react_1["default"].createElement(react_native_1.RefreshControl, { refreshing: isLoading, onRefresh: refetch }) },
+        react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true, refreshControl: react_1["default"].createElement(react_native_1.RefreshControl, { refreshing: isLoading, onRefresh: refetch, colors: ['#00bfff'] }) },
             react_1["default"].createElement(MySurveyFuaHistoryAppointment_1["default"], { item: item }),
             react_1["default"].createElement(MySurveyFuaHistoryPersonalContact_1["default"], { item: item }),
             react_1["default"].createElement(MySurveyFuaHistoryCooporateContact_1["default"], null),

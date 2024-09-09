@@ -72,7 +72,7 @@ exports.fetchHistoryFuaList = function (noPengajuan, unitNo) { return __awaiter(
 }); };
 exports.UseGetHistoryFuaList = function (noPengajuan, unitNo) {
     var _a = react_query_1.useQuery({
-        queryKey: ['newSurveyData', noPengajuan, unitNo],
+        queryKey: ['historySurveyData', noPengajuan, unitNo],
         queryFn: function () { return exports.fetchHistoryFuaList(noPengajuan, unitNo); },
         refetchOnReconnect: 'always',
         refetchOnWindowFocus: true

@@ -3,11 +3,13 @@ import React, {useState} from 'react';
 import {ListItem} from '@rneui/themed';
 import {Surface} from 'react-native-paper';
 import Ionicon from 'react-native-vector-icons/Ionicons';
+import Toast from 'react-native-simple-toast';
 
 import {JobMonitoringListProps} from '../../../../../props/jobMonitoringListProps';
 import SurveyJobAssignJobItemSubList from './SurveyJobAssignJobItemSubList';
 import AssignJobModal from '../../../../reusableComponent/Modal/AssignJobModal';
 import {surveyJobProps} from '../../../../../props/surveyJobProps';
+import {patchReassignSurvey} from '../../../../../services/api/surveyPenutupan/patchReassignSurvey';
 
 type SurveyJobAssignJobItemProps = {
   item: JobMonitoringListProps;
@@ -21,6 +23,7 @@ const SurveyJobAssignJobItem = ({
   surveyItem,
 }: SurveyJobAssignJobItemProps) => {
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [userNotes, setUserNotes] = useState<string | null>('');
   const [reassignConfirmation, setReassignConfirmation] =
     useState<boolean>(false);
 
@@ -28,7 +31,30 @@ const SurveyJobAssignJobItem = ({
     setReassignConfirmation(true);
   };
 
-  const handleConfirm = (confirmed: boolean) => {
+  const handleConfirm = async (confirmed: boolean) => {
+    if (confirmed) {
+      const noPengajuan = surveyItem.noPengajuanSurvey;
+      const unitNo = surveyItem.unitNo;
+      const fullName = item.nama.toUpperCase();
+
+      try {
+        const res = await patchReassignSurvey(
+          noPengajuan,
+          unitNo,
+          fullName,
+          userNotes,
+        );
+
+        if (res.status === '01') {
+          Toast.show('Survey Has Been Updated!', Toast.SHORT);
+        } else if (res.status === '02') {
+          Toast.show('Update Survey Failed!', Toast.SHORT);
+        }
+      } catch (error) {
+        console.log(`Error occured during survey assignment: ${error}`);
+        throw new Error();
+      }
+    }
     setReassignConfirmation(false);
   };
 
@@ -253,6 +279,7 @@ const SurveyJobAssignJobItem = ({
         <AssignJobModal
           item={surveyItem}
           visible={reassignConfirmation}
+          setUserNotes={setUserNotes}
           onConfirm={handleConfirm}
         />
       )}
