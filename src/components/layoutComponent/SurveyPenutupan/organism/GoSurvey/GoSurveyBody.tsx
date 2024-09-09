@@ -22,7 +22,6 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
   const [activeTab, setActiveTab] = useState<number>(0);
 
   const renderComponent = () => {
-    console.log(menuGoSurvey);
     switch (menuGoSurvey) {
       case 'General Info':
         return (
@@ -34,7 +33,14 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
           />
         );
       case 'Survey':
-        return <GoSurveySurveyBody surveyFunction={surveyFunction} />;
+        return (
+          <GoSurveySurveyBody
+            surveyFunction={surveyFunction}
+            navigateToSurveyInfo={() => {
+              handleGoSurveyMenuChangeNavigation('Survey Info', 2);
+            }}
+          />
+        );
       case 'Survey Info':
         return <GoSurveySurveyInfoBody surveyFunction={surveyFunction} />;
       case 'Signature':

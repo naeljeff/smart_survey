@@ -56,7 +56,6 @@ const GoSurveyGeneralInfoBody = ({
 
     try {
       const res = await patchGeneralInfoGoSurvey(data, noPengajuan!);
-
       if (res.status === '01') {
         Toast.show('Survey Has Been Saved!', Toast.SHORT);
         navigateToSurvey();

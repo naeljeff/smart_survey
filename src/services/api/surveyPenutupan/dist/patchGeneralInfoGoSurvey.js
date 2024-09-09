@@ -40,37 +40,38 @@ exports.patchGeneralInfoGoSurvey = void 0;
 var apiClient_1 = require("../../../utilities/apiClient");
 var KEY_ID = process.env.KEY_ID_PATCH_SURVEY || '';
 exports.patchGeneralInfoGoSurvey = function (data, noPengajuan) { return __awaiter(void 0, void 0, void 0, function () {
-    var BASE_ACCEPT_SURVEY_URL, surveyApiClient, res, error_1;
+    var BASE_ACCEPT_SURVEY_URL, surveyApiClient, requestData, res, error_1;
     var _a;
     return __generator(this, function (_b) {
         switch (_b.label) {
             case 0:
                 BASE_ACCEPT_SURVEY_URL = process.env.BASE_PATCH_SURVEY_URL || '';
                 surveyApiClient = apiClient_1["default"](BASE_ACCEPT_SURVEY_URL);
+                requestData = {
+                    key_id: KEY_ID,
+                    no_pengajuan: noPengajuan,
+                    unit_no: data === null || data === void 0 ? void 0 : data.unitNo,
+                    alamat_survey: data === null || data === void 0 ? void 0 : data.alamatSurvey,
+                    body_type: data === null || data === void 0 ? void 0 : data.bodyType,
+                    chassis_no: data === null || data === void 0 ? void 0 : data.chassisNo,
+                    email: data === null || data === void 0 ? void 0 : data.email,
+                    engine_no: data === null || data === void 0 ? void 0 : data.engineNo,
+                    fuel: data === null || data === void 0 ? void 0 : data.fuel,
+                    jenis_asuransi: data === null || data === void 0 ? void 0 : data.jenisAsuransi.toUpperCase(),
+                    merek: data === null || data === void 0 ? void 0 : data.merek.toUpperCase(),
+                    model: data === null || data === void 0 ? void 0 : data.model.toUpperCase(),
+                    nama: data === null || data === void 0 ? void 0 : data.nama,
+                    no_telp: data === null || data === void 0 ? void 0 : data.noTelp,
+                    plat_nomor: data === null || data === void 0 ? void 0 : data.platNomor,
+                    tipe: data === null || data === void 0 ? void 0 : data.tipe.toUpperCase(),
+                    transmission: (_a = data === null || data === void 0 ? void 0 : data.transmission) === null || _a === void 0 ? void 0 : _a.toUpperCase(),
+                    warna: data === null || data === void 0 ? void 0 : data.warna.toUpperCase(),
+                    year: data === null || data === void 0 ? void 0 : data.year
+                };
                 _b.label = 1;
             case 1:
                 _b.trys.push([1, 3, , 4]);
-                return [4 /*yield*/, surveyApiClient.post('', {
-                        key_id: KEY_ID,
-                        no_pengajuan: noPengajuan,
-                        unit_no: data === null || data === void 0 ? void 0 : data.unitNo,
-                        alamat_survey: data === null || data === void 0 ? void 0 : data.alamatSurvey,
-                        body_type: data === null || data === void 0 ? void 0 : data.bodyType,
-                        chassis_no: data === null || data === void 0 ? void 0 : data.chassisNo,
-                        email: data === null || data === void 0 ? void 0 : data.email,
-                        engine_no: data === null || data === void 0 ? void 0 : data.engineNo,
-                        fuel: data === null || data === void 0 ? void 0 : data.fuel,
-                        jenis_asuransi: data === null || data === void 0 ? void 0 : data.jenisAsuransi.toUpperCase(),
-                        merek: data === null || data === void 0 ? void 0 : data.merek.toUpperCase(),
-                        model: data === null || data === void 0 ? void 0 : data.model.toUpperCase(),
-                        nama: data === null || data === void 0 ? void 0 : data.nama,
-                        no_telp: data === null || data === void 0 ? void 0 : data.noTelp,
-                        plat_nomor: data === null || data === void 0 ? void 0 : data.platNomor,
-                        tipe: data === null || data === void 0 ? void 0 : data.tipe.toUpperCase(),
-                        transmission: (_a = data === null || data === void 0 ? void 0 : data.transmission) === null || _a === void 0 ? void 0 : _a.toUpperCase(),
-                        warna: data === null || data === void 0 ? void 0 : data.warna.toUpperCase(),
-                        year: data === null || data === void 0 ? void 0 : data.year
-                    }, {
+                return [4 /*yield*/, surveyApiClient.post('', requestData, {
                         headers: {
                             'Content-Type': 'application/json'
                         }
