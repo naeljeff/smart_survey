@@ -11,10 +11,10 @@ var getNewSurveyData_1 = require("../services/api/surveyPenutupan/getNewSurveyDa
 var storeUser_1 = require("../store/storeUser");
 var MySurveyFuaHistoryBody_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryBody");
 var getHistoryFua_1 = require("../services/api/surveyPenutupan/getHistoryFua");
-var SurveyPenutupanIncomingJobFUA = function (_a) {
-    var route = _a.route;
+var storeSelectedSurvey_1 = require("../store/storeSelectedSurvey");
+var SurveyPenutupanIncomingJobFUA = function () {
     var navigation = native_1.useNavigation();
-    var item = route.params.item;
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
     var messageResponse = storeUser_1.useUserStore(function (state) { return ({
         messageResponse: state.messageResponse
     }); }).messageResponse;
@@ -24,8 +24,8 @@ var SurveyPenutupanIncomingJobFUA = function (_a) {
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#fff]" },
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'FUA', onPress: function () { return navigation.goBack(); }, onRefresh: refetchSurveyData }),
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true },
-            react_1["default"].createElement(IncomingJobAppointment_1["default"], { item: item }),
-            react_1["default"].createElement(IncomingJobPersonalContact_1["default"], { item: item }),
+            react_1["default"].createElement(IncomingJobAppointment_1["default"], null),
+            react_1["default"].createElement(IncomingJobPersonalContact_1["default"], null),
             react_1["default"].createElement(IncomingJobCoorporateContact_1["default"], null),
             react_1["default"].createElement(MySurveyFuaHistoryBody_1["default"], { data: data }))));
 };

@@ -5,15 +5,11 @@ import {
   calcAgingDate,
   formatDateSurveyPenutupanJob,
 } from '../../../../../../utilities/functions';
-import {surveyJobProps} from '../../../../../../props/surveyJobProps';
-
-type IncomingJobAppointmentProps = {
-  item?: surveyJobProps;
-};
+import { useSelectedSurvey } from '../../../../../../store/storeSelectedSurvey';
 
 const IncomingJobAppointment = React.memo(
-  ({item}: IncomingJobAppointmentProps) => {
-
+  () => {
+    const {data: item} = useSelectedSurvey((state) => state);
     return (
       <View className="w-full flex flex-col items-start justify-center mb-2">
         <Text className="text-lg text-black font-bold px-3 py-1.5">

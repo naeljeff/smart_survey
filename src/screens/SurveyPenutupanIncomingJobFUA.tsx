@@ -12,22 +12,12 @@ import {UseGetNewSurveyData} from '../services/api/surveyPenutupan/getNewSurveyD
 import {useUserStore} from '../store/storeUser';
 import MySurveyFuaHistoryBody from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryBody';
 import { UseGetHistoryFuaList } from '../services/api/surveyPenutupan/getHistoryFua';
+import { useSelectedSurvey } from '../store/storeSelectedSurvey';
 
-type SurveyPenutupanIncomingJobFUARouteProps = RouteProp<
-  RootStackParamList,
-  'surveyPenutupanFormIncomingJobFUA'
->;
-
-type SurveyPenutupanIncomingJobFUAPageProps = {
-  route: SurveyPenutupanIncomingJobFUARouteProps;
-};
-
-const SurveyPenutupanIncomingJobFUA = ({
-  route,
-}: SurveyPenutupanIncomingJobFUAPageProps) => {
+const SurveyPenutupanIncomingJobFUA = () => {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
-  const {item} = route.params;
+  const {data: item} = useSelectedSurvey((state) => state);
 
   const {messageResponse} = useUserStore(state => ({
     messageResponse: state.messageResponse,
@@ -53,16 +43,15 @@ const SurveyPenutupanIncomingJobFUA = ({
       {/* Body */}
       <ScrollView automaticallyAdjustKeyboardInsets={true}>
         {/* Appointment Schedule */}
-        <IncomingJobAppointment item={item} />
+        <IncomingJobAppointment />
 
         {/* Personal Contact Schedule */}
-        <IncomingJobPersonalContact item={item} />
+        <IncomingJobPersonalContact />
 
         {/* Coorporate Contact Person */}
         <IncomingJobCoorporateContact />
 
         {/* Follow Up Activity */}
-        {/* <IncomingJobFUA /> */}
         <MySurveyFuaHistoryBody data={data} />
       </ScrollView>
     </View>

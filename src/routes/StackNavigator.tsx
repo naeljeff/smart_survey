@@ -28,7 +28,7 @@ export type RootStackParamList = {
 
   // Survey Penutupan
   surveyPenutupan: undefined;
-  surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
+  surveyPenutupanFormIncomingJobFUA: undefined;
   surveyPenutupanFormMySurveyJobFUA: {item: surveyJobProps};
   surveyPenutupanAssignJob: {item: surveyJobProps};
   surveyPenutupanHistoryFUA: {item: surveyJobProps};
