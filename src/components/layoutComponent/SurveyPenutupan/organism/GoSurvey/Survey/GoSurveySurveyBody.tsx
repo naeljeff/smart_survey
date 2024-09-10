@@ -39,7 +39,6 @@ const GoSurveySurveyBody = ({
       >
     >();
 
-  console.log(surveyFunction?.data?.data);
   // const handleOpenCamera = () => {
   //   console.log('Open Camera function called');
   //   const options: CameraOptions = {

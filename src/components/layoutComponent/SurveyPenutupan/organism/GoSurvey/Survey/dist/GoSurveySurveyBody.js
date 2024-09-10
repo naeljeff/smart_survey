@@ -6,12 +6,10 @@ var react_1 = require("react");
 var native_1 = require("@react-navigation/native");
 var storeSelectedSurvey_1 = require("../../../../../../store/storeSelectedSurvey");
 var GoSurveySurveyBody = function (_a) {
-    var _b;
     var surveyFunction = _a.surveyFunction, navigateToSurveyInfo = _a.navigateToSurveyInfo, isSurveyValidated = _a.isSurveyValidated;
     var selectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.setSelectedSurvey; });
     var navigateToExteriorScreen = native_1.useNavigation();
     var navigateToAdditionalScreen = native_1.useNavigation();
-    console.log((_b = surveyFunction === null || surveyFunction === void 0 ? void 0 : surveyFunction.data) === null || _b === void 0 ? void 0 : _b.data);
     // const handleOpenCamera = () => {
     //   console.log('Open Camera function called');
     //   const options: CameraOptions = {
