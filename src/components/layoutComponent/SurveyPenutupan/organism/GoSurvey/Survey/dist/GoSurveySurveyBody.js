@@ -9,7 +9,7 @@ var GoSurveySurveyBody = function (_a) {
     //     mediaType: 'photo',
     //     cameraType: 'back',
     //   };
-    var surveyFunction = _a.surveyFunction, navigateToSurveyInfo = _a.navigateToSurveyInfo;
+    var surveyFunction = _a.surveyFunction, navigateToSurveyInfo = _a.navigateToSurveyInfo, isSurveyValidated = _a.isSurveyValidated;
     //   launchCamera(options, response => {
     //     console.log('Camera response:', response);
     //     if (response.didCancel) {

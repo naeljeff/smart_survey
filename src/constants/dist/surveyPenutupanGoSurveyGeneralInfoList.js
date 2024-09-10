@@ -11,7 +11,7 @@ exports.transmissionDataList = [
     { key: 'automatic', label: 'Automatic' },
 ];
 exports.fuelDataList = [
-    { key: 'pertalite', label: 'Pertalite' },
-    { key: 'pertamax', label: 'Pertamax' },
-    { key: 'pertamaxTurbo', label: 'Pertamax Turbo' },
+    { key: 'bensin', label: 'Bensin' },
+    { key: 'solar', label: 'Solar' },
+    { key: 'listrik', label: 'Listrik' },
 ];

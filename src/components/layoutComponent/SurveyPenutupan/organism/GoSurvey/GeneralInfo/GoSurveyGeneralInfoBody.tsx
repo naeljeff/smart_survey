@@ -22,11 +22,13 @@ type surveyJobPropAsData = {
 type GoSurveyGeneralInfoBodyProps = {
   surveyFunction: UseQueryResult<surveyJobPropAsData>;
   navigateToSurvey: () => void;
+  isGeneralInfoValidated: () => void;
 };
 
 const GoSurveyGeneralInfoBody = ({
   surveyFunction,
-  navigateToSurvey
+  navigateToSurvey,
+  isGeneralInfoValidated
 }: GoSurveyGeneralInfoBodyProps) => {
   const [formData, setFormData] = useState<surveyJobProps | null>(null);
 
@@ -59,6 +61,7 @@ const GoSurveyGeneralInfoBody = ({
       if (res.status === '01') {
         Toast.show('Survey Has Been Saved!', Toast.SHORT);
         navigateToSurvey();
+        isGeneralInfoValidated();
       } else if (res.status === '02') {
         Toast.show('Save Survey Failed!', Toast.SHORT);
       }

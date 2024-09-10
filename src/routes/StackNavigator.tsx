@@ -33,6 +33,7 @@ export type RootStackParamList = {
   surveyPenutupanAssignJob: {item: surveyJobProps};
   surveyPenutupanHistoryFUA: {item: surveyJobProps};
   surveyPenutupanGoSurvey: {item: surveyJobProps};
+  surveyPenutupanGoSurveyExterior: {item: surveyJobProps};
 
   // Supervisor
   supervisor: undefined;

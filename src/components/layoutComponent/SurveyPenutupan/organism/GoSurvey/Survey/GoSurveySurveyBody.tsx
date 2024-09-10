@@ -11,11 +11,13 @@ type surveyJobPropAsData = {
 type GoSurveySurveyBodyProps = {
   surveyFunction: UseQueryResult<surveyJobPropAsData>;
   navigateToSurveyInfo: () => void;
+  isSurveyValidated: () => void;
 };
 
 const GoSurveySurveyBody = ({
   surveyFunction,
   navigateToSurveyInfo,
+  isSurveyValidated
 }: GoSurveySurveyBodyProps) => {
   // const handleOpenCamera = () => {
   //   console.log('Open Camera function called');

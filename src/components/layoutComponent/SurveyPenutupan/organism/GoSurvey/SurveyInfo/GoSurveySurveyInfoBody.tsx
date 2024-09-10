@@ -19,11 +19,13 @@ type surveyJobPropAsData = {
 type GoSurveyInfoBodyProps = {
   surveyFunction: UseQueryResult<surveyJobPropAsData>;
   navigateToSignature: () => void;
+  isSurveyInfoValidated: () => void;
 };
 
 const GoSurveySurveyInfoBody = ({
   surveyFunction,
   navigateToSignature,
+  isSurveyInfoValidated
 }: GoSurveyInfoBodyProps) => {
   const [conclusionOfVehicle, setConclusionOfVehicle] = useState<string | null>(
     null,
