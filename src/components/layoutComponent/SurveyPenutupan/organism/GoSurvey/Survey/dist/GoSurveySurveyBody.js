@@ -2,7 +2,6 @@
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var react_1 = require("react");
-// import {CameraOptions, launchCamera} from 'react-native-image-picker';
 var native_1 = require("@react-navigation/native");
 var storeSelectedSurvey_1 = require("../../../../../../store/storeSelectedSurvey");
 var GoSurveySurveyBody = function (_a) {

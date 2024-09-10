@@ -1,9 +1,9 @@
 import {Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {UseQueryResult} from '@tanstack/react-query';
-// import {CameraOptions, launchCamera} from 'react-native-image-picker';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+// import {CameraOptions, launchCamera} from 'react-native-image-picker';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import {RootStackParamList} from '../../../../../../routes/StackNavigator';
