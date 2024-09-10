@@ -46,6 +46,7 @@ var ConfirmationModal_1 = require("../../../../reusableComponent/Modal/Confirmat
 var storeUser_1 = require("../../../../../store/storeUser");
 var patchAcceptSurvey_1 = require("../../../../../services/api/surveyPenutupan/patchAcceptSurvey");
 var getNewSurveyData_1 = require("../../../../../services/api/surveyPenutupan/getNewSurveyData");
+var storeSelectedSurvey_1 = require("../../../../../store/storeSelectedSurvey");
 var SurveyJobItemMenu = function (_a) {
     var item = _a.item;
     var navigationToGoogleMap = native_1.useNavigation();
@@ -53,6 +54,8 @@ var SurveyJobItemMenu = function (_a) {
     var _b = react_1.useState(false), menuState = _b[0], setMenuState = _b[1];
     var _c = react_1.useState(false), confirmationModal = _c[0], setConfirmationModal = _c[1];
     var _d = react_1.useState(''), modalType = _d[0], setModalType = _d[1];
+    var clearSelectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.clearSelectedSurvey; });
+    var selectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.setSelectedSurvey; });
     var openMenu = function () { return setMenuState(true); };
     var closeMenu = function () { return setMenuState(false); };
     var messageResponse = storeUser_1.useUserStore(function (state) { return ({
@@ -61,9 +64,15 @@ var SurveyJobItemMenu = function (_a) {
     var fullName = (messageResponse === null || messageResponse === void 0 ? void 0 : messageResponse.full_name) || '';
     var refetch = getNewSurveyData_1.UseGetNewSurveyData(fullName).refetch;
     var handleOnPressView = function () {
-        navigationToGoogleMap.navigate('googleMaps', {
-            item: item
-        });
+        if (item) {
+            clearSelectedSurvey();
+            selectedSurvey(item);
+            navigationToGoogleMap.navigate('googleMaps', { item: item });
+        }
+        else {
+            selectedSurvey(item);
+            navigationToGoogleMap.navigate('googleMaps', { item: item });
+        }
     };
     var handleOnAcceptSurvey = function () {
         setModalType('accept');
@@ -77,7 +86,15 @@ var SurveyJobItemMenu = function (_a) {
     };
     var handleOnAssignSurvey = function () {
         closeMenu();
-        navigationToAssignJob.navigate('surveyPenutupanAssignJob', { item: item });
+        if (item) {
+            clearSelectedSurvey();
+            selectedSurvey(item);
+            navigationToAssignJob.navigate('surveyPenutupanAssignJob', { item: item });
+        }
+        else {
+            selectedSurvey(item);
+            navigationToAssignJob.navigate('surveyPenutupanAssignJob', { item: item });
+        }
     };
     var handleConfirm = function (confirmed) { return __awaiter(void 0, void 0, void 0, function () {
         var _a, res, error_1;
