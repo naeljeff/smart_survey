@@ -23,11 +23,17 @@ const SurveyJobItem = React.memo(
     const dayDiff = calcAgingDate(item.createdAt);
     const formattedDate = formatDateSurveyPenutupanJob(item.createdAt);
 
+    const clearSelectedSurvey = useSelectedSurvey(
+      state => state.clearSelectedSurvey,
+    );
     const selectedSurvey = useSelectedSurvey(state => state.setSelectedSurvey);
 
     const handleListPress = () => {
       console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
-      selectedSurvey(item);
+      if (item) {
+        clearSelectedSurvey();
+        selectedSurvey(item);
+      } else selectedSurvey(item);
       navigation.navigate('surveyPenutupanFormIncomingJobFUA');
     };
 

@@ -2,8 +2,12 @@ import {Alert, ScrollView, Text, TouchableOpacity, View} from 'react-native';
 import React from 'react';
 import {UseQueryResult} from '@tanstack/react-query';
 // import {CameraOptions, launchCamera} from 'react-native-image-picker';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {surveyJobProps} from '../../../../../../props/surveyJobProps';
+import {RootStackParamList} from '../../../../../../routes/StackNavigator';
+import {useSelectedSurvey} from '../../../../../../store/storeSelectedSurvey';
 type surveyJobPropAsData = {
   data: surveyJobProps;
 };
@@ -17,8 +21,25 @@ type GoSurveySurveyBodyProps = {
 const GoSurveySurveyBody = ({
   surveyFunction,
   navigateToSurveyInfo,
-  isSurveyValidated
+  isSurveyValidated,
 }: GoSurveySurveyBodyProps) => {
+  const selectedSurvey = useSelectedSurvey(state => state.setSelectedSurvey);
+  const navigateToExteriorScreen =
+    useNavigation<
+      NativeStackNavigationProp<
+        RootStackParamList,
+        'surveyPenutupanGoSurveyExterior'
+      >
+    >();
+  const navigateToAdditionalScreen =
+    useNavigation<
+      NativeStackNavigationProp<
+        RootStackParamList,
+        'surveyPenutupanGoSurveyAdditional'
+      >
+    >();
+
+  console.log(surveyFunction?.data?.data);
   // const handleOpenCamera = () => {
   //   console.log('Open Camera function called');
   //   const options: CameraOptions = {
@@ -43,6 +64,33 @@ const GoSurveySurveyBody = ({
   //     }
   //   });
   // };
+  const handleNavigationToExterior = () => {
+    // Set item
+    if (surveyFunction.data?.data) {
+      selectedSurvey(surveyFunction.data.data);
+      navigateToExteriorScreen.navigate('surveyPenutupanGoSurveyExterior');
+    } else {
+      Alert.alert(
+        'Go Survey',
+        'Error occured with survey data, please try again!',
+        [{text: 'OK'}],
+      );
+    }
+  };
+
+  const handleNavigationToAdditional = () => {
+    // Set item
+    if (surveyFunction.data?.data) {
+      selectedSurvey(surveyFunction.data.data);
+      navigateToAdditionalScreen.navigate('surveyPenutupanGoSurveyAdditional');
+    } else {
+      Alert.alert(
+        'Go Survey',
+        'Error occured with survey data, please try again!',
+        [{text: 'OK'}],
+      );
+    }
+  };
   return (
     <ScrollView automaticallyAdjustKeyboardInsets={true} className="flex-grow">
       {/* General Info */}
@@ -74,7 +122,7 @@ const GoSurveySurveyBody = ({
         {/* Exterior */}
         <TouchableOpacity
           className="w-full bg-gray-100 rounded-md px-4 py-1.5 border border-black"
-          onPress={() => navigateToSurveyInfo()}>
+          onPress={handleNavigationToExterior}>
           <Text className="text-black text-sm text-center uppercase">
             Exterior
           </Text>
@@ -83,7 +131,7 @@ const GoSurveySurveyBody = ({
         {/* Additional */}
         <TouchableOpacity
           className="w-full bg-gray-100 rounded-md px-4 py-1.5 border border-black"
-          onPress={() => navigateToSurveyInfo()}>
+          onPress={handleNavigationToAdditional}>
           <Text className="text-black text-sm text-center uppercase">
             Additional
           </Text>

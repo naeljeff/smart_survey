@@ -51,6 +51,7 @@ var ConfirmationModal_1 = require("../components/reusableComponent/Modal/Confirm
 var storeUser_1 = require("../store/storeUser");
 var functions_1 = require("../utilities/functions");
 var addHistoryFua_1 = require("../services/api/surveyPenutupan/addHistoryFua");
+var storeSelectedSurvey_1 = require("../store/storeSelectedSurvey");
 var SurveyPenutupanMySurveyJobFUA = function (_a) {
     var route = _a.route;
     var _b = react_1.useState({
@@ -61,7 +62,7 @@ var SurveyPenutupanMySurveyJobFUA = function (_a) {
         remarks: ''
     }), tempFua = _b[0], setTempFua = _b[1];
     var _c = react_1.useState(false), confirmSubmitFua = _c[0], setConfirmSubmitFua = _c[1];
-    var item = route.params.item;
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
     var navigation = native_1.useNavigation();
     var messageResponse = storeUser_1.useUserStore(function (state) { return ({
         messageResponse: state.messageResponse
@@ -148,11 +149,11 @@ var SurveyPenutupanMySurveyJobFUA = function (_a) {
         react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#FFF]" },
             react_1["default"].createElement(NavigationHeader_1["default"], { title: 'FUA', onPress: function () { return navigation.goBack(); } }),
             react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true },
-                react_1["default"].createElement(MySurveyAppointment_1["default"], { item: item }),
-                react_1["default"].createElement(MySurveyPersonalContact_1["default"], { item: item }),
+                react_1["default"].createElement(MySurveyAppointment_1["default"], null),
+                react_1["default"].createElement(MySurveyPersonalContact_1["default"], null),
                 react_1["default"].createElement(MySurveyCoorporateContact_1["default"], null),
                 react_1["default"].createElement(MySurveyFUA_1["default"], { tempFua: tempFua, setTempFua: setTempFua }),
-                react_1["default"].createElement(MySurveyFUAButtons_1["default"], { item: item, onSaveFua: handleSaveTemporaryFUA, onTriggerSubmitFua: handleTriggerSubmitFua }))),
+                react_1["default"].createElement(MySurveyFUAButtons_1["default"], { onSaveFua: handleSaveTemporaryFUA, onTriggerSubmitFua: handleTriggerSubmitFua }))),
         confirmSubmitFua && (react_1["default"].createElement(ConfirmationModal_1["default"], { title: "Are you sure you want to submit this FUA?", visible: confirmSubmitFua, onConfirm: handleSubmitFUA }))));
 };
 exports["default"] = SurveyPenutupanMySurveyJobFUA;

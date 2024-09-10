@@ -21,6 +21,7 @@ import ConfirmationModal from '../components/reusableComponent/Modal/Confirmatio
 import {useUserStore} from '../store/storeUser';
 import {formatDateToDateTime} from '../utilities/functions';
 import {addNewHistoryFua} from '../services/api/surveyPenutupan/addHistoryFua';
+import {useSelectedSurvey} from '../store/storeSelectedSurvey';
 
 type SurveyPenutupanMySurveyJobFUARouteProps = RouteProp<
   RootStackParamList,
@@ -42,8 +43,8 @@ const SurveyPenutupanMySurveyJobFUA = ({
     remarks: '',
   });
   const [confirmSubmitFua, setConfirmSubmitFua] = useState<boolean>(false);
+  const {data: item} = useSelectedSurvey(state => state);
 
-  const {item} = route.params;
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const {messageResponse} = useUserStore(state => ({
@@ -57,8 +58,8 @@ const SurveyPenutupanMySurveyJobFUA = ({
   useFocusEffect(
     useCallback(() => {
       const currentFuaData = getTemporaryFUAData(
-        item.noPengajuanSurvey,
-        item.unitNo,
+        item!.noPengajuanSurvey,
+        item!.unitNo,
       );
       if (currentFuaData) {
         setTempFua({
@@ -69,13 +70,13 @@ const SurveyPenutupanMySurveyJobFUA = ({
           remarks: currentFuaData.remarks || '',
         });
       }
-    }, [item.noPengajuanSurvey, item.unitNo, getTemporaryFUAData]),
+    }, [item!.noPengajuanSurvey, item!.unitNo, getTemporaryFUAData]),
   );
 
   const handleSaveTemporaryFUA = () => {
     const newFuaData = {
-      noPengajuan: item.noPengajuanSurvey,
-      unitNo: item.unitNo,
+      noPengajuan: item!.noPengajuanSurvey,
+      unitNo: item!.unitNo,
       contactDate: tempFua.contactDate ?? new Date(),
       appointmentDate: tempFua.appointmentDate ?? new Date(),
       address: tempFua.address,
@@ -98,8 +99,8 @@ const SurveyPenutupanMySurveyJobFUA = ({
       const contactDate = formatDateToDateTime(tempFua.contactDate);
       const appointmentDate = formatDateToDateTime(tempFua.appointmentDate);
       const res = await addNewHistoryFua(
-        item.noPengajuanSurvey,
-        item.unitNo,
+        item!.noPengajuanSurvey,
+        item!.unitNo,
         fullName,
         contactDate,
         appointmentDate,
@@ -152,10 +153,10 @@ const SurveyPenutupanMySurveyJobFUA = ({
         {/* Body */}
         <ScrollView automaticallyAdjustKeyboardInsets={true}>
           {/* Appointment Schedule */}
-          <MySurveyAppointment item={item} />
+          <MySurveyAppointment />
 
           {/* Personal Contact Schedule */}
-          <MySurveyPersonalContact item={item} />
+          <MySurveyPersonalContact />
 
           {/* Coorporate Contact Person */}
           <MySurveyCoorporateContact />
@@ -165,7 +166,6 @@ const SurveyPenutupanMySurveyJobFUA = ({
 
           {/* Buttons */}
           <MySurveyFUAButtons
-            item={item}
             onSaveFua={handleSaveTemporaryFUA}
             onTriggerSubmitFua={handleTriggerSubmitFua}
           />

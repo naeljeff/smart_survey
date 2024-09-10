@@ -66,7 +66,6 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
     setActiveTab(index);
   };
 
-  console.log(validatedInformation)
   return (
     <View className="flex-1 flex flex-col bg-white">
       {/* Go Survey Menu Options */}

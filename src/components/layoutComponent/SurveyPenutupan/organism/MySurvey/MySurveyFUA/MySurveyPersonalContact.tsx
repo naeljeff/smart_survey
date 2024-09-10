@@ -1,14 +1,11 @@
 import {Text, TextInput, View} from 'react-native';
 import React, {useState} from 'react';
 
-import {surveyJobProps} from '../../../../../../props/surveyJobProps';
-
-type MySurveyPersonalContactProps = {
-  item?: surveyJobProps;
-};
+import { useSelectedSurvey } from '../../../../../../store/storeSelectedSurvey';
 
 const MySurveyPersonalContact = React.memo(
-  ({item}: MySurveyPersonalContactProps) => {
+  () => {
+    const {data: item} = useSelectedSurvey((state) => state);
     const [name, setName] = useState<string>(item?.nama || '');
     const [address, setAddress] = useState<string>(item?.alamat || '');
     const [phoneNumber, setPhoneNumber] = useState<string>(item?.noTelp || '');

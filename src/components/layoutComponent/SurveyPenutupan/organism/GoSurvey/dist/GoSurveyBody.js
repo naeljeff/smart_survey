@@ -36,7 +36,6 @@ var GoSurveyBody = function (_a) {
         setMenuGoSurvey(menu);
         setActiveTab(index);
     };
-    console.log(validatedInformation);
     return (react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex flex-col bg-white" },
         react_1["default"].createElement(GoSurveyMenuOptions_1["default"], { onMenuChange: handleGoSurveyMenuChangeNavigation, activeTab: activeTab }),
         renderComponent()));

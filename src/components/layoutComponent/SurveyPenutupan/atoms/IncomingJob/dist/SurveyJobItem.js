@@ -10,10 +10,16 @@ var SurveyJobItem = react_1["default"].memo(function (_a) {
     var item = _a.item, index = _a.index, navigation = _a.navigation;
     var dayDiff = functions_1.calcAgingDate(item.createdAt);
     var formattedDate = functions_1.formatDateSurveyPenutupanJob(item.createdAt);
+    var clearSelectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.clearSelectedSurvey; });
     var selectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.setSelectedSurvey; });
     var handleListPress = function () {
         console.log("Index: " + index + " | Item: " + item.noPengajuanSurvey);
-        selectedSurvey(item);
+        if (item) {
+            clearSelectedSurvey();
+            selectedSurvey(item);
+        }
+        else
+            selectedSurvey(item);
         navigation.navigate('surveyPenutupanFormIncomingJobFUA');
     };
     return (react_1["default"].createElement(react_native_1.View, { className: "w-screen py-0.5 px-1 border-b border-black" },

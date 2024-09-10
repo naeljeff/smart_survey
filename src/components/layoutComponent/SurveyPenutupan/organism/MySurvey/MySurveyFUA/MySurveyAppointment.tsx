@@ -6,14 +6,11 @@ import {
   calcAgingDate,
   formatInputDateFUA,
 } from '../../../../../../utilities/functions';
-import {surveyJobProps} from '../../../../../../props/surveyJobProps';
-
-type MySurveyJobAppointmentProps = {
-  item?: surveyJobProps;
-};
+import { useSelectedSurvey } from '../../../../../../store/storeSelectedSurvey';
 
 const MySurveyAppointment = React.memo(
-  ({item}: MySurveyJobAppointmentProps) => {
+  () => {
+    const {data: item} = useSelectedSurvey((state) => state);
     const [noPengajuan, setNoPengajuan] = useState<string>(
       item?.noPengajuanSurvey || '',
     );

@@ -40,8 +40,12 @@ var react_native_1 = require("react-native");
 var native_1 = require("@react-navigation/native");
 var react_1 = require("react");
 var ConfirmationModal_1 = require("../../../../../reusableComponent/Modal/ConfirmationModal");
+var storeSelectedSurvey_1 = require("../../../../../../store/storeSelectedSurvey");
 var MySurveyFUAButtons = function (_a) {
-    var item = _a.item, onSaveFua = _a.onSaveFua, onTriggerSubmitFua = _a.onTriggerSubmitFua;
+    var onSaveFua = _a.onSaveFua, onTriggerSubmitFua = _a.onTriggerSubmitFua;
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
+    var clearSelectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.clearSelectedSurvey; });
+    var selectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.setSelectedSurvey; });
     var _b = react_1.useState(false), confirmedGoSurvey = _b[0], setConfirmedGoSurvey = _b[1];
     var navigationToHistory = native_1.useNavigation();
     var navigationToGoSurvey = native_1.useNavigation();
@@ -52,7 +56,15 @@ var MySurveyFUAButtons = function (_a) {
         onSaveFua();
     };
     var handleOpenHistoryFua = function () {
-        navigationToHistory.navigate('surveyPenutupanHistoryFUA', { item: item });
+        if (item) {
+            clearSelectedSurvey();
+            selectedSurvey(item);
+            navigationToHistory.navigate('surveyPenutupanHistoryFUA');
+        }
+        else {
+            selectedSurvey(item);
+            navigationToHistory.navigate('surveyPenutupanHistoryFUA');
+        }
     };
     var handleCallContactPerson = function () {
         var phoneNumber = "tel:" + item.noTelp;
@@ -64,8 +76,17 @@ var MySurveyFUAButtons = function (_a) {
     var handleConfirmedGoSurvey = function (confirmed) { return __awaiter(void 0, void 0, void 0, function () {
         return __generator(this, function (_a) {
             setConfirmedGoSurvey(false);
-            if (confirmed)
-                navigationToGoSurvey.navigate('surveyPenutupanGoSurvey', { item: item });
+            if (confirmed) {
+                if (item) {
+                    clearSelectedSurvey();
+                    selectedSurvey(item);
+                    navigationToGoSurvey.navigate('surveyPenutupanGoSurvey');
+                }
+                else {
+                    selectedSurvey(item);
+                    navigationToGoSurvey.navigate('surveyPenutupanGoSurvey');
+                }
+            }
             return [2 /*return*/];
         });
     }); };

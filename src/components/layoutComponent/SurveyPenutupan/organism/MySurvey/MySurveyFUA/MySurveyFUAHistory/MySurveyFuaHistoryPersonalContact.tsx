@@ -1,15 +1,10 @@
 import {Text, View} from 'react-native';
 import React from 'react';
 
-import {surveyJobProps} from '../../../../../../../props/surveyJobProps';
+import { useSelectedSurvey } from '../../../../../../../store/storeSelectedSurvey';
 
-type MySurveyFuaHistoryPersonalContactProps = {
-  item?: surveyJobProps;
-};
-
-const MySurveyFuaHistoryPersonalContact = ({
-  item,
-}: MySurveyFuaHistoryPersonalContactProps) => {
+const MySurveyFuaHistoryPersonalContact = () => {
+  const {data: item} = useSelectedSurvey((state) => state);
   return (
     <View className="w-full flex flex-col items-start justify-center mb-2">
       <Text className="text-lg text-black font-bold px-3 py-1.5">
