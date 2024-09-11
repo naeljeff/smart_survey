@@ -1,4 +1,4 @@
-import {Text, TextInput, View} from 'react-native';
+import {ScrollView, Text, TextInput, View} from 'react-native';
 import React from 'react';
 
 import GoSurveyExteriorEditBtn from '../../../atoms/GoSurvey/GoSurveyExterior/GoSurveyExteriorEditBtn';
@@ -13,14 +13,14 @@ type GoSurveyExteriorDetailProps = {
 
 const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
   return (
-    <View className="w-full flex flex-col justify-start border-b border-gray-300 px-3 py-2">
+    <View className="w-full flex-1 flex-col justify-start border-b border-gray-300 px-3 py-2">
       {/* Title */}
       <View className="w-full flex justify-center items-start">
         <Text className="text-black text-[16px] uppercase">{title}</Text>
       </View>
 
       {/* Fields */}
-      <View className="w-full flex-1 flex flex-row justify-center items-center mb-20">
+      <View className="w-full flex-1 flex flex-row justify-center items-center">
         {/* Status of Condition and Status */}
         <View className="w-1/3 flex flex-col space-y-2">
           {/* Status of Condition */}
@@ -89,6 +89,14 @@ const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
           </View>
         </View>
       </View>
+
+      {/* Picture */}
+      <ScrollView
+        className="h-[80px] my-2"
+        showsVerticalScrollIndicator={true}
+        nestedScrollEnabled={true}>
+        {/* Ntar foto yg diupload masuk ke sini */}
+      </ScrollView>
     </View>
   );
 };

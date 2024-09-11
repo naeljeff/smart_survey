@@ -1,10 +1,10 @@
-import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import {ScrollView, Text, View} from 'react-native';
 import React from 'react';
 import GoSurveyExteriorDetail from '../../../molecules/GoSurvey/GoSurveyExterior/GoSurveyExteriorDetail';
 
 const GoSurveyExteriorBody = () => {
   return (
-    <ScrollView automaticallyAdjustKeyboardInsets={true} className="flex-grow">
+    <ScrollView automaticallyAdjustKeyboardInsets={true} className="flex-1">
       {/* General Info */}
       <View className="w-full border-b border-black">
         <Text className="font-semibold text-black text-[16px] px-5 py-1">

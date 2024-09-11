@@ -9,10 +9,10 @@ var GoSurveyExteriorCameraBtn_1 = require("../../../atoms/GoSurvey/GoSurveyExter
 var GoSurveyGeneralInfoDropdown_1 = require("../../../atoms/GoSurvey/GoSurveyGeneralInfoDropdown");
 var GoSurveyExteriorDetail = function (_a) {
     var title = _a.title;
-    return (react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-col justify-start border-b border-gray-300 px-3 py-2" },
+    return (react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 flex-col justify-start border-b border-gray-300 px-3 py-2" },
         react_1["default"].createElement(react_native_1.View, { className: "w-full flex justify-center items-start" },
             react_1["default"].createElement(react_native_1.Text, { className: "text-black text-[16px] uppercase" }, title)),
-        react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 flex flex-row justify-center items-center mb-20" },
+        react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 flex flex-row justify-center items-center" },
             react_1["default"].createElement(react_native_1.View, { className: "w-1/3 flex flex-col space-y-2" },
                 react_1["default"].createElement(react_native_1.View, { className: "mb-2" },
                     react_1["default"].createElement(GoSurveyGeneralInfoDropdown_1["default"], { data: '', onChange: function () { }, fieldName: '', properties: 'statusOfCondition', placeholder: "Select Status of Condition" })),
@@ -33,6 +33,7 @@ var GoSurveyExteriorDetail = function (_a) {
                 react_1["default"].createElement(react_native_1.View, { className: "w-full flex-1 flex flex-row justify-center items-center mt-1 ml-1" },
                     react_1["default"].createElement(react_native_1.View, { className: "mx-0.5" },
                         react_1["default"].createElement(GoSurveyExteriorGalleryBtn_1["default"], { onPress: function () { } })),
-                    react_1["default"].createElement(GoSurveyExteriorCameraBtn_1["default"], { onPress: function () { } }))))));
+                    react_1["default"].createElement(GoSurveyExteriorCameraBtn_1["default"], { onPress: function () { } })))),
+        react_1["default"].createElement(react_native_1.ScrollView, { className: "h-[80px] my-2", showsVerticalScrollIndicator: true, nestedScrollEnabled: true })));
 };
 exports["default"] = GoSurveyExteriorDetail;
