@@ -12,6 +12,7 @@ import ConfirmationModal from '../../../../reusableComponent/Modal/ConfirmationM
 import {useUserStore} from '../../../../../store/storeUser';
 import {patchAcceptNewSurvey} from '../../../../../services/api/surveyPenutupan/patchAcceptSurvey';
 import {UseGetNewSurveyData} from '../../../../../services/api/surveyPenutupan/getNewSurveyData';
+import {useSelectedSurvey} from '../../../../../store/storeSelectedSurvey';
 
 type SurveyJobItemMenuProps = {
   item: surveyJobProps;
@@ -29,6 +30,10 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
   const [menuState, setMenuState] = useState<boolean>(false);
   const [confirmationModal, setConfirmationModal] = useState<boolean>(false);
   const [modalType, setModalType] = useState<string>('');
+  const clearSelectedSurvey = useSelectedSurvey(
+    state => state.clearSelectedSurvey,
+  );
+  const selectedSurvey = useSelectedSurvey(state => state.setSelectedSurvey);
 
   const openMenu = () => setMenuState(true);
   const closeMenu = () => setMenuState(false);
@@ -41,9 +46,14 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
   const {refetch} = UseGetNewSurveyData(fullName);
 
   const handleOnPressView = () => {
-    navigationToGoogleMap.navigate('googleMaps', {
-      item: item,
-    });
+    if (item) {
+      clearSelectedSurvey();
+      selectedSurvey(item);
+      navigationToGoogleMap.navigate('googleMaps', {item: item});
+    } else {
+      selectedSurvey(item);
+      navigationToGoogleMap.navigate('googleMaps', {item: item});
+    }
   };
 
   const handleOnAcceptSurvey = () => {
@@ -60,7 +70,14 @@ const SurveyJobItemMenu = ({item}: SurveyJobItemMenuProps) => {
 
   const handleOnAssignSurvey = () => {
     closeMenu();
-    navigationToAssignJob.navigate('surveyPenutupanAssignJob', {item: item});
+    if (item) {
+      clearSelectedSurvey();
+      selectedSurvey(item);
+      navigationToAssignJob.navigate('surveyPenutupanAssignJob', {item: item});
+    } else {
+      selectedSurvey(item);
+      navigationToAssignJob.navigate('surveyPenutupanAssignJob', {item: item});
+    }
   };
 
   const handleConfirm = async (confirmed: boolean) => {

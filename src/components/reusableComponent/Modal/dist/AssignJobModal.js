@@ -31,7 +31,7 @@ var AssignJobModal = function (_a) {
                     react_1["default"].createElement(react_native_1.Text, { className: "text-[16px] text-black/90 font-semibold capitalize" }, "Supervisor Note")),
                 react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black" }),
                 react_1["default"].createElement(react_native_1.View, { className: "flex-1 flex-col justify-start items-start py-1 bg-white" },
-                    react_1["default"].createElement(react_native_1.View, { className: "w-full h-2/5" },
+                    react_1["default"].createElement(react_native_1.ScrollView, { className: "w-full h-2/5" },
                         react_1["default"].createElement(SurveyJobDetailForMap_1["default"], { item: item })),
                     react_1["default"].createElement(react_native_1.View, { className: "w-full h-[57%] border border-black rounded-lg px-2 mt-1" },
                         react_1["default"].createElement(react_native_1.TextInput, { multiline: true, placeholder: "Notes", onChangeText: function (text) { return setUserNotes(text); } }))),

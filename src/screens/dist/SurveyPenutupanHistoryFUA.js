@@ -9,11 +9,11 @@ var MySurveyFuaHistoryBody_1 = require("../components/layoutComponent/SurveyPenu
 var MySurveyFuaHistoryAppointment_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryAppointment");
 var MySurveyFuaHistoryCooporateContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryCooporateContact");
 var MySurveyFuaHistoryPersonalContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryPersonalContact");
-var SurveyPenutupanHistoryFUA = function (_a) {
-    var route = _a.route;
-    var item = route.params.item;
+var storeSelectedSurvey_1 = require("../store/storeSelectedSurvey");
+var SurveyPenutupanHistoryFUA = function () {
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
     var navigation = native_1.useNavigation();
-    var _b = getHistoryFua_1.UseGetHistoryFuaList(item.noPengajuanSurvey, item.unitNo), data = _b.data, isLoading = _b.isLoading, isError = _b.isError, refetch = _b.refetch, error = _b.error;
+    var _a = getHistoryFua_1.UseGetHistoryFuaList(item.noPengajuanSurvey, item.unitNo), data = _a.data, isLoading = _a.isLoading, isError = _a.isError, refetch = _a.refetch, error = _a.error;
     if (isLoading) {
         return (react_1["default"].createElement(react_native_1.View, { className: "h-screen w-screen flex flex-col justify-center items-center bg-gray-400/50" },
             react_1["default"].createElement(react_native_1.ActivityIndicator, { size: "large", color: "#00bffe" })));
@@ -24,8 +24,8 @@ var SurveyPenutupanHistoryFUA = function (_a) {
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-white" },
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'History FUA', onPress: function () { return navigation.goBack(); }, onRefresh: refetch }),
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true, refreshControl: react_1["default"].createElement(react_native_1.RefreshControl, { refreshing: isLoading, onRefresh: refetch, colors: ['#00bfff'] }) },
-            react_1["default"].createElement(MySurveyFuaHistoryAppointment_1["default"], { item: item }),
-            react_1["default"].createElement(MySurveyFuaHistoryPersonalContact_1["default"], { item: item }),
+            react_1["default"].createElement(MySurveyFuaHistoryAppointment_1["default"], null),
+            react_1["default"].createElement(MySurveyFuaHistoryPersonalContact_1["default"], null),
             react_1["default"].createElement(MySurveyFuaHistoryCooporateContact_1["default"], null),
             react_1["default"].createElement(MySurveyFuaHistoryBody_1["default"], { data: data }))));
 };

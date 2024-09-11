@@ -5,6 +5,7 @@ import {
   Modal,
   TouchableOpacity,
   TextInput,
+  ScrollView,
 } from 'react-native';
 import React, {useEffect, useRef} from 'react';
 
@@ -67,9 +68,9 @@ const AssignJobModal = ({
           {/* Body Modal */}
           <View className="flex-1 flex-col justify-start items-start py-1 bg-white">
             {/* Survey Detail */}
-            <View className="w-full h-2/5">
+            <ScrollView className="w-full h-2/5">
               <SurveyJobDetailForMap item={item} />
-            </View>
+            </ScrollView>
             {/* Notes */}
             <View className="w-full h-[57%] border border-black rounded-lg px-2 mt-1">
               <TextInput

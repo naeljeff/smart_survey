@@ -3,21 +3,24 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 
-import {surveyJobProps} from '../../../../../../props/surveyJobProps';
 import {RootStackParamList} from '../../../../../../routes/StackNavigator';
 import ConfirmationModal from '../../../../../reusableComponent/Modal/ConfirmationModal';
+import {useSelectedSurvey} from '../../../../../../store/storeSelectedSurvey';
 
 type MySurveyFUAButtonProps = {
-  item: surveyJobProps;
   onSaveFua: () => void;
   onTriggerSubmitFua: () => void;
 };
 
 const MySurveyFUAButtons = ({
-  item,
   onSaveFua,
   onTriggerSubmitFua,
 }: MySurveyFUAButtonProps) => {
+  const {data: item} = useSelectedSurvey(state => state);
+  const clearSelectedSurvey = useSelectedSurvey(
+    state => state.clearSelectedSurvey,
+  );
+  const selectedSurvey = useSelectedSurvey(state => state.setSelectedSurvey);
   const [confirmedGoSurvey, setConfirmedGoSurvey] = useState<boolean>(false);
   const navigationToHistory =
     useNavigation<
@@ -36,11 +39,18 @@ const MySurveyFUAButtons = ({
   };
 
   const handleOpenHistoryFua = () => {
-    navigationToHistory.navigate('surveyPenutupanHistoryFUA', {item: item});
+    if (item) {
+      clearSelectedSurvey();
+      selectedSurvey(item!);
+      navigationToHistory.navigate('surveyPenutupanHistoryFUA');
+    } else {
+      selectedSurvey(item!);
+      navigationToHistory.navigate('surveyPenutupanHistoryFUA');
+    }
   };
 
   const handleCallContactPerson = () => {
-    const phoneNumber = `tel:${item.noTelp}`;
+    const phoneNumber = `tel:${item!.noTelp}`;
     Linking.openURL(phoneNumber);
   };
 
@@ -50,8 +60,16 @@ const MySurveyFUAButtons = ({
 
   const handleConfirmedGoSurvey = async (confirmed: boolean) => {
     setConfirmedGoSurvey(false);
-    if (confirmed)
-      navigationToGoSurvey.navigate('surveyPenutupanGoSurvey', {item: item});
+    if (confirmed) {
+      if (item) {
+        clearSelectedSurvey();
+        selectedSurvey(item!);
+        navigationToGoSurvey.navigate('surveyPenutupanGoSurvey');
+      } else {
+        selectedSurvey(item!);
+        navigationToGoSurvey.navigate('surveyPenutupanGoSurvey');
+      }
+    }
   };
 
   return (

@@ -7,24 +7,26 @@ var NavigationHeader_1 = require("../components/reusableComponent/Header/Navigat
 var IncomingJobAppointment_1 = require("../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobAppointment");
 var IncomingJobPersonalContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobPersonalContact");
 var IncomingJobCoorporateContact_1 = require("../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobCoorporateContact");
-var IncomingJobFUA_1 = require("../components/layoutComponent/SurveyPenutupan/organism/IncomingJob/IncomingJobFUA/IncomingJobFUA");
 var getNewSurveyData_1 = require("../services/api/surveyPenutupan/getNewSurveyData");
 var storeUser_1 = require("../store/storeUser");
-var SurveyPenutupanIncomingJobFUA = function (_a) {
-    var route = _a.route;
+var MySurveyFuaHistoryBody_1 = require("../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryBody");
+var getHistoryFua_1 = require("../services/api/surveyPenutupan/getHistoryFua");
+var storeSelectedSurvey_1 = require("../store/storeSelectedSurvey");
+var SurveyPenutupanIncomingJobFUA = function () {
     var navigation = native_1.useNavigation();
-    var item = route.params.item;
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
     var messageResponse = storeUser_1.useUserStore(function (state) { return ({
         messageResponse: state.messageResponse
     }); }).messageResponse;
+    var data = getHistoryFua_1.UseGetHistoryFuaList(item.noPengajuanSurvey, item.unitNo).data;
     var fullName = (messageResponse === null || messageResponse === void 0 ? void 0 : messageResponse.full_name) || '';
     var refetchSurveyData = getNewSurveyData_1.UseGetNewSurveyData(fullName).refetch;
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full h-full flex flex-col bg-[#fff]" },
         react_1["default"].createElement(NavigationHeader_1["default"], { title: 'FUA', onPress: function () { return navigation.goBack(); }, onRefresh: refetchSurveyData }),
         react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true },
-            react_1["default"].createElement(IncomingJobAppointment_1["default"], { item: item }),
-            react_1["default"].createElement(IncomingJobPersonalContact_1["default"], { item: item }),
+            react_1["default"].createElement(IncomingJobAppointment_1["default"], null),
+            react_1["default"].createElement(IncomingJobPersonalContact_1["default"], null),
             react_1["default"].createElement(IncomingJobCoorporateContact_1["default"], null),
-            react_1["default"].createElement(IncomingJobFUA_1["default"], null))));
+            react_1["default"].createElement(MySurveyFuaHistoryBody_1["default"], { data: data }))));
 };
 exports["default"] = SurveyPenutupanIncomingJobFUA;

@@ -10,6 +10,7 @@ import {
   formatDateSurveyPenutupanJob,
 } from '../../../../../utilities/functions';
 import SurveyJobItemMenu from './SurveyJobItemMenu';
+import {useSelectedSurvey} from '../../../../../store/storeSelectedSurvey';
 
 type SurveyJobItemProps = {
   item: surveyJobProps;
@@ -22,11 +23,18 @@ const SurveyJobItem = React.memo(
     const dayDiff = calcAgingDate(item.createdAt);
     const formattedDate = formatDateSurveyPenutupanJob(item.createdAt);
 
+    const clearSelectedSurvey = useSelectedSurvey(
+      state => state.clearSelectedSurvey,
+    );
+    const selectedSurvey = useSelectedSurvey(state => state.setSelectedSurvey);
+
     const handleListPress = () => {
       console.log(`Index: ${index} | Item: ${item.noPengajuanSurvey}`);
-      navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
-        item: item,
-      });
+      if (item) {
+        clearSelectedSurvey();
+        selectedSurvey(item);
+      } else selectedSurvey(item);
+      navigation.navigate('surveyPenutupanFormIncomingJobFUA');
     };
 
     return (

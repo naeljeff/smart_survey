@@ -20,6 +20,7 @@ type GoSurveyBodyProps = {
 const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
   const [menuGoSurvey, setMenuGoSurvey] = useState<string>('General Info');
   const [activeTab, setActiveTab] = useState<number>(0);
+  const [validatedInformation, setValidatedInformation] = useState<number>(0)
 
   const renderComponent = () => {
     switch (menuGoSurvey) {
@@ -30,6 +31,7 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
             navigateToSurvey={() =>
               handleGoSurveyMenuChangeNavigation('Survey', 1)
             }
+            isGeneralInfoValidated={() => setValidatedInformation(1)}
           />
         );
       case 'Survey':
@@ -39,6 +41,7 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
             navigateToSurveyInfo={() => {
               handleGoSurveyMenuChangeNavigation('Survey Info', 2);
             }}
+            isSurveyValidated={() => setValidatedInformation(2)}
           />
         );
       case 'Survey Info':
@@ -48,6 +51,7 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
             navigateToSignature={() =>
               handleGoSurveyMenuChangeNavigation('Signature', 3)
             }
+            isSurveyInfoValidated={() => setValidatedInformation(3)}
           />
         );
       case 'Signature':
@@ -61,6 +65,7 @@ const GoSurveyBody = ({surveyFunction}: GoSurveyBodyProps) => {
     setMenuGoSurvey(menu);
     setActiveTab(index);
   };
+
   return (
     <View className="flex-1 flex flex-col bg-white">
       {/* Go Survey Menu Options */}

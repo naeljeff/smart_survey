@@ -4,15 +4,16 @@ var react_native_1 = require("react-native");
 var react_1 = require("react");
 var react_native_date_picker_1 = require("react-native-date-picker");
 var functions_1 = require("../../../../../../utilities/functions");
-var MySurveyAppointment = react_1["default"].memo(function (_a) {
-    var item = _a.item;
-    var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.noPengajuanSurvey) || ''), noPengajuan = _b[0], setNoPengajuan = _b[1];
-    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.unitNo) || ''), unitNo = _c[0], setUnitNo = _c[1];
-    var _d = react_1.useState((item === null || item === void 0 ? void 0 : item.requesterFullName) || ''), requestedBy = _d[0], setRequestedBy = _d[1];
+var storeSelectedSurvey_1 = require("../../../../../../store/storeSelectedSurvey");
+var MySurveyAppointment = react_1["default"].memo(function () {
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
+    var _a = react_1.useState((item === null || item === void 0 ? void 0 : item.noPengajuanSurvey) || ''), noPengajuan = _a[0], setNoPengajuan = _a[1];
+    var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.unitNo) || ''), unitNo = _b[0], setUnitNo = _b[1];
+    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.requesterFullName) || ''), requestedBy = _c[0], setRequestedBy = _c[1];
     var initialRequestedDate = (item === null || item === void 0 ? void 0 : item.createdAt) ? new Date(item.createdAt.replace(' ', 'T'))
         : undefined;
-    var _e = react_1.useState(initialRequestedDate), requestedDate = _e[0], setRequestedDate = _e[1];
-    var _f = react_1.useState(false), isRequestedDateOpen = _f[0], setIsRequestedDateOpen = _f[1];
+    var _d = react_1.useState(initialRequestedDate), requestedDate = _d[0], setRequestedDate = _d[1];
+    var _e = react_1.useState(false), isRequestedDateOpen = _e[0], setIsRequestedDateOpen = _e[1];
     var aging = (item === null || item === void 0 ? void 0 : item.createdAt) ? functions_1.calcAgingDate(item.createdAt)
         : null;
     var onConfirmRequestedDate = function (date) {

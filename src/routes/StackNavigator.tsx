@@ -16,6 +16,8 @@ import SurveyPenutupanGoogleMaps from '../screens/SurveyPenutupanGoogleMaps';
 import SurveyPenutupanAssignJob from '../screens/SurveyPenutupanAssignJob';
 import SurveyPenutupanHistoryFUA from '../screens/SurveyPenutupanHistoryFUA';
 import SurveyPenutupanMySurveyGoSurvey from '../screens/SurveyPenutupanMySurveyGoSurvey';
+import SurveyPenutupanGoSurveyExterior from '../screens/SurveyPenutupanGoSurveyExterior';
+import SurveyPenutupanGoSurveyAdditional from '../screens/SurveyPenutupanGoSurveyAdditional';
 
 export type RootStackParamList = {
   // Login Page
@@ -28,11 +30,13 @@ export type RootStackParamList = {
 
   // Survey Penutupan
   surveyPenutupan: undefined;
-  surveyPenutupanFormIncomingJobFUA: {item: surveyJobProps};
-  surveyPenutupanFormMySurveyJobFUA: {item: surveyJobProps};
+  surveyPenutupanFormIncomingJobFUA: undefined;
+  surveyPenutupanFormMySurveyJobFUA: undefined;
   surveyPenutupanAssignJob: {item: surveyJobProps};
-  surveyPenutupanHistoryFUA: {item: surveyJobProps};
-  surveyPenutupanGoSurvey: {item: surveyJobProps};
+  surveyPenutupanHistoryFUA: undefined;
+  surveyPenutupanGoSurvey: undefined;
+  surveyPenutupanGoSurveyExterior: undefined;
+  surveyPenutupanGoSurveyAdditional: undefined;
 
   // Supervisor
   supervisor: undefined;
@@ -99,6 +103,14 @@ const StackNavigator = () => {
       <Stack.Screen
         name="surveyPenutupanGoSurvey"
         component={SurveyPenutupanMySurveyGoSurvey}
+      />
+      <Stack.Screen
+        name="surveyPenutupanGoSurveyExterior"
+        component={SurveyPenutupanGoSurveyExterior}
+      />
+      <Stack.Screen
+        name="surveyPenutupanGoSurveyAdditional"
+        component={SurveyPenutupanGoSurveyAdditional}
       />
 
       {/* Supervisor */}

@@ -5,7 +5,7 @@ var react_1 = require("react");
 var GoSurveyGeneralInfoDropdown_1 = require("../../../atoms/GoSurvey/GoSurveyGeneralInfoDropdown");
 var GoSurveySurveyInfoButton_1 = require("../../../atoms/GoSurvey/GoSurveySurveyInfoButton");
 var GoSurveySurveyInfoBody = function (_a) {
-    var surveyFunction = _a.surveyFunction, navigateToSignature = _a.navigateToSignature;
+    var surveyFunction = _a.surveyFunction, navigateToSignature = _a.navigateToSignature, isSurveyInfoValidated = _a.isSurveyInfoValidated;
     var _b = react_1.useState(null), conclusionOfVehicle = _b[0], setConclusionOfVehicle = _b[1];
     return (react_1["default"].createElement(react_native_1.ScrollView, { automaticallyAdjustKeyboardInsets: true, className: "flex-grow" },
         react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black" },

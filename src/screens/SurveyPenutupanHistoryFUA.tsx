@@ -6,7 +6,7 @@ import {
   View,
 } from 'react-native';
 import React from 'react';
-import {RouteProp, useNavigation} from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {RootStackParamList} from '../routes/StackNavigator';
@@ -16,24 +16,16 @@ import MySurveyFuaHistoryBody from '../components/layoutComponent/SurveyPenutupa
 import MySurveyFuaHistoryAppointment from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryAppointment';
 import MySurveyFuaHistoryCooporateContact from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryCooporateContact';
 import MySurveyFuaHistoryPersonalContact from '../components/layoutComponent/SurveyPenutupan/organism/MySurvey/MySurveyFUA/MySurveyFUAHistory/MySurveyFuaHistoryPersonalContact';
+import { useSelectedSurvey } from '../store/storeSelectedSurvey';
 
-type SurveyPenutupanHistoryFuaRoute = RouteProp<
-  RootStackParamList,
-  'surveyPenutupanHistoryFUA'
->;
-
-type SurveyPenutupanHistoryProps = {
-  route: SurveyPenutupanHistoryFuaRoute;
-};
-
-const SurveyPenutupanHistoryFUA = ({route}: SurveyPenutupanHistoryProps) => {
-  const {item} = route.params;
+const SurveyPenutupanHistoryFUA = () => {
+  const {data: item} = useSelectedSurvey((state) => state);
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();
 
   const {data, isLoading, isError, refetch, error} = UseGetHistoryFuaList(
-    item.noPengajuanSurvey,
-    item.unitNo,
+    item!.noPengajuanSurvey,
+    item!.unitNo,
   );
 
   if (isLoading) {
@@ -68,10 +60,10 @@ const SurveyPenutupanHistoryFUA = ({route}: SurveyPenutupanHistoryProps) => {
           <RefreshControl refreshing={isLoading} onRefresh={refetch} colors={['#00bfff']}/>
         }>
         {/* Appointment Schedule */}
-        <MySurveyFuaHistoryAppointment item={item} />
+        <MySurveyFuaHistoryAppointment />
 
         {/* Personal Contact Schedule */}
-        <MySurveyFuaHistoryPersonalContact item={item}/>
+        <MySurveyFuaHistoryPersonalContact/>
 
         {/* Coorporate Contact Person */}
         <MySurveyFuaHistoryCooporateContact />

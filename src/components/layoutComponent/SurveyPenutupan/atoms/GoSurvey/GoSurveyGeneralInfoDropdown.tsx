@@ -72,10 +72,14 @@ const GoSurveyGeneralInfoDropdown = ({
 
   return (
     <View className="w-full flex flex-row items-center justify-between space-x-2 mt-2">
-      <View className="w-[30%] flex flex-row justify-between items-center">
-        <Text className="text-black capitalize">{fieldName}</Text>
-        <Text className="text-black capitalize">:</Text>
-      </View>
+      {fieldName !== '' ? (
+        <View className="w-[30%] flex flex-row justify-between items-center">
+          <Text className={`text-black capitalize text-xs`}>{fieldName}</Text>
+          <Text className={`text-black capitalize text-xs`}>:</Text>
+        </View>
+      ) : (
+        ''
+      )}
 
       <TouchableOpacity
         onPress={() => setIsDropdownOpen(true)}

@@ -16,6 +16,8 @@ var SurveyPenutupanGoogleMaps_1 = require("../screens/SurveyPenutupanGoogleMaps"
 var SurveyPenutupanAssignJob_1 = require("../screens/SurveyPenutupanAssignJob");
 var SurveyPenutupanHistoryFUA_1 = require("../screens/SurveyPenutupanHistoryFUA");
 var SurveyPenutupanMySurveyGoSurvey_1 = require("../screens/SurveyPenutupanMySurveyGoSurvey");
+var SurveyPenutupanGoSurveyExterior_1 = require("../screens/SurveyPenutupanGoSurveyExterior");
+var SurveyPenutupanGoSurveyAdditional_1 = require("../screens/SurveyPenutupanGoSurveyAdditional");
 var Stack = native_stack_1.createNativeStackNavigator();
 var StackNavigator = function () {
     return (react_1["default"].createElement(Stack.Navigator, { initialRouteName: "login", screenOptions: {
@@ -35,6 +37,8 @@ var StackNavigator = function () {
         react_1["default"].createElement(Stack.Screen, { name: "surveyPenutupanAssignJob", component: SurveyPenutupanAssignJob_1["default"] }),
         react_1["default"].createElement(Stack.Screen, { name: "surveyPenutupanHistoryFUA", component: SurveyPenutupanHistoryFUA_1["default"] }),
         react_1["default"].createElement(Stack.Screen, { name: "surveyPenutupanGoSurvey", component: SurveyPenutupanMySurveyGoSurvey_1["default"] }),
+        react_1["default"].createElement(Stack.Screen, { name: "surveyPenutupanGoSurveyExterior", component: SurveyPenutupanGoSurveyExterior_1["default"] }),
+        react_1["default"].createElement(Stack.Screen, { name: "surveyPenutupanGoSurveyAdditional", component: SurveyPenutupanGoSurveyAdditional_1["default"] }),
         react_1["default"].createElement(Stack.Screen, { name: "supervisor", component: MenuAwalSupervisor_1["default"] }),
         react_1["default"].createElement(Stack.Screen, { name: "surveyor", component: MenuAwalSurveyor_1["default"] }),
         react_1["default"].createElement(Stack.Screen, { name: "googleMaps", component: SurveyPenutupanGoogleMaps_1["default"] })));

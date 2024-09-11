@@ -5,15 +5,22 @@ var react_1 = require("react");
 var Ionicons_1 = require("react-native-vector-icons/Ionicons");
 var functions_1 = require("../../../../../utilities/functions");
 var SurveyJobItemMenu_1 = require("./SurveyJobItemMenu");
+var storeSelectedSurvey_1 = require("../../../../../store/storeSelectedSurvey");
 var SurveyJobItem = react_1["default"].memo(function (_a) {
     var item = _a.item, index = _a.index, navigation = _a.navigation;
     var dayDiff = functions_1.calcAgingDate(item.createdAt);
     var formattedDate = functions_1.formatDateSurveyPenutupanJob(item.createdAt);
+    var clearSelectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.clearSelectedSurvey; });
+    var selectedSurvey = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state.setSelectedSurvey; });
     var handleListPress = function () {
         console.log("Index: " + index + " | Item: " + item.noPengajuanSurvey);
-        navigation.navigate('surveyPenutupanFormIncomingJobFUA', {
-            item: item
-        });
+        if (item) {
+            clearSelectedSurvey();
+            selectedSurvey(item);
+        }
+        else
+            selectedSurvey(item);
+        navigation.navigate('surveyPenutupanFormIncomingJobFUA');
     };
     return (react_1["default"].createElement(react_native_1.View, { className: "w-screen py-0.5 px-1 border-b border-black" },
         react_1["default"].createElement(react_native_1.TouchableOpacity, { onPress: handleListPress, className: "w-screen flex flex-row justify-start items-center" },

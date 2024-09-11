@@ -2,13 +2,14 @@
 exports.__esModule = true;
 var react_native_1 = require("react-native");
 var react_1 = require("react");
-var MySurveyPersonalContact = react_1["default"].memo(function (_a) {
-    var item = _a.item;
-    var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.nama) || ''), name = _b[0], setName = _b[1];
-    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.alamat) || ''), address = _c[0], setAddress = _c[1];
-    var _d = react_1.useState((item === null || item === void 0 ? void 0 : item.noTelp) || ''), phoneNumber = _d[0], setPhoneNumber = _d[1];
-    var _e = react_1.useState((item === null || item === void 0 ? void 0 : item.email) || ''), email = _e[0], setEmail = _e[1];
-    var _f = react_1.useState((item === null || item === void 0 ? void 0 : item.catatan) || ''), remarks = _f[0], setRemarks = _f[1];
+var storeSelectedSurvey_1 = require("../../../../../../store/storeSelectedSurvey");
+var MySurveyPersonalContact = react_1["default"].memo(function () {
+    var item = storeSelectedSurvey_1.useSelectedSurvey(function (state) { return state; }).data;
+    var _a = react_1.useState((item === null || item === void 0 ? void 0 : item.nama) || ''), name = _a[0], setName = _a[1];
+    var _b = react_1.useState((item === null || item === void 0 ? void 0 : item.alamat) || ''), address = _b[0], setAddress = _b[1];
+    var _c = react_1.useState((item === null || item === void 0 ? void 0 : item.noTelp) || ''), phoneNumber = _c[0], setPhoneNumber = _c[1];
+    var _d = react_1.useState((item === null || item === void 0 ? void 0 : item.email) || ''), email = _d[0], setEmail = _d[1];
+    var _e = react_1.useState((item === null || item === void 0 ? void 0 : item.catatan) || ''), remarks = _e[0], setRemarks = _e[1];
     return (react_1["default"].createElement(react_native_1.View, { className: "w-full flex flex-col items-start justify-center mb-2" },
         react_1["default"].createElement(react_native_1.Text, { className: "text-lg text-black font-bold px-3 py-1.5" }, "Personal Contact Person"),
         react_1["default"].createElement(react_native_1.View, { className: "w-full border-b border-black mb-2" }),
