@@ -11,13 +11,11 @@ const GoSurveyExteriorRefreshBtn = ({
   onPress,
 }: GoSurveyExteriorRefreshBtnProps) => {
   return (
-    <Surface elevation={1} className="rounded-lg">
-      <TouchableOpacity onPress={onPress}>
-        <View className="rounded-lg bg-[#faa72c] px-1.5 py-0.5">
-          <Ionicons name={'refresh'} size={26} color={'white'} />
-        </View>
-      </TouchableOpacity>
-    </Surface>
+    <TouchableOpacity onPress={onPress} className='shadow-2xl drop-shadow-xl'>
+      <View className="rounded-lg bg-[#faa72c] px-2 py-1">
+        <Ionicons name={'refresh'} size={18} color={'white'} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

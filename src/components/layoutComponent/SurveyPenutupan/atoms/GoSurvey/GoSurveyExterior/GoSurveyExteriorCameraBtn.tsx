@@ -11,13 +11,11 @@ const GoSurveyExteriorCameraBtn = ({
   onPress,
 }: GoSurveyExteriorCameraBtnProps) => {
   return (
-    <Surface elevation={1} className="rounded-lg">
-      <TouchableOpacity onPress={onPress}>
-        <View className="rounded-lg bg-[#faa72c] px-1.5 py-0.5">
-          <EvilIcons name={'camera'} size={26} color={'white'} />
-        </View>
-      </TouchableOpacity>
-    </Surface>
+    <TouchableOpacity onPress={onPress} className="shadow-2xl drop-shadow-xl">
+      <View className="rounded-lg bg-[#faa72c] px-1.5 py-1">
+        <EvilIcons name={'camera'} size={24} color={'white'} />
+      </View>
+    </TouchableOpacity>
   );
 };
 

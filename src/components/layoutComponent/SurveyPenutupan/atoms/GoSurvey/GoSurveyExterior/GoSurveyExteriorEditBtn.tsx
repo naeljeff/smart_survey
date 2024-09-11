@@ -9,13 +9,11 @@ type GoSurveyExteriorEditBtnProps = {
 
 const GoSurveyExteriorEditBtn = ({onPress}: GoSurveyExteriorEditBtnProps) => {
   return (
-    <Surface elevation={1} className="rounded-lg">
-      <TouchableOpacity onPress={onPress}>
-        <View className="rounded-lg bg-[#faa72c] px-1.5 py-0.5">
-          <FontAwesome name={'edit'} size={26} color={'white'} />
-        </View>
-      </TouchableOpacity>
-    </Surface>
+    <TouchableOpacity onPress={onPress} className='shadow-2xl drop-shadow-xl'>
+      <View className="rounded-lg bg-[#faa72c] px-2 py-1">
+        <FontAwesome name={'edit'} size={18} color={'white'} />
+      </View>
+    </TouchableOpacity>
   );
 };
 
