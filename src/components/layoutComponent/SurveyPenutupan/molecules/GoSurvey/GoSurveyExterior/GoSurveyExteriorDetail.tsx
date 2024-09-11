@@ -6,12 +6,26 @@ import GoSurveyExteriorRefreshBtn from '../../../atoms/GoSurvey/GoSurveyExterior
 import GoSurveyExteriorGalleryBtn from '../../../atoms/GoSurvey/GoSurveyExterior/GoSurveyExteriorGalleryBtn';
 import GoSurveyExteriorCameraBtn from '../../../atoms/GoSurvey/GoSurveyExterior/GoSurveyExteriorCameraBtn';
 import GoSurveyGeneralInfoDropdown from '../../../atoms/GoSurvey/GoSurveyGeneralInfoDropdown';
+import {useGoSurveyExterior} from '../../../../../../store/storeGoSurveyExterior';
 
 type GoSurveyExteriorDetailProps = {
   title: string;
+  type: string;
 };
 
-const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
+const GoSurveyExteriorDetail = ({title, type}: GoSurveyExteriorDetailProps) => {
+  const {exteriorData, addOrUpdateExteriorData} = useGoSurveyExterior();
+  const partData = exteriorData[type] || {
+    statusOfCondition: '',
+    status: '',
+    condition: '',
+    brand: '',
+    photos: [],
+  };
+
+  const handleDropdownSelection = (property: string, value: string) => {
+    addOrUpdateExteriorData(type, {[property]: value});
+  };
   return (
     <View className="w-full flex-1 flex-col justify-start border-b border-gray-300 px-3 py-2">
       {/* Title */}
@@ -26,8 +40,8 @@ const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
           {/* Status of Condition */}
           <View className="mb-2">
             <GoSurveyGeneralInfoDropdown
-              data={''}
-              onChange={() => {}}
+              data={partData.statusOfCondition}
+              onChange={handleDropdownSelection}
               fieldName={''}
               properties={'statusOfCondition'}
               placeholder="Select Status of Condition"
@@ -36,8 +50,8 @@ const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
 
           {/* Status */}
           <GoSurveyGeneralInfoDropdown
-            data={''}
-            onChange={() => {}}
+            data={partData.status}
+            onChange={handleDropdownSelection}
             fieldName={''}
             properties={'status'}
             placeholder="Select Status"
@@ -49,8 +63,8 @@ const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
           {/* Condition */}
           <View className="mb-2">
             <GoSurveyGeneralInfoDropdown
-              data={''}
-              onChange={() => {}}
+              data={partData.condition}
+              onChange={handleDropdownSelection}
               fieldName={'Condition'}
               properties={'condition'}
               placeholder="Select Condition"
@@ -64,6 +78,8 @@ const GoSurveyExteriorDetail = ({title}: GoSurveyExteriorDetailProps) => {
               <Text className="text-black capitalize text-xs">:</Text>
             </View>
             <TextInput
+              value={partData.brand}
+              onChangeText={text => handleDropdownSelection('brand', text)}
               placeholder="Brand"
               className="flex-1 text-black text-xs uppercase py-1 px-2 border border-gray-300 bg-gray-100 rounded"
             />
