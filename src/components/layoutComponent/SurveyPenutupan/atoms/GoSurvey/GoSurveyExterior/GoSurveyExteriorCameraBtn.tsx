@@ -1,6 +1,5 @@
 import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {Surface} from 'react-native-paper';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 
 type GoSurveyExteriorCameraBtnProps = {

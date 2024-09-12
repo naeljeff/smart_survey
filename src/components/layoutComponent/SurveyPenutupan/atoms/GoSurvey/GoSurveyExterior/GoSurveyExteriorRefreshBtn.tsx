@@ -1,6 +1,5 @@
 import {TouchableOpacity, View} from 'react-native';
 import React from 'react';
-import {Surface} from 'react-native-paper';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 type GoSurveyExteriorRefreshBtnProps = {
